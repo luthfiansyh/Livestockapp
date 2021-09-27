@@ -16,7 +16,9 @@ const KalkulatorBerat = () =>{
     return(
         <View style={{flex:1}}>
             <HeaderPage/>
-            <View style={{flex:1}}></View>
+            <View style={{flex:1}}>
+                
+            </View>
             <BottomNav/>
         </View>
     )

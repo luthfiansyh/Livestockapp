@@ -7,13 +7,14 @@ import {
   Text,
   useColorScheme,
   View,
+  TouchableOpacity
 } from 'react-native';
 
-import Tombol from '../component/Tombol.js';
-import BottomNav from '../component/BottomNav.js';
-import Head from '../component/Head.js';
-import ThumbnailArtikel from '../component/ThumbnailArtikel.js';
-import HeaderPage from '../component/HeaderPage.js';
+import Tombol from '../../component/Tombol.js';
+import BottomNav from '../../component/BottomNav.js';
+import Head from '../../component/Head.js';
+import ThumbnailArtikel from '../../component/ThumbnailArtikel.js';
+import HeaderPage from '../../component/HeaderPage.js';
 
 const HalamanBeranda = () =>{
     return(

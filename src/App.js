@@ -11,6 +11,7 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Router from './router';
 
 
 
@@ -22,20 +23,11 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import HalamanBeranda from './pages/HalamanBeranda';
-import KalkulatorBerat from './pages/KalkulatorBerat';
-import InfoHarga from './pages/InfoHarga';
-import HalamanKalender from './pages/HalamanKalender';
-import HalamanKomoditas from './pages/HalamanKomoditas';
-
-
 const App = ()  =>{
   return(
     <View style={{flex:1}}>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="Beranda" component={HalamanBeranda}/>
-        </Stack.Navigator>
+        <Router/>
       </NavigationContainer>
     </View>
 
