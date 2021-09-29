@@ -1,24 +1,29 @@
 import React from "react";
-import {StyleSheet, Text, View } from "react-native";
+import {StyleSheet, Text, View, Button} from "react-native";
 
-const FourthSplash = () => (
-  <View style={page.container}>
-    <View style={page.upperside}>
-        <Text style={page.text}>illustration 3</Text>
-    </View>
-    <View style={page.downside}>
-        <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
+const FourthSplash = (props) => {
+  const {navigation} = props;
+
+  return(
+      <View style={page.container}>
+        <View style={page.upperside}>
+          <Text style={page.text}>illustration 3</Text>
+        </View>
+        <View style={page.downside}>
+          <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
         <View style={page.buttonbackground}>
           <View style={page.secondarybutton}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
           </View>
           <View style={page.button}>
-            <Text style={page.buttontext}>Mengerti</Text>
+            <Button style={page.buttontext} title="Selanjutnya" onPress={() => {navigation.navigate('HalamanBeranda')}}/>
           </View>
         </View>
     </View>
   </View>
-);
+
+  )
+};
 
 const page = StyleSheet.create({
   container:{
@@ -69,7 +74,6 @@ const page = StyleSheet.create({
     justifyContent:'space-between'
   },
   button:{
-    backgroundColor:'#57B860',
     justifyContent: 'space-around',
     width: 120,
     height: 42,

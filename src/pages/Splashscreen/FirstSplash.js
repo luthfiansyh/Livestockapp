@@ -8,8 +8,6 @@ const FirstSplash = () => (
   <View style={page.container}>
     <View style={page.logo}>
         <Text style={page.text}>Logo here</Text>
-        <Button title="Test Alert" onPress={() => {alert('berhasil');}}/>
-        <Button title="halaman Selanjutnya" onPress={() => {navigation.navigate('HalamanBeranda');}}/>
     </View>
     <Text style={page.title}>Livestock App</Text>
   </View>

@@ -11,13 +11,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HeaderPage from './HeaderPage';
 
-
-class BottomNav extends Component{
-  render(){
-    return(
+const BottomNav = (props) => {
+  const {navigation} = props;
+  return(
       <View style={{height: 54, backgroundColor: '#CCC', flexDirection: 'row'}}>
         <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
-          <View style={{width: 24, height: 24}}>
+          <View style={{width: 24, height: 24}} onPress={() => {navigation.navigate('SecondSplash')}}>
             <Icon Icon name="home" group="ui-interface" height="24" width="24" color="#545454" />
         </View>
         <Text style={{fontSize: 10, color:'#545454', marginTop: 4}}>Beranda</Text>
@@ -43,6 +42,7 @@ class BottomNav extends Component{
     </View>
   )
   }
-}
+
+
 
 export default BottomNav;

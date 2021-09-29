@@ -17,11 +17,10 @@ const Router = () => {
         screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name="Firstsplash" component={FirstSplash}/>
+            <Stack.Screen name="SecondSplash" component={SecondSplash}/>
+            <Stack.Screen name="ThirdSplash" component={ThirdSplash}/>
+            <Stack.Screen name="FourthSplash" component={FourthSplash}/>
             <Stack.Screen name="HalamanBeranda" component={HalamanBeranda}/>
-            <Stack.Screen name="Secondsplash" component={SecondSplash}/>
-            <Stack.Screen name="Thirdsplash" component={ThirdSplash}/>
-            <Stack.Screen name="Fourthsplash" component={FourthSplash}/>
         </Stack.Navigator>
     )
 }
