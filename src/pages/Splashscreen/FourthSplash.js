@@ -1,10 +1,10 @@
 import React from "react";
 import {StyleSheet, Text, View } from "react-native";
 
-const SecondSplash = () => (
+const FourthSplash = () => (
   <View style={page.container}>
     <View style={page.upperside}>
-        <Text style={page.text}>illustration 1</Text>
+        <Text style={page.text}>illustration 3</Text>
     </View>
     <View style={page.downside}>
         <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
@@ -13,7 +13,7 @@ const SecondSplash = () => (
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
           </View>
           <View style={page.button}>
-            <Text style={page.buttontext}>SELANJUTNYA</Text>
+            <Text style={page.buttontext}>Mengerti</Text>
           </View>
         </View>
     </View>
@@ -97,4 +97,4 @@ const page = StyleSheet.create({
   }
 });
 
-export default SecondSplash;
+export default FourthSplash;

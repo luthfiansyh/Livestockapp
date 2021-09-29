@@ -1,10 +1,15 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, Text, View, Button} from "react-native";
+import HalamanBeranda from "../Beranda/HalamanBeranda";
 
 const FirstSplash = () => (
   <View style={page.container}>
     <View style={page.logo}>
         <Text style={page.text}>Logo here</Text>
+        <Button title="Test Alert" onPress={() => {alert('berhasil');}}/>
+        <Button title="halaman Selanjutnya" onPress={() => {navigation.navigate('HalamanBeranda');}}/>
     </View>
     <Text style={page.title}>Livestock App</Text>
   </View>

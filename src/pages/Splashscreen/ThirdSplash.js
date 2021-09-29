@@ -1,15 +1,22 @@
+import { format } from "jest-validate";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import {StyleSheet, Text, View} from "react-native";
+
 
 const ThirdSplash = () => (
   <View style={page.container}>
     <View style={page.upperside}>
-        <Text style={page.text}>third splash</Text>
+        <Text style={page.text}>illustration 2</Text>
     </View>
     <View style={page.downside}>
         <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
-        <View style={page.button}>
-            <Text style={page.buttontext}>Selanjutnya</Text>
+        <View style={page.buttonbackground}>
+          <View style={page.secondarybutton}>
+            <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
+          </View>
+          <View style={page.button}>
+            <Text style={page.buttontext}>SELANJUTNYA</Text>
+          </View>
         </View>
     </View>
   </View>
@@ -31,12 +38,11 @@ const page = StyleSheet.create({
     padding: 24,
     backgroundColor:'white',
     borderTopLeftRadius: 24,
-    borderTopRightRadius: 24
+    borderTopRightRadius: 24,
   },
   paragraph:{
     color:'#4D4D4D',
     textAlign:'justify',
-    backgroundColor:'pink',
     fontSize: 16,
     fontWeight: "700",
     paddingVertical: 16
@@ -48,8 +54,9 @@ const page = StyleSheet.create({
   },
   buttontext:{
     textAlign:'center',
-    flexDirection: 'column',
-    justifyContent: 'space-around'
+    color:'white',
+    fontSize: 14,
+    fontWeight:'800'
   },
   title:{
       color:'#57B860',
@@ -57,8 +64,24 @@ const page = StyleSheet.create({
       fontWeight:'bold',
       textAlign:'center'
   },
+  buttonbackground:{
+    marginTop: 72,
+    flexDirection:"row",
+    justifyContent: 'flex-end',
+    justifyContent:'space-between'
+  },
   button:{
     backgroundColor:'#57B860',
+    justifyContent: 'space-around',
+    width: 120,
+    height: 42,
+    borderTopEndRadius:8,
+    borderBottomStartRadius:8,
+    borderTopStartRadius:8,
+    borderBottomEndRadius:8
+  },
+  secondarybutton:{
+    justifyContent: 'space-around',
     width: 120,
     height: 42,
     borderTopEndRadius:8,
