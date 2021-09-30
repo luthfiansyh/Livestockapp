@@ -15,6 +15,7 @@ import BottomNav from '../../component/BottomNav.js';
 import Head from '../../component/Head.js';
 import ThumbnailArtikel from '../../component/ThumbnailArtikel.js';
 import HeaderPage from '../../component/HeaderPage.js';
+import BottomTab from '../../component/BottomTab.js';
 
 const HalamanBeranda = () =>{
     return(

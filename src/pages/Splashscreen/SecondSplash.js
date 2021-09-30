@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, Button} from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const SecondSplash = (props) => {
   const {navigation} = props;
@@ -12,12 +13,12 @@ const SecondSplash = (props) => {
         <View style={page.downside}>
           <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
         <View style={page.buttonbackground}>
-          <View style={page.secondarybutton}>
+          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('HalamanBeranda')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
-          </View>
-          <View style={page.button}>
-            <Button style={page.buttontext} title="Selanjutnya" onPress={() => {navigation.navigate('ThirdSplash')}}/>
-          </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('ThirdSplash')}}>
+            <Text style={page.buttontext}>Selanjutnya</Text>
+          </TouchableOpacity>
         </View>
     </View>
   </View>
@@ -56,9 +57,9 @@ const page = StyleSheet.create({
     fontWeight: "bold",
   },
   buttontext:{
-    textAlign:'center',
     color:'white',
-    fontSize: 14,
+    textAlign:'center',
+    fontSize: 16,
     fontWeight:'800'
   },
   title:{
@@ -77,6 +78,7 @@ const page = StyleSheet.create({
     justifyContent: 'space-around',
     width: 120,
     height: 42,
+    backgroundColor:'#57B860',
     borderTopEndRadius:8,
     borderBottomStartRadius:8,
     borderTopStartRadius:8,
