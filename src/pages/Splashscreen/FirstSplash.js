@@ -1,17 +1,21 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Text, View, Button} from "react-native";
-import HalamanBeranda from "../Beranda/HalamanBeranda";
+import React from "react";
+import {StyleSheet, Text, View, Button} from "react-native";
 
-const FirstSplash = () => (
+const FirstSplash = (props) => {
+  const {navigation} = props;
+
+  setTimeout(() => {
+    navigation.navigate('SecondSplash')},3000);
+
+  return(
   <View style={page.container}>
     <View style={page.logo}>
         <Text style={page.text}>Logo here</Text>
     </View>
     <Text style={page.title}>Livestock App</Text>
   </View>
-);
+  )
+  };
 
 const page = StyleSheet.create({
   container: {

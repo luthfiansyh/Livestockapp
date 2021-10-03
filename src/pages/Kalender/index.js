@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
   Text,
+  useColorScheme,
   View,
 } from 'react-native';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HalamanKalender from './HalamanKalender';
-export {HalamanKalender};
-
-const Kalender = () => {
+const HalamanKalender = () =>{
     return(
-        <Stack.Navigator  
-            screenOptions={{
-                headerShown: false
-            }}>
-                <Stack.Screen name="HalamanKalender" component={HalamanKalender}/>
-            </Stack.Navigator>
+        <View style={{flex:1}}>
+            <Text>komponen di Halaman Kalender</Text>
+        </View>
     )
 }
 
-export default Kalender;
+
+export default HalamanKalender;
