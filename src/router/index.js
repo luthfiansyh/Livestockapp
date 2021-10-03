@@ -4,13 +4,15 @@ import FirstSplash from "../pages/Splashscreen/FirstSplash";
 import SecondSplash from "../pages/Splashscreen/SecondSplash";
 import ThirdSplash from "../pages/Splashscreen/ThirdSplash";
 import FourthSplash from "../pages/Splashscreen/FourthSplash";
-import HalamanBeranda from "../pages/Beranda/HalamanBeranda";
+import Beranda from "../pages/Beranda";
 import HalamanKalender from "../pages/Kalender";
-import Root from "../pages/Beranda";
+import NavHome from "../pages/Beranda";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HalamanKomoditas from "../pages/Komoditas/HalamanKomoditas";
 import HalamanPengaturan from "../pages/Pengaturan/HalamanPengaturan";
 import Icon from 'react-native-ico';
+import HalamanLogin from "../pages/Login/HalamanLogin";
+import NavLogin from "../pages/Login";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,11 +22,12 @@ const Router = () => {
         screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name="HalamanBeranda" component={Home}/>
             <Stack.Screen name="FirstSplash" component={FirstSplash}/>
             <Stack.Screen name="SecondSplash" component={SecondSplash}/>
             <Stack.Screen name="ThirdSplash" component={ThirdSplash}/>
             <Stack.Screen name="FourthSplash" component={FourthSplash}/>
+            <Stack.Screen name="NavigationLogin" component={NavLogin}/>
+            <Stack.Screen name="HalamanBeranda" component={Home}/>
         </Stack.Navigator>
     )
 }
@@ -43,7 +46,7 @@ function Home() {
         >
       <Tab.Screen
         name="Beranda"
-        component={HalamanBeranda}
+        component={NavHome}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="home" group="ui-interface" color={color} size={size}/>
@@ -77,7 +80,6 @@ function Home() {
           ),
         }}
         />
-
     </Tab.Navigator>
   );
 }

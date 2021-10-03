@@ -15,7 +15,7 @@ const FourthSplash = (props) => {
           <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('HalamanBeranda')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('HalamanBeranda')}}>
+          <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('NavigationLogin')}}>
             <Text style={page.buttontext}>Selanjutnya</Text>
           </TouchableOpacity>
         </View>

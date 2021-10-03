@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import {View,Text} from 'react-native';
-import FloatingButton from '../../component/FloatingPlusButton.js';
 
 import HeaderPage from '../../component/HeaderPage.js';
 
-const HalamanKomoditas = () =>{
+const KalkulatorBobot = () =>{
     return(
         <View style={{flex:1}}>
+            <Text>Halaman Kalkulator</Text>
             <HeaderPage/>
             <View style={{flex:1}}>
-                <FloatingButton/>
             </View>
         </View>
     )
 }
 
 
-export default HalamanKomoditas;
+export default KalkulatorBobot;

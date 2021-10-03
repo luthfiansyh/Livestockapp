@@ -1,19 +1,24 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HalamanBeranda from './HalamanBeranda';
 import HalamanKomoditas from '../Komoditas/HalamanKomoditas';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import KalkulatorBobot from './KalkulatorBobot';
 
-const Tab = createBottomTabNavigator();
 
-function Root(){
+const Stack = createNativeStackNavigator();
+
+function NavHome(){
   return (
-    <Tab.Navigator>
-        <Tab.Screen name="Beranda" component={HalamanBeranda} />
-        <Tab.Screen name="Komoditas" component={HalamanKomoditas} />
-    </Tab.Navigator>
+    <Stack.Navigator  
+      screenOptions={{
+            headerShown: false
+        }}>
+            <Stack.Screen name="BerandaScreen" component={HalamanBeranda}/>
+            <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot}/>
+        </Stack.Navigator>
   );
 }               
 
-export default Root;
+export default NavHome;
