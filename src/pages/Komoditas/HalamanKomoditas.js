@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
-import {View,Text} from 'react-native';
-import FloatingButton from '../../component/FloatingPlusButton.js';
+import {View,Text, StyleSheet, ScrollView} from 'react-native';
+import { FAB } from 'react-native-paper';
 
 import HeaderPage from '../../component/HeaderPage.js';
 
-const HalamanKomoditas = () =>{
+const HalamanKomoditas = (props) =>{
+
+    const {navigation} = props;
+
+
     return(
-        <View style={{flex:1}}>
-            <HeaderPage/>
-            <View style={{flex:1}}>
-                <FloatingButton/>
-            </View>
+        <View  style={{flex:1}}>
+            <ScrollView>
+                <HeaderPage/>
+            </ScrollView>
+            <FAB
+                style={styles.fab}
+                small
+                icon="plus"
+                onPress={() => {navigation.navigate('NavKomoditas')}}
+                />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    fab:{
+        position: 'absolute',
+        right: "4%",
+        bottom: "10%",
+        width: 48,
+        height: 48,
+        backgroundColor: "#57B860"
+    }
+})
+
 
 
 export default HalamanKomoditas;

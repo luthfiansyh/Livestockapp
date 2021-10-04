@@ -1,19 +1,19 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TambahPengingat from './TambahPengingat';
+import TambahKomoditas from './TambahKomoditas';
 
 
 const Stack = createNativeStackNavigator();
 
-function NavKalender(){
+function NavKomoditas(){
   return (
     <Stack.Navigator  
       screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name="TambahPengingat" component={TambahPengingat}/>
+            <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>
         </Stack.Navigator>
   );
 }               
 
-export default NavKalender;
+export default NavKomoditas;

@@ -1,18 +1,26 @@
 import React from "react";
+import Icon from 'react-native-ico';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+
 import FirstSplash from "../pages/Splashscreen/FirstSplash";
 import SecondSplash from "../pages/Splashscreen/SecondSplash";
 import ThirdSplash from "../pages/Splashscreen/ThirdSplash";
 import FourthSplash from "../pages/Splashscreen/FourthSplash";
-import Beranda from "../pages/Beranda";
-import HalamanKalender from "../pages/Kalender";
-import NavHome from "../pages/Beranda";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HalamanKomoditas from "../pages/Komoditas/HalamanKomoditas";
-import HalamanPengaturan from "../pages/Pengaturan/HalamanPengaturan";
-import Icon from 'react-native-ico';
-import HalamanLogin from "../pages/Login/HalamanLogin";
 import NavLogin from "../pages/Login";
+
+import NavHome from "../pages/Beranda";
+
+import HalamanPengaturan from "../pages/Pengaturan/HalamanPengaturan";
+
+import NavKalender from "../pages/Kalender";
+import HalamanKalender from "../pages/Kalender/HalamanKalender";
+
+import NavKomoditas from "../pages/Komoditas";
+import HalamanKomoditas from "../pages/Komoditas/HalamanKomoditas";
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +36,9 @@ const Router = () => {
             <Stack.Screen name="FourthSplash" component={FourthSplash}/>
             <Stack.Screen name="NavigationLogin" component={NavLogin}/>
             <Stack.Screen name="HalamanBeranda" component={Home}/>
+            <Stack.Screen name= "NavKomoditas" component={NavKomoditas}/>
+            <Stack.Screen name= "NavKalender" component={NavKalender}/>
+
         </Stack.Navigator>
     )
 }
