@@ -19,6 +19,7 @@ import HalamanKalender from "../pages/Kalender/HalamanKalender";
 
 import NavKomoditas from "../pages/Komoditas";
 import HalamanKomoditas from "../pages/Komoditas/HalamanKomoditas";
+import TambahKomoditas from "../pages/Komoditas/TambahKomoditas";
 
 
 

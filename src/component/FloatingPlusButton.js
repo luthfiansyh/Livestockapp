@@ -8,19 +8,17 @@ import {
 } from 'react-native';
 import Icon from 'react-native-ico';
 
-import { FAB } from 'react-native-paper';
-
 const FloatingButton = (props) => {
     const {navigation} = props;
 
     return(
-        <View>
-            <FAB
-                style={styles.fab}
-                small
-                icon="plus"
-                onPress={() => console.log('Pressed')}
-                />
+        <View style={styles.fab}>
+            <TouchableOpacity
+            style={styles.touchable}
+            onPress={() => {navigation.navigate('NavKomoditas')}}
+            >
+                <Icon style={styles.icon} name="plus" group="ui-interface" color="white"/>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -30,9 +28,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: "4%",
         bottom: "10%",
+    },
+    touchable:{
+        backgroundColor: "#57B860",
+        opacity: 0.8,
+        borderRadius: 100,
         width: 48,
-        height: 48,
-        backgroundColor: "#57B860"
+        height: 48, 
+    },
+    icon:{
+        margin:14
     }
 })
 

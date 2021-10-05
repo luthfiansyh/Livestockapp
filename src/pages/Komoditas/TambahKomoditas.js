@@ -1,12 +1,23 @@
-import React, { Component } from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, ScrollView} from "react-native";
+import React, { useState } from 'react';
+import {
+    StyleSheet,
+    Text,
+    View,
+    TouchableOpacity,
+    ScrollView,
+    Modal,
+    SafeAreaView
+} from "react-native";
 import Icon from 'react-native-ico';
+import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import UselessTextInputMultiline from '../../component/modals/AlamatPeternakan';
+import AlamatPeternakan from '../../component/modals/AlamatPeternakan';
+import JenisKomoditas from '../../component/modals/JenisKomoditas';
+import RumpunSapi from '../../component/modals/RumpunSapi';
 
 const TambahKomoditas = (props) =>{
 
     const {navigation} = props;
-
-
     return(
         <View  style={{flex:1}}>
             <View style={style.container}>
@@ -19,6 +30,10 @@ const TambahKomoditas = (props) =>{
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
             <ScrollView>
+                <View style={{marginTop:16}}></View>
+                <JenisKomoditas/>
+                <RumpunSapi/>
+                <UselessTextInputMultiline/>
             </ScrollView>
         </View>
     )
