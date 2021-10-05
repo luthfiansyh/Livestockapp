@@ -53,7 +53,7 @@ function Home() {
             headerShown: false,
             tabBarActiveTintColor: '#57B860',
             tabBarStyle: { position: 'absolute' },
-            tabBarInactiveTintColor:'grey'
+            tabBarInactiveTintColor:'grey',
         }}
         >
       <Tab.Screen

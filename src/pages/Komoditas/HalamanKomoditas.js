@@ -21,10 +21,7 @@ const HalamanKomoditas = (props) =>{
                 <CardKomoditas/>
                 <CardKomoditas/>
                 <CardKomoditas/>
-
                 <View style={{marginBottom:84}}></View>
-
-
             </ScrollView>
             <View style={styles.fab}>
                 <TouchableOpacity

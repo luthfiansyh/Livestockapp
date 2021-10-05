@@ -40,7 +40,6 @@ const UselessTextInputMultiline = () => {
                 value={value}
             />
         </View>
-            <View style={modalstyle.line}></View>
     </View>
     </View>
   );

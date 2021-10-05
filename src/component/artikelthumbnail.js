@@ -8,27 +8,21 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import ArtikelThumbnail from './artikelthumbnail';
 
-const ThumbnailArtikel = () =>{
+const ArtikelThumbnail = (props) =>{
+
+    const {navigation} = props;
+
     return(
-        <View style={{flex:1, marginTop: 24, marginBottom:24}}>
-            <View style={{flexDirection:'row', justifyContent: 'space-between', paddingEnd: 24, alignItems: 'center', marginBottom: 12}}>
-                <Text style={{fontSize:16, fontWeight: "600", paddingHorizontal: 24}}>Artikel Peternakan</Text>
-                <Text style={{fontSize: 12}}>Lihat Selengkaapnya</Text>
-            </View>
-            <View>
-                <ScrollView 
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                style={styles.scroll}>
-                    <ArtikelThumbnail/>
-                    <ArtikelThumbnail/>
-                    <ArtikelThumbnail/>
-                    <View style={{paddingRight:24}}></View>
-                </ScrollView>
+    <View>
+        <View style={styles.card}>
+            <View style={styles.imagethumbnail}></View>
+            <View style={styles.justify}>
+                <Text style={styles.title}>Judul Judul Artikel Judul Artikel Artikel Judul Artikel...</Text>
+                <Text style={styles.update}>Tanggal upload</Text>
             </View>
         </View>
+    </View>
     )
 }
 
@@ -38,6 +32,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',  
         paddingStart:"4%",
         paddingEnd:"4%",
+        backgroundColor:'pink', 
     },
     card:{
         flex: 1, backgroundColor:'#B7B7B7', height:148, width:200, borderRadius: 8, marginEnd: 12
@@ -58,4 +53,4 @@ const styles = StyleSheet.create({
     
 })
 
-export default ThumbnailArtikel;
+export default ArtikelThumbnail;
