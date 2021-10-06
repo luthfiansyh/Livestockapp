@@ -70,7 +70,9 @@ const HalamanLogin = props => {
           </View>
           <View style={page.rowdaftar}>
             <Text style={{marginRight:8}}>Belum punya akun?</Text>
+            <TouchableOpacity onPress={() => {navigation.navigate('HalamanDaftar')}}>
             <Text style={page.daftar}>Daftar</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

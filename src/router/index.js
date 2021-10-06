@@ -20,6 +20,7 @@ import HalamanKalender from "../pages/Kalender/HalamanKalender";
 import NavKomoditas from "../pages/Komoditas";
 import HalamanKomoditas from "../pages/Komoditas/HalamanKomoditas";
 import TambahKomoditas from "../pages/Komoditas/TambahKomoditas";
+import NavPengaturan from "../pages/Pengaturan";
 
 
 
@@ -39,7 +40,8 @@ const Router = () => {
             <Stack.Screen name="HalamanBeranda" component={Home}/>
             <Stack.Screen name= "NavKomoditas" component={NavKomoditas}/>
             <Stack.Screen name= "NavKalender" component={NavKalender}/>
-
+            <Stack.Screen name= "NavPengaturan" component={NavPengaturan}/>
+            <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>
         </Stack.Navigator>
     )
 }

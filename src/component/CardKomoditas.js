@@ -18,7 +18,7 @@ const CardKomoditas = (props) =>{
             <TouchableHighlight 
             activeOpacity={0.5}
             underlayColor="#DDDDDD"
-            onPress={() => {navigation.navigate('NavKomoditas')}}>
+            onPress={() => {navigation.navigate('DetailKomoditas')}}>
                 <View style={card.margin}>
                     <View style={card.leftside}>
                         <View style={card.photo}></View>
