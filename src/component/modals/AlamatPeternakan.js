@@ -34,20 +34,19 @@ const UselessTextInputMultiline = () => {
                 underlineColorAndroid = "transparent"
                 placeholderTextColor="grey"
                 placeholder = "Contoh: Jl. Suka Makmur"
-                multiline
-                numberOfLines={3}
                 onChangeText={text => onChangeText(text)}
                 value={value}
             />
+
         </View>
     </View>
+    <View style={modalstyle.line}></View>
     </View>
   );
 }
 
 const modalstyle = StyleSheet.create({
     container:{
-        paddingTop:8,
         flex:1,
         paddingHorizontal:20,
         paddingVertical: 16,
@@ -72,13 +71,6 @@ const modalstyle = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     opacity: .5
-  },
-  form:{
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: '#D5D5D5',
-    flex:1,
-    backgroundColor:'white',
   }
 
 })

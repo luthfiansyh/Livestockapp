@@ -1,24 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {View,Text, ScrollView, StyleSheet, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-ico';
+import NavLogin from '../Login';
+import HalamanLogin from '../Login/HalamanLogin';
 
-const HalamanPengaturan = (props) =>{
-    const {navigation} = props;
-    
+const HalamanProfil = () =>{
     return(
         <View style={{flex:1}}>
             <ScrollView>
                 <View style={styles.header}>
-                    <View style={styles.photo}></View>
-                </View>
-                <TouchableHighlight
-                onPress={() => {alert("Keluar")}}
-                >
-                    <View style={styles.card}>
-                        <Icon width="24" height="24" Icon name="log-out" group="ui-interface"/>
-                        <Text style={styles.text}>Keluar</Text>
+                    <View style={styles.photo}>
+                        <Text>profil</Text>
                     </View>
-                </TouchableHighlight>
+                </View>
             </ScrollView>
         </View>
     )
@@ -56,4 +50,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HalamanPengaturan;
+export default HalamanProfil;

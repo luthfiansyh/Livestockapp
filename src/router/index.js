@@ -42,6 +42,10 @@ const Router = () => {
             <Stack.Screen name= "NavKalender" component={NavKalender}/>
             <Stack.Screen name= "NavPengaturan" component={NavPengaturan}/>
             <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>
+            <Stack.Screen name="HalamanPengaturan" component={HalamanPengaturan}/>
+
+
+
         </Stack.Navigator>
     )
 }
@@ -87,7 +91,7 @@ function Home() {
         />
       <Tab.Screen
         name="Pengaturan"
-        component={HalamanPengaturan}
+        component={NavPengaturan}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="settings" group="ui-interface"  color={color} size={size}/>
