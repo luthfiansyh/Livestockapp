@@ -21,6 +21,8 @@ import NavKomoditas from "../pages/Komoditas";
 import HalamanKomoditas from "../pages/Komoditas/HalamanKomoditas";
 import TambahKomoditas from "../pages/Komoditas/TambahKomoditas";
 import NavPengaturan from "../pages/Pengaturan";
+import DetailPengukuran from "../pages/Komoditas/DetailPengukuran";
+import TabViewExample from "../pages/Komoditas/TabView";
 
 
 

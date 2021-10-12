@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-ico';
-import DetailPengukuran from './DetailPengukuran';
 import TabViewExample from './TabView';
 
-const DetailHewan = (props) =>{
+const DetailPengukuran = (props) =>{
 
     const {navigation} = props;
 
@@ -20,7 +19,7 @@ const DetailHewan = (props) =>{
                 <Text style={style.header}>Detail Hewan</Text>
                 <View style={style.icons}>
                 <TouchableOpacity 
-                onPress={() => {alert('deleted')}} 
+                onPress={() => {navigation.goBack()}} 
                 >
                     <Icon Icon name="trash" group="ui-interface" color="#fff" size={24}/>
                 </TouchableOpacity>
@@ -28,7 +27,7 @@ const DetailHewan = (props) =>{
             </View>
             <View  style={style.section2}>
                 <View style={style.row}>
-                    <Text  style={style.name}>Blacky</Text>
+                    <Text  style={style.name}>detail</Text>
                     <Text  style={style.name}>-</Text>
                     <Text  style={style.name}>0078</Text>
                 </View>
@@ -45,7 +44,6 @@ const DetailHewan = (props) =>{
                     </View>
                 </View>
             </View>
-            <TabViewExample/>
         </View>
     )
 }
@@ -105,4 +103,4 @@ const style = StyleSheet.create({
 
 
 
-export default DetailHewan;
+export default DetailPengukuran;

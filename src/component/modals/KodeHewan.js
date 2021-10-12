@@ -8,32 +8,33 @@ import {
   TextInput
 } from 'react-native';
 
-const UselessTextInput = (props) => {
+const KodeHewanInput = (props) => {
   return (
     <TextInput
       {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
       editable
-      maxLength={255}
+      maxLength={4}
     />
   );
 }
 
-const UselessTextInputMultiline = () => {
+const TextInputKodeHewan = () => {
   const [value, onChangeText] = React.useState('');
 
   // If you type something in the text box that is a color, the background will change to that
   // color.
   return (
     <View style={modalstyle.container}>
-        <Text style={modalstyle.judul}>Alamat Peternakan*</Text>
+        <Text style={modalstyle.judul}>Kode / Eartag Hewan*</Text>
         <View style={{paddingTop:8}}>
             <View style={modalstyle.form}
             >
-            <UselessTextInput
+            <KodeHewanInput
                 style={modalstyle.text}
                 underlineColorAndroid = "transparent"
                 placeholderTextColor="grey"
-                placeholder = "Contoh: Jl. Suka Makmur"
+                keyboardType = 'numeric'
+                placeholder = "Contoh: 001"
                 onChangeText={text => onChangeText(text)}
                 value={value}
             />
@@ -74,4 +75,4 @@ const modalstyle = StyleSheet.create({
 
 })
 
-export default UselessTextInputMultiline;
+export default TextInputKodeHewan;

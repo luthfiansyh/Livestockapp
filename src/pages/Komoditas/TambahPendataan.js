@@ -15,8 +15,12 @@ import AlamatPeternakan from '../../component/modals/AlamatPeternakan';
 import JenisKomoditas from '../../component/modals/JenisKomoditas';
 import RumpunSapi from '../../component/modals/RumpunSapi';
 import Klasifikasi from '../../component/modals/Klasifikasi';
+import TextInputNamaHewan from '../../component/modals/NamaHewan';
+import TextInputKodeHewan from '../../component/modals/KodeHewan';
+import SistemPemeliharaan from '../../component/modals/SistemPemeliharaan';
+import JenisKelamin from '../../component/modals/JenisKelamin';
 
-const TambahKomoditas = (props) =>{
+const TambahPendataan = (props) =>{
 
     const {navigation} = props;
     return(
@@ -27,20 +31,20 @@ const TambahKomoditas = (props) =>{
                 style={{padding:24}}>
                     <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
                 </TouchableOpacity>
-                <Text style={style.header}>Tambah Komoditas</Text>
+                <Text style={style.header}>Tambah Pendataan Hewan</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
             <ScrollView>
                 <View style={{marginTop:16}}></View>
-                <JenisKomoditas/>
-                <RumpunSapi/>
-                <Klasifikasi/>
-                <UselessTextInputMultiline/>
-                <View style={style.buttonbackground}>
-                    <TouchableOpacity style={style.button} onPress={() => {navigation.navigate('HalamanKomoditas')}}>
-                        <Text style={style.buttontext}>SIMPAN</Text>
-                    </TouchableOpacity>
-                </View>
+                    <TextInputNamaHewan/>
+                    <TextInputKodeHewan/>
+                    <SistemPemeliharaan/>
+                    <JenisKelamin/>
+                    <View style={style.buttonbackground}>
+                        <TouchableOpacity style={style.button} onPress={() => {navigation.navigate('HalamanKomoditas')}}>
+                            <Text style={style.buttontext}>SIMPAN</Text>
+                        </TouchableOpacity>
+                    </View>
             </ScrollView>
         </View>
     )
@@ -57,6 +61,12 @@ const style = StyleSheet.create({
         justifyContent:'space-between',
         backgroundColor:'#57B860'
     },
+        texttitle:{
+        marginTop: 16,
+        fontSize: 16,
+        fontWeight: '600',
+        marginBottom:"4%"
+    },
     header:{
         marginTop:16,
         fontSize: 20,
@@ -65,11 +75,13 @@ const style = StyleSheet.create({
         marginBottom:16
     },
     buttonbackground:{
-    marginTop: "4%",
-    flexDirection:"row",
-    alignItems: 'flex-end',
-    justifyContent:'space-between',
-    marginHorizontal:16
+        marginTop: "16%",
+        bottom:'4%',
+        flexDirection:"row",
+        alignItems: 'flex-end',
+        justifyContent:'space-between',
+        marginHorizontal:16,
+        backgroundColor:'pink'
     },
     button:{
         justifyContent: 'space-around',
@@ -85,4 +97,4 @@ const style = StyleSheet.create({
     },
 })
 
-export default TambahKomoditas;
+export default TambahPendataan;

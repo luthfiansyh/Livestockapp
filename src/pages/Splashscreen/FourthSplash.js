@@ -12,11 +12,8 @@ const FourthSplash = (props) => {
         <View style={page.downside}>
           <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
         <View style={page.buttonbackground}>
-          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('HalamanBeranda')}}>
-            <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('NavigationLogin')}}>
-            <Text style={page.buttontext}>Selanjutnya</Text>
+            <Text style={page.buttontext}>Mengerti</Text>
           </TouchableOpacity>
         </View>
     </View>
@@ -71,7 +68,6 @@ const page = StyleSheet.create({
     marginTop: 72,
     flexDirection:"row",
     justifyContent: 'flex-end',
-    justifyContent:'space-between'
   },
   button:{
     justifyContent: 'space-around',

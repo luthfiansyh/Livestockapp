@@ -13,7 +13,7 @@ const SecondSplash = (props) => {
         <View style={page.downside}>
           <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
         <View style={page.buttonbackground}>
-          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('HalamanBeranda')}}>
+          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('NavigationLogin')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
           </TouchableOpacity>
           <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('ThirdSplash')}}>

@@ -12,23 +12,23 @@ const DetailKomoditas = (props) =>{
         <View  style={{flex:1}}>
             <View style={style.container}>
                 <TouchableOpacity 
-                onPress={() => {navigation.goBack()}} 
-                style={{padding:24}}>
+                    onPress={() => {navigation.goBack()}} 
+                    style={{padding:24}}>
                     <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
                 </TouchableOpacity>
                 <Text style={style.header}>Detail Komoditas</Text>
                 <View style={style.icons}>
                     <TouchableOpacity 
-                onPress={() => {alert('edit pressed')}}
-                style={style.margin}
-                >
+                    onPress={() => {alert('edit pressed')}}
+                    style={style.margin}
+                    >
                     <Icon Icon name="edit" group="ui-interface" color="#fff" size={24}/>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                onPress={() => {alert('delete pressed')}} 
-                >
-                    <Icon Icon name="trash" group="ui-interface" color="#fff" size={24}/>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                    onPress={() => {alert('delete pressed')}} 
+                    >
+                        <Icon Icon name="trash" group="ui-interface" color="#fff" size={24}/>
+                    </TouchableOpacity>
                 </View>
             </View>
             <ScrollView>
@@ -106,9 +106,35 @@ const DetailKomoditas = (props) =>{
                     </View>
                 </TouchableHighlight>
             </ScrollView>
+            <View style={styles.fab}>
+                <TouchableOpacity
+                style={styles.touchable}
+                onPress={() => {navigation.navigate('TambahPendataan')}}
+                >
+                    <Icon style={styles.icon} name="plus" group="ui-interface" color="white"/>
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    fab:{
+        position: 'absolute',
+        right: "4%",
+        bottom: "4%",
+    },
+    touchable:{
+        backgroundColor: "#57B860",
+        opacity: 0.8,
+        borderRadius: 100,
+        width: 48,
+        height: 48, 
+    },
+    icon:{
+        margin:14
+    }
+})
 
 const card = StyleSheet.create({
     container2:{
@@ -188,6 +214,7 @@ const style = StyleSheet.create({
         fontWeight: "600",
         color:'white',
         marginBottom:16,
+        textAlign:'center',
     },
     icons:{
         flexDirection:'row',
