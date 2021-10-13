@@ -7,12 +7,14 @@ import {
     Modal,
 } from "react-native";
 import Icon from 'react-native-ico';
-import SistemPemeliharaanPicker from '../modalpicker/SistemPemeliharaanPicker';
+import JenisKomoditasPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import UkuranPanjangPicker from '../modalpicker/UkuranPanjangPicker';
 
-const SistemPemeliharaan = (props) =>{
+const UkuranPanjang = (props) =>{
 
     const {navigation} = props;
-    const[chooseData, setchooseData] = useState('- Pilih Sistem Pemeliharaan -');
+    const[chooseData, setchooseData] = useState('- m2 -');
     const[isModalVisible, setisModalVisible] = useState(false);
     const changeModalVisibility = (bool) => {
        setisModalVisible(bool)
@@ -24,7 +26,7 @@ const SistemPemeliharaan = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Sistem Pemeliharaan*</Text>
+                    <Text style={modalstyle.judul}></Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}
@@ -41,7 +43,7 @@ const SistemPemeliharaan = (props) =>{
                     visible={isModalVisible}
                     nRequestClose={() => changeModalVisibility(false) }
                     >
-                        <SistemPemeliharaanPicker
+                        <UkuranPanjangPicker
                         changeModalVisibility={changeModalVisibility}
                         setData={setData}
                         />
@@ -52,7 +54,7 @@ const SistemPemeliharaan = (props) =>{
 
 const modalstyle = StyleSheet.create({
     container:{
-        flex:1,
+        flex:0.5,
         paddingHorizontal:20,
         paddingVertical: 16,
     },
@@ -85,4 +87,4 @@ const modalstyle = StyleSheet.create({
 
 })
 
-export default SistemPemeliharaan;
+export default UkuranPanjang;

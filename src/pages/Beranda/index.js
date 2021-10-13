@@ -16,7 +16,6 @@ function NavHome(){
             headerShown: false
         }}>
             <Stack.Screen name="BerandaScreen" component={HalamanBeranda}/>
-            <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot}/>
         </Stack.Navigator>
   );
 }               

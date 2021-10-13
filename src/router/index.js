@@ -23,6 +23,9 @@ import TambahKomoditas from "../pages/Komoditas/TambahKomoditas";
 import NavPengaturan from "../pages/Pengaturan";
 import DetailPengukuran from "../pages/Komoditas/DetailPengukuran";
 import TabViewExample from "../pages/Komoditas/TabView";
+import KalkulatorBobot from "../pages/Beranda/KalkulatorBobot";
+import InfoHargaHewan from "../pages/Beranda/InfoHargaHewan";
+import KontakKeswan from "../pages/Beranda/KontakKeswan";
 
 
 
@@ -41,6 +44,9 @@ const Router = () => {
             <Stack.Screen name="NavigationLogin" component={NavLogin}/>
             <Stack.Screen name="HalamanBeranda" component={Home}/>
             <Stack.Screen name= "NavKomoditas" component={NavKomoditas}/>
+            <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot}/>
+            <Stack.Screen name="InfoHargaHewan" component={InfoHargaHewan}/>
+            <Stack.Screen name="KontakKeswan" component={KontakKeswan}/>
             <Stack.Screen name= "NavKalender" component={NavKalender}/>
             <Stack.Screen name= "NavPengaturan" component={NavPengaturan}/>
             <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>

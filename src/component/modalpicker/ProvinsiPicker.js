@@ -8,12 +8,12 @@ import{
     ScrollView,
 } from  'react-native';
 
-const OPTIONS = ['Intensif', 'Semi-Intensif','Ekstensif']
+const OPTIONS = ['Jawa Barat', 'Jawa Tengah', 'Jawa Timur']
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-const SistemPemeliharaanPicker = (props) => {
+const ProvinsiPicker = (props) => {
 
     const onPressItem = (option) => {
         props.changeModalVisibility(false);
@@ -45,7 +45,7 @@ const SistemPemeliharaanPicker = (props) => {
             onPress={() => props.changeModalVisibility(false)}
             style={styles.container}
         >
-            <View style={[styles.modal, {width: WIDTH -36, height: HEIGHT -560}]}>
+            <View style={[styles.modal, {width: WIDTH -36, height: HEIGHT -800}]}>
                 <ScrollView>
                     {option}
                 </ScrollView>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
        alignItems: 'center',
        justifyContent: 'center',
        paddingHorizontal: 8,
-       top:"20%"
+       marginBottom:'53%'
     },
     modal:{
         backgroundColor:'white',
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SistemPemeliharaanPicker;
+export default ProvinsiPicker;

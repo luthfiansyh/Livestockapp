@@ -19,7 +19,7 @@ const DetailKomoditas = (props) =>{
                 <Text style={style.header}>Detail Komoditas</Text>
                 <View style={style.icons}>
                     <TouchableOpacity 
-                    onPress={() => {alert('edit pressed')}}
+                    onPress={() => {navigation.navigate('TambahPendataan')}}
                     style={style.margin}
                     >
                     <Icon Icon name="edit" group="ui-interface" color="#fff" size={24}/>
@@ -56,7 +56,7 @@ const DetailKomoditas = (props) =>{
                     <View style={text.column}>
                         <View style={text.content}>
                             <Text style = {text.title}>Total Hewan</Text>
-                            <Text style={text.isi}>160</Text>
+                            <Text style={text.isi}>3</Text>
                         </View>
                     </View>
                 </View>
@@ -66,7 +66,7 @@ const DetailKomoditas = (props) =>{
                 activeOpacity={0.6} underlayColor="transparent" >
                     <View style={card.row}>
                         <View style={card.wrap}>
-                            <Text style={card.title}>Nama Sapi - eartag</Text>
+                            <Text style={card.title}>Budi - 001</Text>
                             <View>
                                 <Text style={card.isi}> 6 Tahun 0 Bulan 1 Hari</Text>
                                 <Text style={card.isi}>Jantan</Text>
@@ -81,7 +81,7 @@ const DetailKomoditas = (props) =>{
                 activeOpacity={0.6} underlayColor="transparent" >
                     <View style={card.row}>
                         <View style={card.wrap}>
-                            <Text style={card.title}>Nama Sapi - eartag</Text>
+                            <Text style={card.title}>Putih - 002</Text>
                             <View>
                                 <Text style={card.isi}> 6 Tahun 0 Bulan 1 Hari</Text>
                                 <Text style={card.isi}>Jantan</Text>
@@ -96,7 +96,7 @@ const DetailKomoditas = (props) =>{
                 activeOpacity={0.6} underlayColor="transparent" >
                     <View style={card.row}>
                         <View style={card.wrap}>
-                            <Text style={card.title}>Nama Sapi - eartag</Text>
+                            <Text style={card.title}>Blacky - 003</Text>
                             <View>
                                 <Text style={card.isi}> 6 Tahun 0 Bulan 1 Hari</Text>
                                 <Text style={card.isi}>Jantan</Text>

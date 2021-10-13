@@ -7,12 +7,15 @@ import {
     Modal,
 } from "react-native";
 import Icon from 'react-native-ico';
-import SistemPemeliharaanPicker from '../modalpicker/SistemPemeliharaanPicker';
+import JenisKomoditasPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import UkuranBobotPicker from '../modalpicker/UkuranBobotPicker';
+import UkuranPanjangPicker from '../modalpicker/UkuranPanjangPicker';
 
-const SistemPemeliharaan = (props) =>{
+const UkuranBobot = (props) =>{
 
     const {navigation} = props;
-    const[chooseData, setchooseData] = useState('- Pilih Sistem Pemeliharaan -');
+    const[chooseData, setchooseData] = useState('kg');
     const[isModalVisible, setisModalVisible] = useState(false);
     const changeModalVisibility = (bool) => {
        setisModalVisible(bool)
@@ -24,7 +27,7 @@ const SistemPemeliharaan = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Sistem Pemeliharaan*</Text>
+                    <Text style={modalstyle.judul}></Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}
@@ -41,7 +44,7 @@ const SistemPemeliharaan = (props) =>{
                     visible={isModalVisible}
                     nRequestClose={() => changeModalVisibility(false) }
                     >
-                        <SistemPemeliharaanPicker
+                        <UkuranBobotPicker
                         changeModalVisibility={changeModalVisibility}
                         setData={setData}
                         />
@@ -52,8 +55,8 @@ const SistemPemeliharaan = (props) =>{
 
 const modalstyle = StyleSheet.create({
     container:{
-        flex:1,
-        paddingHorizontal:20,
+        flex:0.4,
+        paddingRight:20,
         paddingVertical: 16,
     },
     text:{
@@ -85,4 +88,4 @@ const modalstyle = StyleSheet.create({
 
 })
 
-export default SistemPemeliharaan;
+export default UkuranBobot;

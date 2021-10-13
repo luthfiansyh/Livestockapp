@@ -7,13 +7,14 @@ import{
     Dimensions,
     ScrollView,
 } from  'react-native';
+import UkuranPanjang from '../modals/UkuranPanjang';
 
-const OPTIONS = ['Intensif', 'Semi-Intensif','Ekstensif']
+const OPTIONS = ['m2', 'hektare']
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-const SistemPemeliharaanPicker = (props) => {
+const UkuranPanjangPicker = (props) => {
 
     const onPressItem = (option) => {
         props.changeModalVisibility(false);
@@ -45,7 +46,7 @@ const SistemPemeliharaanPicker = (props) => {
             onPress={() => props.changeModalVisibility(false)}
             style={styles.container}
         >
-            <View style={[styles.modal, {width: WIDTH -36, height: HEIGHT -560}]}>
+            <View style={[styles.modal, {width: WIDTH -310, height: HEIGHT -600}]}>
                 <ScrollView>
                     {option}
                 </ScrollView>
@@ -57,11 +58,12 @@ const SistemPemeliharaanPicker = (props) => {
 
 const styles = StyleSheet.create({
     container:{
-       flex:1,
+       flex:0.5,
        alignItems: 'center',
        justifyContent: 'center',
-       paddingHorizontal: 8,
-       top:"20%"
+       alignSelf:'flex-end',
+       marginRight:24,
+       marginTop: "148%"
     },
     modal:{
         backgroundColor:'white',
@@ -70,4 +72,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SistemPemeliharaanPicker;
+export default UkuranPanjangPicker;

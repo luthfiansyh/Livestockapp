@@ -6,7 +6,8 @@ import {
     TouchableOpacity,
     ScrollView,
     Modal,
-    SafeAreaView
+    SafeAreaView,
+    Checkbox
 } from "react-native";
 import Icon from 'react-native-ico';
 
@@ -19,8 +20,10 @@ import UkuranBobot from '../../component/modals/UkuranBobot.js';
 import HalamanBeranda from './HalamanBeranda.js';
 import LingkarDada from '../../component/modals/LingkarDada';
 import PanjangCm from '../../component/modals/PanjangCm.js';
+import PilihProvinsi from '../../component/modals/PilihProvinsi.js';
+import PilihKabKot from '../../component/modals/PilihKabKot.js';
 
-const KalkulatorBobot = (props) =>{
+const KontakKeswan = (props) =>{
 
     const {navigation} = props;
 
@@ -32,24 +35,18 @@ const KalkulatorBobot = (props) =>{
                 style={{padding:24}}>
                     <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
                 </TouchableOpacity>
-                <Text style={style.header}>Kalkulator Bobot</Text>
+                <Text style={style.header}>Kontak Keswan/Veteriner</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
             <ScrollView>
-                <JenisKomoditas/>
-                <RumpunSapi/>
-                <JenisKelamin/>
-                <View style={{flexDirection:'row'}}>
-                    <BobotHewan/>
-                    <UkuranBobot/>
-                </View>
-                <LingkarDada/>
+                <PilihProvinsi/>
+                <PilihKabKot/>
                 <View style={style.buttonbackground}>
                     <TouchableOpacity
                     style={style.button}
                     onPress={() => {alert('Cek hasil')}}
                     >
-                        <Text style={style.buttontext}>HITUNG</Text>
+                        <Text style={style.buttontext}>CARI KONTAK</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -82,7 +79,6 @@ const style = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent:'space-between',
         marginHorizontal:16,
-        backgroundColor:'pink'
     },
     button:{
         justifyContent: 'space-around',
@@ -100,4 +96,4 @@ const style = StyleSheet.create({
 )
 
 
-export default KalkulatorBobot;
+export default KontakKeswan;

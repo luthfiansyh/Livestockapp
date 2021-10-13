@@ -12,10 +12,10 @@ import ArtikelThumbnail from './artikelthumbnail';
 
 const ThumbnailArtikel = () =>{
     return(
-        <View style={{flex:1, marginTop: 24, marginBottom:24}}>
+        <View style={{flex:1, marginTop: 48, marginBottom:72}}>
             <View style={{flexDirection:'row', justifyContent: 'space-between', paddingEnd: 24, alignItems: 'center', marginBottom: 12}}>
                 <Text style={{fontSize:16, fontWeight: "600", paddingHorizontal: 24}}>Artikel Peternakan</Text>
-                <Text style={{fontSize: 12}}>Lihat Selengkaapnya</Text>
+                <Text style={{fontSize: 12}}>Lihat Selengkapnya</Text>
             </View>
             <View>
                 <ScrollView 
@@ -34,7 +34,7 @@ const ThumbnailArtikel = () =>{
 
 const styles = StyleSheet.create({
     scroll:{
-        backgroundColor:'white', 
+        backgroundColor:'transparent', 
         flexDirection: 'row',  
         paddingStart:"4%",
         paddingEnd:"4%",

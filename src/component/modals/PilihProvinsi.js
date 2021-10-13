@@ -7,12 +7,13 @@ import {
     Modal,
 } from "react-native";
 import Icon from 'react-native-ico';
-import SistemPemeliharaanPicker from '../modalpicker/SistemPemeliharaanPicker';
+import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import ProvinsiPicker from '../modalpicker/ProvinsiPicker';
 
-const SistemPemeliharaan = (props) =>{
+const PilihProvinsi = (props) =>{
 
     const {navigation} = props;
-    const[chooseData, setchooseData] = useState('- Pilih Sistem Pemeliharaan -');
+    const[chooseData, setchooseData] = useState('- Pilih Provinsi -');
     const[isModalVisible, setisModalVisible] = useState(false);
     const changeModalVisibility = (bool) => {
        setisModalVisible(bool)
@@ -24,7 +25,7 @@ const SistemPemeliharaan = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Sistem Pemeliharaan*</Text>
+                    <Text style={modalstyle.judul}>Provinsi*</Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}
@@ -41,7 +42,7 @@ const SistemPemeliharaan = (props) =>{
                     visible={isModalVisible}
                     nRequestClose={() => changeModalVisibility(false) }
                     >
-                        <SistemPemeliharaanPicker
+                        <ProvinsiPicker
                         changeModalVisibility={changeModalVisibility}
                         setData={setData}
                         />
@@ -85,4 +86,4 @@ const modalstyle = StyleSheet.create({
 
 })
 
-export default SistemPemeliharaan;
+export default PilihProvinsi;

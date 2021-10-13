@@ -57,10 +57,10 @@ const LuasLahanPicker = (props) => {
 
 const styles = StyleSheet.create({
     container:{
+       flex:1,
        alignItems: 'center',
        justifyContent: 'center',
        paddingHorizontal: 8,
-       marginTop:'130%'
     },
     modal:{
         backgroundColor:'white',

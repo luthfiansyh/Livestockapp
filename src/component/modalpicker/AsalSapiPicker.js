@@ -7,13 +7,14 @@ import{
     Dimensions,
     ScrollView,
 } from  'react-native';
+import AsalSapi from '../modals/AsalSapi';
 
-const OPTIONS = ['Intensif', 'Semi-Intensif','Ekstensif']
+const OPTIONS = ['Beli', 'Breeding/Budidaya Sendiri']
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-const SistemPemeliharaanPicker = (props) => {
+const AsalSapiPicker = (props) => {
 
     const onPressItem = (option) => {
         props.changeModalVisibility(false);
@@ -45,7 +46,7 @@ const SistemPemeliharaanPicker = (props) => {
             onPress={() => props.changeModalVisibility(false)}
             style={styles.container}
         >
-            <View style={[styles.modal, {width: WIDTH -36, height: HEIGHT -560}]}>
+            <View style={[styles.modal, {width: WIDTH -36, height: HEIGHT -600}]}>
                 <ScrollView>
                     {option}
                 </ScrollView>
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
        alignItems: 'center',
        justifyContent: 'center',
        paddingHorizontal: 8,
-       top:"20%"
+       marginTop:"118%"
     },
     modal:{
         backgroundColor:'white',
@@ -70,4 +71,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SistemPemeliharaanPicker;
+export default AsalSapiPicker;

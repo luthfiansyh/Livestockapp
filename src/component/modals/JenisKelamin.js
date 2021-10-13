@@ -16,7 +16,7 @@ const JenisKelamin = (props) => {
     const {navigation} = props;
     const [checked, setChecked] = React.useState('first');
     return(
-        <View>
+        <View style={page.container}>
             <Text style={page.texttitle}>Jenis Kelamin*</Text>
             <View style={page.radio}>
             <View style={page.align}>
@@ -43,6 +43,10 @@ const JenisKelamin = (props) => {
 }
 
 const page = StyleSheet.create({
+  container:{
+    marginBottom: 12
+
+  },
   align:{
     flexDirection:'row',
     alignItems:'center'
@@ -62,8 +66,7 @@ const page = StyleSheet.create({
         marginTop: 16,
         fontSize: 14,
         fontWeight: '600',
-        marginBottom:"4%",
-        marginLeft:20
+        marginLeft:20,
     }
 }
 )

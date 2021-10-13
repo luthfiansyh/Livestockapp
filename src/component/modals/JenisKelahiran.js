@@ -7,12 +7,13 @@ import {
     Modal,
 } from "react-native";
 import Icon from 'react-native-ico';
-import SistemPemeliharaanPicker from '../modalpicker/SistemPemeliharaanPicker';
+import JenisKomoditasPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import JenisKelahiranPicker from '../modalpicker/JenisKelahiranPicker';
 
-const SistemPemeliharaan = (props) =>{
+const JenisKelahiran = (props) =>{
 
     const {navigation} = props;
-    const[chooseData, setchooseData] = useState('- Pilih Sistem Pemeliharaan -');
+    const[chooseData, setchooseData] = useState('- Pilih Jenis Kelahiran -');
     const[isModalVisible, setisModalVisible] = useState(false);
     const changeModalVisibility = (bool) => {
        setisModalVisible(bool)
@@ -24,7 +25,7 @@ const SistemPemeliharaan = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Sistem Pemeliharaan*</Text>
+                    <Text style={modalstyle.judul}>Jenis Kelahiran*</Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}
@@ -41,7 +42,7 @@ const SistemPemeliharaan = (props) =>{
                     visible={isModalVisible}
                     nRequestClose={() => changeModalVisibility(false) }
                     >
-                        <SistemPemeliharaanPicker
+                        <JenisKelahiranPicker
                         changeModalVisibility={changeModalVisibility}
                         setData={setData}
                         />
@@ -85,4 +86,4 @@ const modalstyle = StyleSheet.create({
 
 })
 
-export default SistemPemeliharaan;
+export default JenisKelahiran;

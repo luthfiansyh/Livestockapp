@@ -19,6 +19,9 @@ import TextInputNamaHewan from '../../component/modals/NamaHewan';
 import TextInputKodeHewan from '../../component/modals/KodeHewan';
 import SistemPemeliharaan from '../../component/modals/SistemPemeliharaan';
 import JenisKelamin from '../../component/modals/JenisKelamin';
+import Example from '../../component/CalenderPicker';
+import JenisKelahiran from '../../component/modals/JenisKelahiran';
+import AsalSapi from '../../component/modals/AsalSapi';
 
 const TambahPendataan = (props) =>{
 
@@ -40,8 +43,13 @@ const TambahPendataan = (props) =>{
                     <TextInputKodeHewan/>
                     <SistemPemeliharaan/>
                     <JenisKelamin/>
+                    <JenisKelahiran/>
+                    <AsalSapi/>
                     <View style={style.buttonbackground}>
-                        <TouchableOpacity style={style.button} onPress={() => {navigation.navigate('HalamanKomoditas')}}>
+                        <TouchableOpacity
+                        style={style.button}
+                        onPress={() => {navigation.navigate('HalamanKomoditas')}}
+                        >
                             <Text style={style.buttontext}>SIMPAN</Text>
                         </TouchableOpacity>
                     </View>
@@ -60,12 +68,6 @@ const style = StyleSheet.create({
         alignItems:'center',
         justifyContent:'space-between',
         backgroundColor:'#57B860'
-    },
-        texttitle:{
-        marginTop: 16,
-        fontSize: 16,
-        fontWeight: '600',
-        marginBottom:"4%"
     },
     header:{
         marginTop:16,

@@ -8,12 +8,12 @@ import{
     ScrollView,
 } from  'react-native';
 
-const OPTIONS = ['Intensif', 'Semi-Intensif','Ekstensif']
+const OPTIONS = ['kg', 'ton', 'kwintal']
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-const SistemPemeliharaanPicker = (props) => {
+const UkuranBobotPicker = (props) => {
 
     const onPressItem = (option) => {
         props.changeModalVisibility(false);
@@ -45,7 +45,7 @@ const SistemPemeliharaanPicker = (props) => {
             onPress={() => props.changeModalVisibility(false)}
             style={styles.container}
         >
-            <View style={[styles.modal, {width: WIDTH -36, height: HEIGHT -560}]}>
+            <View style={[styles.modal, {width: WIDTH -310, height: HEIGHT -570}]}>
                 <ScrollView>
                     {option}
                 </ScrollView>
@@ -60,8 +60,9 @@ const styles = StyleSheet.create({
        flex:1,
        alignItems: 'center',
        justifyContent: 'center',
-       paddingHorizontal: 8,
-       top:"20%"
+       alignSelf:'flex-end',
+       marginRight:24,
+       marginTop: "100%"
     },
     modal:{
         backgroundColor:'white',
@@ -70,4 +71,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SistemPemeliharaanPicker;
+export default UkuranBobotPicker;

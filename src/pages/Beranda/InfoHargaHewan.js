@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
@@ -9,47 +9,43 @@ import {
     SafeAreaView
 } from "react-native";
 import Icon from 'react-native-ico';
-import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
-import UselessTextInputMultiline from '../../component/modals/AlamatPeternakan';
-import AlamatPeternakan from '../../component/modals/AlamatPeternakan';
-import JenisKomoditas from '../../component/modals/JenisKomoditas';
-import RumpunSapi from '../../component/modals/RumpunSapi';
-import Klasifikasi from '../../component/modals/Klasifikasi';
-import LuasLahan from '../../component/modals/LuasLahan';
-import UkuranPanjang from '../../component/modals/UkuranPanjang';
-import LahanDigunakan from '../../component/modals/LahanDigunakan';
 
-const TambahKomoditas = (props) =>{
+import HeaderPage from '../../component/HeaderPage.js';
+import BobotHewan from '../../component/modals/BobotHewan.js';
+import JenisKelamin from '../../component/modals/JenisKelamin.js';
+import JenisKomoditas from '../../component/modals/JenisKomoditas.js';
+import RumpunSapi from '../../component/modals/RumpunSapi.js';
+import UkuranBobot from '../../component/modals/UkuranBobot.js';
+import HalamanBeranda from './HalamanBeranda.js';
+import LingkarDada from '../../component/modals/LingkarDada';
+import PanjangCm from '../../component/modals/PanjangCm.js';
+import Klasifikasi from '../../component/modals/Klasifikasi.js';
+
+const InfoHargaHewan = (props) =>{
 
     const {navigation} = props;
+
     return(
-        <View  style={{flex:1}}>
+        <View style={{flex:1}}>
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={{padding:24}}>
                     <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
                 </TouchableOpacity>
-                <Text style={style.header}>Tambah Komoditas</Text>
+                <Text style={style.header}>Info Harga Hewan</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
             <ScrollView>
-                <View style={{marginTop:16}}></View>
                 <JenisKomoditas/>
                 <RumpunSapi/>
                 <Klasifikasi/>
-                <UselessTextInputMultiline/>
-                <View style={{flexDirection:'row'}}>
-                    <LuasLahan/>
-                    <UkuranPanjang/>
-                </View>
-                <View style={{flexDirection:'row'}}>
-                    <LahanDigunakan/>
-                    <UkuranPanjang/>
-                </View>
                 <View style={style.buttonbackground}>
-                    <TouchableOpacity style={style.button} onPress={() => {navigation.navigate('HalamanKomoditas')}}>
-                        <Text style={style.buttontext}>SIMPAN</Text>
+                    <TouchableOpacity
+                    style={style.button}
+                    onPress={() => {alert('Hasil Pencarian')}}
+                    >
+                        <Text style={style.buttontext}>CARI</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -76,12 +72,12 @@ const style = StyleSheet.create({
         marginBottom:16
     },
     buttonbackground:{
-    marginTop: "16%",
-    flexDirection:"row",
-    alignItems: 'flex-end',
-    justifyContent:'space-between',
-    marginHorizontal:16,
-    marginBottom: 24
+        marginTop: "16%",
+        bottom:'4%',
+        flexDirection:"row",
+        alignItems: 'flex-end',
+        justifyContent:'space-between',
+        marginHorizontal:16,
     },
     button:{
         justifyContent: 'space-around',
@@ -95,6 +91,8 @@ const style = StyleSheet.create({
         fontSize: 16,
         fontWeight:'800'
     },
-})
+    }
+)
 
-export default TambahKomoditas;
+
+export default InfoHargaHewan;
