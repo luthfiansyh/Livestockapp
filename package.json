@@ -16,10 +16,13 @@
     "@react-navigation/material-top-tabs": "^6.0.5",
     "@react-navigation/native-stack": "^6.1.0",
     "@react-navigation/stack": "^6.0.9",
+    "chart.js": "^3.5.1",
     "react": "17.0.2",
+    "react-chartjs-2": "^3.0.5",
     "react-hook-form": "^7.16.1",
     "react-native": "^0.65.1",
     "react-native-chart-kit": "^6.11.0",
+    "react-native-chartjs": "^1.0.3",
     "react-native-dropdown-picker": "^5.1.28",
     "react-native-elements": "^3.4.2",
     "react-native-floating-action": "^1.22.0",
@@ -36,8 +39,7 @@
     "react-native-svg": "^12.1.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^8.1.0",
-    "react-navigation": "^4.4.4",
-    "svg": "^0.1.0"
+    "react-navigation": "^4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

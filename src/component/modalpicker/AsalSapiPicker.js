@@ -7,7 +7,6 @@ import{
     Dimensions,
     ScrollView,
 } from  'react-native';
-import AsalSapi from '../modals/AsalSapi';
 
 const OPTIONS = ['Beli', 'Breeding/Budidaya Sendiri']
 const WIDTH = Dimensions.get('window').width;

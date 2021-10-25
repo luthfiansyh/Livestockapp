@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-ico';
-import TabViewExample from './TabView';
 
 const DetailPengukuran = (props) =>{
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-ico';
 import DetailHewan from './DetailHewan';
+import DetailHewanNav from './DetailHewanNav';
+import TambahPendataan from './TambahPendataan';
 
 const DetailKomoditas = (props) =>{
 
@@ -109,7 +111,7 @@ const DetailKomoditas = (props) =>{
             <View style={styles.fab}>
                 <TouchableOpacity
                 style={styles.touchable}
-                onPress={() => {navigation.navigate('TambahPendataan')}}
+                onPress={() => {navigation.navigate(TambahPendataan)}}
                 >
                     <Icon style={styles.icon} name="plus" group="ui-interface" color="white"/>
                 </TouchableOpacity>

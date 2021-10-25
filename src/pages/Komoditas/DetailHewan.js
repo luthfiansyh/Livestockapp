@@ -1,8 +1,17 @@
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React, { Component } from 'react';
-import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
+import {
+    View,
+    Text, 
+    StyleSheet, 
+    ScrollView, 
+    TouchableOpacity, 
+    TouchableHighlight,
+    useWindowDimensions,
+} from 'react-native';
 import Icon from 'react-native-ico';
-import DetailPengukuran from './DetailPengukuran';
 import TabViewExample from './TabView';
+
 
 const DetailHewan = (props) =>{
 
@@ -20,7 +29,7 @@ const DetailHewan = (props) =>{
                 <Text style={style.header}>Detail Hewan</Text>
                 <View style={style.icons}>
                 <TouchableOpacity 
-                onPress={() => {alert('deleted')}} 
+                onPress={() => {navigation.navigate(DetailPengukuran)}} 
                 >
                     <Icon Icon name="trash" group="ui-interface" color="#fff" size={24}/>
                 </TouchableOpacity>
@@ -49,6 +58,7 @@ const DetailHewan = (props) =>{
         </View>
     )
 }
+
 
 const style = StyleSheet.create({
     container:{
@@ -102,7 +112,6 @@ const style = StyleSheet.create({
         fontWeight:'400',
     }
 })
-
 
 
 export default DetailHewan;

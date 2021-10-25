@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DetailKomoditas from './DetailKomoditas';
 import DetailHewan from './DetailHewan';
 import TambahPendataan from './TambahPendataan';
+import DetailPengukuran from './DetailPengukuran';
+import DetailHewanNav from './DetailHewanNav';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,6 +20,8 @@ function NavKomoditas(){
             <Stack.Screen name="DetailHewan" component={DetailHewan}/>
         </Stack.Navigator>
   );
-}               
+}
+
+
 
 export default NavKomoditas;

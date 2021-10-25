@@ -15,7 +15,6 @@ const NavPengaturan = () => {
         }}>
             <Stack.Screen name="HalamanPengaturan" component={HalamanPengaturan}/>
             <Stack.Screen name="HalamanProfil" component={HalamanProfil}/>
-            <Stack.Screen name="Keluar" component={NavLogin}/>
 
 
         </Stack.Navigator>

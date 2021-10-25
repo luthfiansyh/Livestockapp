@@ -10,18 +10,19 @@ import { StyleSheet,
 
 } from 'react-native';
 import Icon from 'react-native-ico';
-import DetailHewan from './DetailHewan';
-// import ChartGraph from './ChartGraph';
 
+const FirstRoute = (props) => {
 
-const FirstRoute = () => (
-  <View style={style.container}>
+    const {navigation} = props;
+
+    return(
+        <View style={style.container}>
       <ScrollView>
         <View style={style.data}>
             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                 <Text style={style.judul}>Data Sapi</Text>
                 <TouchableOpacity 
-                onPress={() => {alert('edit pressed')}}
+                onPress={() => {navigation.navigate(DetailPengukuran)}} 
                 >
                     <Icon name="edit-interface-symbol-of-square-paper-with-a-pencil" group="coolicons" color="#66686A" width="20" height="20"/>
                 </TouchableOpacity>
@@ -74,82 +75,8 @@ const FirstRoute = () => (
       </ScrollView>
   </View>
 );
+    }
 
-const SecondRoute = () => (
-    <View style={style.container}>
-        <ScrollView>
-            <View style={style.data}>
-                <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-                    <Text style={style.judul}>Grafik Pertumbuhan Hewan</Text>
-                    <TouchableOpacity 
-                    onPress={() => {navigation.navigate('tambah pressed')}}
-                    style={style.button}
-                    >
-                        <Icon name="add-plus-button" group="material-design" color="white" width="15" height="15"/>
-                        <Text style={style.buttontext}>TAMBAH</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            {/* <ChartGraph/> */}
-        </ScrollView>
-    </View>
-);
-
-const ThirdRoute = (props) => {
-    const {navigation} = props;
-    return(
-        <View style={style.container}>
-    <Text style={style.centertext}>Halaman ini menampilkan riwayat pengukuran hewan. Berikut ini riwayat pengukuran hewan berdasarkan tanggal. Klik pada label untuk melihat detail informasi.</Text>
-    <TouchableOpacity
-    onPress={() => {navigation.navigate(DetailPengukuran)}} 
-    style={style.row2}>
-            <Text style={style.thumbnailtext}>10 Agustus 2021</Text>
-            <Icon name="right-chevron" group="font-awesome" color="#6C6C6C" width="15" height="15"/>
-    </TouchableOpacity>
-    <TouchableOpacity style={style.row3}>
-        <Text style={style.thumbnailtext}>3 Agustus 2021</Text>
-        <Icon name="right-chevron" group="font-awesome" color="#6C6C6C" width="15" height="15"/>
-    </TouchableOpacity>
-    <TouchableOpacity style={style.row2}>
-        <Text style={style.thumbnailtext}>27 Juli 2021</Text>
-        <Icon name="right-chevron" group="font-awesome" color="#6C6C6C" width="15" height="15"/>
-    </TouchableOpacity>
-  </View>
-
-    )
-};
-
-
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-  third: ThirdRoute
-});
-
-export default function TabViewExample() {
-  
-  const layout = useWindowDimensions();
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'first', title: 'Profil' },
-    { key: 'second', title: 'Pertumbuhan' },
-    { key: 'third', title: 'Pengukuran' }
-  ]);
-
-  return (
-      <View style={{flex:1}}>
-          <DetailHewan/>
-          <TabView
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
-            renderTabBar={props => <TabBar {...props} style={{backgroundColor: '#57B860'}}/>}
-            />
-      </View>
-  );
-}
 
 const style = StyleSheet.create({
     container:{
@@ -238,3 +165,6 @@ const style = StyleSheet.create({
         paddingHorizontal:24
     }
 })
+
+
+export default FirstRoute;

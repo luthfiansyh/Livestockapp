@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import SplashImg3 from "../../component/assets/SplashImg-3";
 
 const FourthSplash = (props) => {
   const {navigation} = props;
@@ -7,10 +8,10 @@ const FourthSplash = (props) => {
   return(
       <View style={page.container}>
         <View style={page.upperside}>
-          <Text style={page.text}>illustration 3</Text>
+          <SplashImg3/>
         </View>
         <View style={page.downside}>
-          <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
+          <Text style={page.paragraph}>Dengan fitur Kalender Peternakan, maka semua tugas dan pengingat dapat terorganisir dengan mudah dan fleksibel. </Text>
         <View style={page.buttonbackground}>
           <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('NavigationLogin')}}>
             <Text style={page.buttontext}>Mengerti</Text>
@@ -25,7 +26,7 @@ const FourthSplash = (props) => {
 const page = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor:'#3F3D56'
+    backgroundColor:'#75C97D'
   },
   upperside: {
     flex: 1,
@@ -41,10 +42,11 @@ const page = StyleSheet.create({
     borderTopRightRadius: 24,
   },
   paragraph:{
-    color:'#4D4D4D',
+    color:'#3A3B3C',
     textAlign:'justify',
-    fontSize: 16,
-    fontWeight: "700",
+    fontSize: 14,
+    fontWeight: "600",
+    lineHeight: 24,
     paddingVertical: 16
   },
   text: {

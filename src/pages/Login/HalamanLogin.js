@@ -42,7 +42,7 @@ const HalamanLogin = props => {
             <TextInput
               style={page.textinput}
               underlineColorAndroid = "transparent"
-              placeholder = "Masukkan Alamat Email"
+              placeholder = "Contoh: Budi@gmail.com"
               autoCapitalize = "none"
               onChangeText = {handleEmail}
             />
@@ -125,7 +125,7 @@ const page = StyleSheet.create({
   },
   container:{
     flex: 1,
-    backgroundColor:'#3F3D56'
+    backgroundColor:'#75C97D'
   },
   upperside: {
     flex: 1,

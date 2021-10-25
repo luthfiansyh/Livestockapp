@@ -26,6 +26,9 @@ import TabViewExample from "../pages/Komoditas/TabView";
 import KalkulatorBobot from "../pages/Beranda/KalkulatorBobot";
 import InfoHargaHewan from "../pages/Beranda/InfoHargaHewan";
 import KontakKeswan from "../pages/Beranda/KontakKeswan";
+import DetailKomoditas from "../pages/Komoditas/DetailKomoditas";
+
+
 
 
 
@@ -43,14 +46,19 @@ const Router = () => {
             <Stack.Screen name="FourthSplash" component={FourthSplash}/>
             <Stack.Screen name="NavigationLogin" component={NavLogin}/>
             <Stack.Screen name="HalamanBeranda" component={Home}/>
-            <Stack.Screen name= "NavKomoditas" component={NavKomoditas}/>
             <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot}/>
             <Stack.Screen name="InfoHargaHewan" component={InfoHargaHewan}/>
             <Stack.Screen name="KontakKeswan" component={KontakKeswan}/>
             <Stack.Screen name= "NavKalender" component={NavKalender}/>
+            <Stack.Screen name= "NavKomoditas" component={NavKomoditas}/>
             <Stack.Screen name= "NavPengaturan" component={NavPengaturan}/>
             <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>
             <Stack.Screen name="HalamanPengaturan" component={HalamanPengaturan}/>
+            <Stack.Screen name="DetailPengukuran" component={DetailPengukuran}/>
+
+
+
+
 
 
 

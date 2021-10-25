@@ -17,7 +17,7 @@ const HalamanBeranda = (props) =>{
     const {navigation} = props;
 
     return(
-        <View style={{flex:1}}>
+        <View style={{flex:1, backgroundColor:'white'}}>
             <ScrollView style={{height:1}}>
                 <Head/>
                 <View style={{flex:1}}>

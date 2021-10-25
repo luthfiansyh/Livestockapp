@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, Button} from "react-native";
+import LogoApp from "../../component/assets/LogoApp";
 
 const FirstSplash = (props) => {
   const {navigation} = props;
@@ -9,10 +10,7 @@ const FirstSplash = (props) => {
 
   return(
   <View style={page.container}>
-    <View style={page.logo}>
-        <Text style={page.text}>Logo here</Text>
-    </View>
-    <Text style={page.title}>Livestock App</Text>
+    <LogoApp/>
   </View>
   )
   };

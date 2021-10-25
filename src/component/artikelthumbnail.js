@@ -35,19 +35,19 @@ const styles = StyleSheet.create({
         backgroundColor:'pink', 
     },
     card:{
-        flex: 1, backgroundColor:'#B7B7B7', height:148, width:200, borderRadius: 8, marginEnd: 12
+        flex: 1, backgroundColor:'#EDEDED', height:148, width:200, borderRadius: 8, marginEnd: 12
     },
     imagethumbnail:{
-        flex:0.5, backgroundColor:'#545454', borderTopLeftRadius:8, borderTopRightRadius: 8, paddingBottom:4
+        flex:0.5, backgroundColor:'#C4C4C4', borderTopLeftRadius:8, borderTopRightRadius: 8, paddingBottom:4
     },
     justify:{
         flex:0.5, justifyContent:'space-between'
     },
     title:{
-        flex:1,fontSize:14, fontWeight: '700', marginTop: 4, paddingLeft: 8, color: '#545454'
+        flex:1,fontSize:14, fontWeight: '700', marginTop: 4, paddingLeft: 8, color: '#959595'
     },
     update:{
-        flex:1,fontSize:10, paddingLeft: 8, color: '#545454'
+        flex:1,fontSize:10, paddingLeft: 8, color: '#959595'
     }
     
     

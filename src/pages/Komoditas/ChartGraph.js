@@ -1,85 +1,57 @@
-// import React from 'react';
-// import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+// import React from "react";
+// //import { Bar } from "react-chartjs-2";
+// import {
+//   LineChart,
+//   BarChart,
+//   PieChart,
+//   ProgressChart,
+//   ContributionGraph,
+//   StackedBarChart
+// } from 'react-native-chart-kit'
 // import { StyleSheet,
 //     ScrollView,
 //     Text,
 //     View,
 //     useWindowDimensions,
 //     TouchableOpacity,
+//     TouchableHighlight,
+//     linedata,
 //     Dimensions
 
 // } from 'react-native';
-// import Icon from 'react-native-ico';
 
-// import {
-//   LineChart
-// } from "react-native-chart-kit";
+// import Svg from "react-native-svg";
 
-// const screenWidth = Dimensions.get("window").width;
+// const ChartGraph = () =>{
 
-// const ChartGraph = (props) =>{
-
-//     const {navigation} = props;
-//     const chartConfig = {
-//         backgroundGradientFrom: "#1E2923",
-//         backgroundGradientFromOpacity: 0,
-//         backgroundGradientTo: "#08130D",
-//         backgroundGradientToOpacity: 0.5,
-//         color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-//         strokeWidth: 2, // optional, default 3
-//         barPercentage: 0.5,
-//         useShadowColorFromDataset: false // optional
+//     const linedata = {
+//       labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+//       datasets: [
+//         {
+//           data: [20, 45, 28, 80, 99, 43],
+//           strokeWidth: 2, // optional
+//         },
+//       ],
 //     };
-//     const data = {
-//   labels: ["January", "February", "March", "April", "May", "June"],
-//   datasets: [
-//     {
-//       data: [20, 45, 28, 80, 99, 43],
-//       color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-//       strokeWidth: 2 // optional
-//     }
-//   ],
-//   legend: ["Rainy Days"] // optional
-// };
 
 //     return(
 //         <View>
-//             <Text>Bezier Line Chart</Text>
+//             <Text>
+//                 Bezier Line Chart
+//             </Text>
 //             <LineChart
-//                 data={{
-//                 labels: ["January", "February", "March", "April", "May", "June"],
-//                 datasets: [
-//                     {
-//                     data: [
-//                         Math.random() * 100,
-//                         Math.random() * 100,
-//                         Math.random() * 100,
-//                         Math.random() * 100,
-//                         Math.random() * 100,
-//                         Math.random() * 100
-//                     ]
-//                     }
-//                 ]
-//                 }}
-//                 width={Dimensions.get("window").width} // from react-native
+//                 data={linedata}
+//                 width={Dimensions.get('window').width} // from react-native
 //                 height={220}
-//                 yAxisLabel="$"
-//                 yAxisSuffix="k"
-//                 yAxisInterval={1} // optional, defaults to 1
+//                 yAxisLabel={'$'}
 //                 chartConfig={{
-//                 backgroundColor: "#e26a00",
-//                 backgroundGradientFrom: "#fb8c00",
-//                 backgroundGradientTo: "#ffa726",
+//                 backgroundColor: '#e26a00',
+//                 backgroundGradientFrom: '#fb8c00',
+//                 backgroundGradientTo: '#ffa726',
 //                 decimalPlaces: 2, // optional, defaults to 2dp
 //                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-//                 labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
 //                 style: {
 //                     borderRadius: 16
-//                 },
-//                 propsForDots: {
-//                     r: "6",
-//                     strokeWidth: "2",
-//                     stroke: "#ffa726"
 //                 }
 //                 }}
 //                 bezier

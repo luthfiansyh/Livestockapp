@@ -1,5 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import SplashImg2 from "../../component/assets/SplashImg-2";
 
 const ThirdSplash = (props) => {
   const {navigation} = props;
@@ -7,10 +8,10 @@ const ThirdSplash = (props) => {
   return(
       <View style={page.container}>
         <View style={page.upperside}>
-          <Text style={page.text}>illustration 2</Text>
+          <SplashImg2/>
         </View>
         <View style={page.downside}>
-          <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
+          <Text style={page.paragraph}>LivestockApp memudahkan permasalahan yang Anda hadapi dalam proses pendataan dan perkembangan komoditas ternak.</Text>
         <View style={page.buttonbackground}>
           <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('NavigationLogin')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
@@ -28,7 +29,7 @@ const ThirdSplash = (props) => {
 const page = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor:'#3F3D56'
+    backgroundColor:'#75C97D'
   },
   upperside: {
     flex: 1,
@@ -44,11 +45,12 @@ const page = StyleSheet.create({
     borderTopRightRadius: 24,
   },
   paragraph:{
-    color:'#4D4D4D',
+    color:'#3A3B3C',
     textAlign:'justify',
-    fontSize: 16,
-    fontWeight: "700",
-    paddingVertical: 16
+    fontSize: 14,
+    fontWeight: "600",
+    lineHeight: 24,
+    paddingVertical: 16,
   },
   text: {
     color: "#fff",

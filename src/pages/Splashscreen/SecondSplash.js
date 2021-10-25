@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, Text, View, Button} from "react-native";
 import { TouchableOpacity } from "react-native";
+import SplashImg1 from "../../component/assets/SplashImg-1";
 
 const SecondSplash = (props) => {
   const {navigation} = props;
@@ -8,10 +9,10 @@ const SecondSplash = (props) => {
   return(
       <View style={page.container}>
         <View style={page.upperside}>
-          <Text style={page.text}>illustration 1</Text>
+          <SplashImg1/>
         </View>
         <View style={page.downside}>
-          <Text style={page.paragraph}>Lorem ipsum dolor sit amet Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet</Text>
+          <Text style={page.paragraph}>Jadilah peternak modern! LivestockApp membantu Anda mewujudkan digitalisasi ekosistem peternakan sebagai upaya meningkatkan kualitas ternak Anda.</Text>
         <View style={page.buttonbackground}>
           <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('NavigationLogin')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
@@ -29,7 +30,7 @@ const SecondSplash = (props) => {
 const page = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor:'#3F3D56'
+    backgroundColor:'#75C97D'
   },
   upperside: {
     flex: 1,
@@ -45,11 +46,12 @@ const page = StyleSheet.create({
     borderTopRightRadius: 24,
   },
   paragraph:{
-    color:'#4D4D4D',
+    color:'#3A3B3C',
     textAlign:'justify',
-    fontSize: 16,
-    fontWeight: "700",
-    paddingVertical: 16
+    fontSize: 14,
+    fontWeight: "600",
+    lineHeight: 24,
+    paddingVertical: 16,
   },
   text: {
     color: "#fff",
