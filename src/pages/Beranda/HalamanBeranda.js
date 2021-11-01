@@ -11,45 +11,49 @@ import Icon from 'react-native-ico';
 import Tombol from '../../component/Tombol.js';
 import Head from '../../component/Head.js';
 import ThumbnailArtikel from '../../component/ThumbnailArtikel.js';
+import Kalkulator from '../../component/assets/icons/Kalkulator';
+import Keswan from '../../component/assets/icons/Keswan';
+import Katalog from '../../component/assets/icons/Katalog';
+
 
 
 const HalamanBeranda = (props) =>{
     const {navigation} = props;
 
     return(
-        <View style={{flex:1, backgroundColor:'white'}}>
-            <ScrollView style={{height:1}}>
-                <Head/>
-                <View style={{flex:1}}>
-                    <View style={styles.container}>
-                        <View style={styles.row}>
-                        <TouchableOpacity onPress={() => {navigation.navigate('KalkulatorBobot')}} style={styles.cardleft}>
-                            <View style={styles.justify}>
-                            <Icon name="calculator" group="shopping" height="48" width="48" color="#57B860" />
-                            </View>
-                            <Text style={styles.text}>Kalkulator Bobot Ideal</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => {navigation.navigate('KontakKeswan')}} style={styles.cardright}>
-                            <View style={styles.justify}>
-                            <Icon name="hostpital-building" group="font-awesome" height="48" width="48" color="#57B860" />
-                            </View>
-                            <Text style={styles.text}>Kontak Keswan/Veteriner</Text>
-                        </TouchableOpacity>
-                        </View>
-                        <View style={styles.row}>
-                        <TouchableOpacity onPress={() => {navigation.navigate('InfoHargaHewan')}} style={styles.cardleft}>
-                            <View style={styles.justify}>
-                            <Icon name="scale" group="ui-interface" height="48" width="48" color="#57B860" />
-                            </View>
-                            <Text style={styles.text}>Info Harga Hewan</Text>
-                        </TouchableOpacity>
-                            <View View style={{width: 156, height: 72, marginRight: 12, marginTop: 24}}></View>
-                        </View>
+      <View style={{flex:1, backgroundColor:'white'}}>
+        <ScrollView style={{height:1}}>
+          <Head/>
+            <View style={{flex:1}}>
+              <View style={styles.container}>
+                <View style={styles.row}>
+                  <TouchableOpacity onPress={() => {navigation.navigate('KalkulatorBobot')}} style={styles.cardleft}>
+                    <View style={styles.justify}>
+                      <Kalkulator/>
                     </View>
+                    <Text style={styles.text}>Kalkulator Bobot Ideal</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {navigation.navigate('KontakKeswan')}} style={styles.cardright}>
+                    <View style={styles.justify}>
+                      <Keswan/>
+                    </View>
+                    <Text style={styles.text}>Kontak Keswan/Veteriner</Text>
+                  </TouchableOpacity>
                 </View>
-                <ThumbnailArtikel/>
-            </ScrollView>
-        </View>
+                <View style={styles.row}>
+                  <TouchableOpacity onPress={() => {navigation.navigate('InfoHargaHewan')}} style={styles.cardleft}>
+                    <View style={styles.justify}>
+                      <Katalog/>
+                    </View>
+                    <Text style={styles.text}>Katalog Pejantan</Text>
+                  </TouchableOpacity>
+                  <View View style={{width: 156, height: 72, marginRight: 12, marginTop: 24}}></View>
+                </View>
+              </View>
+            </View>
+          <ThumbnailArtikel/>
+        </ScrollView>
+      </View>
     )
 }
 
@@ -89,10 +93,10 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   justify:{
-    marginTop: 10,
+    marginVertical: 8,
     marginBottom: 8,
-    width: 48,
-    height: 48,
+    width: 56,
+    height: 56,
   },
   text:{
     marginTop: 8,

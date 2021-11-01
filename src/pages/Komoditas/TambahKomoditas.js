@@ -18,6 +18,7 @@ import Klasifikasi from '../../component/modals/Klasifikasi';
 import LuasLahan from '../../component/modals/LuasLahan';
 import UkuranPanjang from '../../component/modals/UkuranPanjang';
 import LahanDigunakan from '../../component/modals/LahanDigunakan';
+import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 
 const TambahKomoditas = (props) =>{
 
@@ -28,7 +29,7 @@ const TambahKomoditas = (props) =>{
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={{padding:24}}>
-                    <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
+                    <ArrowBackWhite/>
                 </TouchableOpacity>
                 <Text style={style.header}>Tambah Komoditas</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
@@ -41,11 +42,9 @@ const TambahKomoditas = (props) =>{
                 <UselessTextInputMultiline/>
                 <View style={{flexDirection:'row'}}>
                     <LuasLahan/>
-                    <UkuranPanjang/>
                 </View>
                 <View style={{flexDirection:'row'}}>
                     <LahanDigunakan/>
-                    <UkuranPanjang/>
                 </View>
                 <View style={style.buttonbackground}>
                     <TouchableOpacity style={style.button} onPress={() => {navigation.navigate('HalamanKomoditas')}}>

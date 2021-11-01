@@ -25,7 +25,7 @@ const LahanDigunakan = () => {
   // color.
   return (
     <View style={modalstyle.container}>
-        <Text style={modalstyle.judul}>Total Luas Lahan Digunakan*</Text>
+        <Text style={modalstyle.judul}>Total Luas Lahan Digunakan (m2)*</Text>
         <View style={{paddingTop:12}}>
             <View style={modalstyle.form}
             >

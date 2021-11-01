@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
-import SplashImg2 from "../../component/assets/SplashImg-2";
+import SplashImg2 from "../../component/assets/illustrations/SplashImg-2";
 
 const ThirdSplash = (props) => {
   const {navigation} = props;

@@ -7,6 +7,7 @@ import {
     Modal,
 } from "react-native";
 import Icon from 'react-native-ico';
+import Dropdown from '../assets/icons/IconDropdown';
 import SistemPemeliharaanPicker from '../modalpicker/SistemPemeliharaanPicker';
 
 const SistemPemeliharaan = (props) =>{
@@ -31,7 +32,7 @@ const SistemPemeliharaan = (props) =>{
                     >
                         <View style={{flexDirection:'row', alignItems:'center', width:'100%', justifyContent:'space-between'}}>
                             <Text style={modalstyle.text}>{chooseData}</Text>
-                            <Icon width="20" height="20" color='grey' name="drop-down-arrow" group="material-design"/>
+                            <Dropdown/>
                         </View>
                         <View style={modalstyle.line}></View>
                     </TouchableOpacity>

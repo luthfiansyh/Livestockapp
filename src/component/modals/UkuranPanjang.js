@@ -10,6 +10,7 @@ import Icon from 'react-native-ico';
 import JenisKomoditasPicker from '../../component/modalpicker/JenisKomoditasPicker';
 import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
 import UkuranPanjangPicker from '../modalpicker/UkuranPanjangPicker';
+import Dropdown from '../assets/icons/IconDropdown';
 
 const UkuranPanjang = (props) =>{
 
@@ -33,7 +34,7 @@ const UkuranPanjang = (props) =>{
                     >
                         <View style={{flexDirection:'row', alignItems:'center', width:'100%', justifyContent:'space-between'}}>
                             <Text style={modalstyle.text}>{chooseData}</Text>
-                            <Icon width="20" height="20" color='grey' name="drop-down-arrow" group="material-design"/>
+                            <Dropdown/>
                         </View>
                         <View style={modalstyle.line}></View>
                     </TouchableOpacity>

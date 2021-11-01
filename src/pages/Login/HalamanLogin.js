@@ -52,6 +52,7 @@ const HalamanLogin = props => {
             <TextInput
               style={page.textinput}
               underlineColorAndroid = "transparent"
+              secureTextEntry={true}
               placeholder = "Masukkan Password"
               autoCapitalize = "none"
               onChangeText = {handlePassword}

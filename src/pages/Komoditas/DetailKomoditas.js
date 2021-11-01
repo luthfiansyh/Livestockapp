@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-ico';
+import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
+import IconEdit from '../../component/assets/icons/IconEdit';
+import IconTrash from '../../component/assets/icons/IconTrash';
+import Plusbutton from '../../component/assets/icons/Plus';
+import RightChevron from '../../component/assets/icons/RightChevron';
 import DetailHewan from './DetailHewan';
 import DetailHewanNav from './DetailHewanNav';
 import TambahPendataan from './TambahPendataan';
@@ -16,20 +21,20 @@ const DetailKomoditas = (props) =>{
                 <TouchableOpacity 
                     onPress={() => {navigation.goBack()}} 
                     style={{padding:24}}>
-                    <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
+                        <ArrowBackWhite/>
                 </TouchableOpacity>
                 <Text style={style.header}>Detail Komoditas</Text>
                 <View style={style.icons}>
                     <TouchableOpacity 
-                    onPress={() => {navigation.navigate('TambahPendataan')}}
+                    onPress={() => {alert('edit pressed')}}
                     style={style.margin}
                     >
-                    <Icon Icon name="edit" group="ui-interface" color="#fff" size={24}/>
+                        <IconEdit/>
                     </TouchableOpacity>
                     <TouchableOpacity 
                     onPress={() => {alert('delete pressed')}} 
                     >
-                        <Icon Icon name="trash" group="ui-interface" color="#fff" size={24}/>
+                        <IconTrash/>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -74,7 +79,7 @@ const DetailKomoditas = (props) =>{
                                 <Text style={card.isi}>Jantan</Text>
                             </View>
                         </View>
-                        <Icon color="grey" width="16" height="16" name="right-chevron" group="font-awesome"/>
+                        <RightChevron/>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight 
@@ -89,7 +94,7 @@ const DetailKomoditas = (props) =>{
                                 <Text style={card.isi}>Jantan</Text>
                             </View>
                         </View>
-                        <Icon color="grey" width="16" height="16" name="right-chevron" group="font-awesome"/>
+                        <RightChevron/>
                     </View>
                 </TouchableHighlight>
                 <TouchableHighlight 
@@ -104,7 +109,7 @@ const DetailKomoditas = (props) =>{
                                 <Text style={card.isi}>Jantan</Text>
                             </View>
                         </View>
-                        <Icon color="grey" width="16" height="16" name="right-chevron" group="font-awesome"/>
+                        <RightChevron/>
                     </View>
                 </TouchableHighlight>
             </ScrollView>
@@ -113,7 +118,9 @@ const DetailKomoditas = (props) =>{
                 style={styles.touchable}
                 onPress={() => {navigation.navigate(TambahPendataan)}}
                 >
-                    <Icon style={styles.icon} name="plus" group="ui-interface" color="white"/>
+                    <View style={styles.icon}>
+                        <Plusbutton/>
+                    </View>
                 </TouchableOpacity>
             </View>
         </View>

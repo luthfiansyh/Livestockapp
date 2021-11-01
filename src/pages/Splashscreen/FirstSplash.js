@@ -1,6 +1,6 @@
 import React from "react";
 import {StyleSheet, Text, View, Button} from "react-native";
-import LogoApp from "../../component/assets/LogoApp";
+import LogoApp from "../../component/assets/icons/LogoApp";
 
 const FirstSplash = (props) => {
   const {navigation} = props;

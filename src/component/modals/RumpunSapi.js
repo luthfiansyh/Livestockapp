@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Icon from 'react-native-ico';
 import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
+import Dropdown from '../assets/icons/IconDropdown';
 import RumpunSapiPicker from '../modalpicker/RumpunSapiPicker';
 
 const RumpunSapi = (props) =>{
@@ -32,7 +33,7 @@ const RumpunSapi = (props) =>{
                     >
                         <View style={{flexDirection:'row', alignItems:'center', width:'100%', justifyContent:'space-between'}}>
                             <Text style={modalstyle.text}>{chooseData}</Text>
-                            <Icon width="20" height="20" color='grey' name="drop-down-arrow" group="material-design"/>
+                            <Dropdown/>
                         </View>
                         <View style={modalstyle.line}></View>
                     </TouchableOpacity>

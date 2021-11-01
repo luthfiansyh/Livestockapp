@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-ico';
+import RightChevron from '../../component/assets/icons/RightChevron';
 import CardKomoditas from '../../component/CardKomoditas.js';
 import FloatingButton from '../../component/FloatingPlusButton.js';
+import Plusbutton from '../../component/assets/icons/Plus';
 
 import HeaderPage from '../../component/HeaderPage.js';
-import Tombol from '../../component/Tombol';
 
 const HalamanKomoditas = (props) =>{
 
@@ -40,7 +41,7 @@ const HalamanKomoditas = (props) =>{
                         </View>
                     </View>
                     <View style={card.icon}>
-                        <Icon color="grey" width="16" height="16" name="right-chevron" group="font-awesome"/>
+                        <RightChevron/>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -52,7 +53,9 @@ const HalamanKomoditas = (props) =>{
                 style={styles.touchable}
                 onPress={() => {navigation.navigate('TambahKomoditas')}}
                 >
-                    <Icon style={styles.icon} name="plus" group="ui-interface" color="white"/>
+                    <View style={styles.icon}>
+                        <Plusbutton/>
+                    </View>
                 </TouchableOpacity>
             </View>
         </View>
@@ -97,7 +100,7 @@ const card = StyleSheet.create({
     },
     icon:{
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
     },
     subjudul:{
         fontSize:12,

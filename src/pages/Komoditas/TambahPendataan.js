@@ -22,6 +22,8 @@ import JenisKelamin from '../../component/modals/JenisKelamin';
 import Example from '../../component/CalenderPicker';
 import JenisKelahiran from '../../component/modals/JenisKelahiran';
 import AsalSapi from '../../component/modals/AsalSapi';
+import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
+
 
 const TambahPendataan = (props) =>{
 
@@ -32,7 +34,7 @@ const TambahPendataan = (props) =>{
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={{padding:24}}>
-                    <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
+                    <ArrowBackWhite/>
                 </TouchableOpacity>
                 <Text style={style.header}>Tambah Pendataan Hewan</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>

@@ -10,6 +10,7 @@ import {
 
 import Icon from "react-native-ico";
 import { RadioButton } from 'react-native-paper';
+import ArrowBack from "../../component/assets/icons/ArrowBack";
 
 const HalamanDaftar = props => {
   const {navigation} = props;
@@ -36,7 +37,7 @@ const HalamanDaftar = props => {
         <TouchableOpacity 
         onPress={() => {navigation.goBack()}} 
         style={{padding:24, backgroundColor:'#fff'}}>
-          <Icon name="go-back-left-arrow" group="material-design" color="#3F3D56" size={24}/>
+          <ArrowBack/>
         </TouchableOpacity>
       </View>
       <ScrollView style={{backgroundColor:'white'}}>
@@ -44,7 +45,7 @@ const HalamanDaftar = props => {
         <View style={page.downside}>
           <View style={page.upperside}>
             <Text style={page.title}>HalamanDaftar</Text>
-            <Text style={page.text}>Masukan identitas Anda dengan benar agar kami dapat mengenalmu dengan baik.</Text>
+            <Text style={page.text}>Masukan identitas Anda dengan benar agar kami dapat mengenal Anda lebih baik.</Text>
           </View>
         <Text style={page.texttitle}>Nama Lengkap</Text>
         <View style={page.form}>
@@ -56,12 +57,12 @@ const HalamanDaftar = props => {
             onChangeText = {handleEmail}
           />
         </View>
-        <Text style={page.texttitle}>Nama Pengguna</Text>
+        <Text style={page.texttitle}>Nama Panggilan</Text>
         <View style={page.form}>
           <TextInput
             style={page.textinput}
             underlineColorAndroid = "transparent"
-            placeholder = "contoh: Budi123"
+            placeholder = "Nama Panggilan Anda"
             autoCapitalize = "none"
             onChangeText = {handlePassword}
           />
@@ -108,6 +109,16 @@ const HalamanDaftar = props => {
           </View>
         </View>
         <Text style={page.texttitle}>Alamat Rumah</Text>
+        <View style={page.form}>
+          <TextInput
+            style={page.textinput}
+            underlineColorAndroid = "transparent"
+            placeholder = "Alamat Rumah Anda"
+            autoCapitalize = "none"
+            onChangeText = {handleEmail}
+          />
+        </View>
+        <Text style={page.texttitle}>Upload Foto Profil</Text>
         <View style={page.form}>
           <TextInput
             style={page.textinput}
