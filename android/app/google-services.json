@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "510787554224",
+    "project_id": "livestockapp-ef717",
+    "storage_bucket": "livestockapp-ef717.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510787554224:android:277c294f2e8ab53866e475",
+        "android_client_info": {
+          "package_name": "com.livestockapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510787554224-dkptisu79up396gl95hrk5tud6qjfb7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHHuZxOa4gSmOmcadIuOhZLF-X9OOi3uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510787554224-dkptisu79up396gl95hrk5tud6qjfb7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
