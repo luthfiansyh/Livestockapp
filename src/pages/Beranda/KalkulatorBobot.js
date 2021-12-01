@@ -6,9 +6,10 @@ import {
     TouchableOpacity,
     ScrollView,
     Modal,
-    SafeAreaView
+    SafeAreaView,
 } from "react-native";
-import Icon from 'react-native-ico';
+
+import {Picker} from '@react-native-picker/picker';
 
 import HeaderPage from '../../component/HeaderPage.js';
 import BobotHewan from '../../component/modals/BobotHewan.js';
@@ -19,10 +20,12 @@ import UkuranBobot from '../../component/modals/UkuranBobot.js';
 import HalamanBeranda from './HalamanBeranda.js';
 import LingkarDada from '../../component/modals/LingkarDada';
 import PanjangCm from '../../component/modals/PanjangCm.js';
+import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 
 const KalkulatorBobot = (props) =>{
 
     const {navigation} = props;
+    const [selectedLanguage, setSelectedLanguage] = React.useState();
 
     return(
         <View style={{flex:1}}>
@@ -30,20 +33,36 @@ const KalkulatorBobot = (props) =>{
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={{padding:24}}>
-                    <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
+                    <ArrowBackWhite/>
                 </TouchableOpacity>
-                <Text style={style.header}>Kalkulator Bobot</Text>
+                <Text style={style.header}>Kalkulator Peternakan</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
-            <ScrollView>
-                <JenisKomoditas/>
+            <ScrollView style={{backgroundColor:'white'}}>
+
+                {/* <JenisKomoditas/>
                 <RumpunSapi/>
                 <JenisKelamin/>
-                <View style={{flexDirection:'row'}}>
-                    <BobotHewan/>
-                    <UkuranBobot/>
+                <View style={style.buttonbackground}>
+                    <TouchableOpacity
+                    style={style.button}
+                    onPress={() => {alert('Cek hasil')}}
+                    >
+                        <Text style={style.buttontext}>HITUNG</Text>
+                    </TouchableOpacity>
+                </View> */}
+                <Text style={style.texttitle2}>Pilihan Jenis Kalkulator</Text>
+                <View style={style.pickers}>
+                    <Picker
+                    selectedValue={selectedLanguage}
+                    onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
+                    >
+                        <Picker.Item label="Prediksi Bobot Sapi" value="Bobot" color="black"/>
+                        <Picker.Item label="Umur Hewan" value="Umur" color="black"/>
+                    </Picker>
                 </View>
                 <LingkarDada/>
+                <PanjangCm/>
                 <View style={style.buttonbackground}>
                     <TouchableOpacity
                     style={style.button}
@@ -58,6 +77,25 @@ const KalkulatorBobot = (props) =>{
 }
 
 const style = StyleSheet.create({
+    texttitle:{
+    marginTop: 16,
+    marginLeft: 16,
+    fontSize: 16,
+    fontWeight: '600',
+    },
+    texttitle2:{
+    marginTop: 16,
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign:'center',
+    color:'#959595'
+    },
+    pickers:{
+        margin: 16,
+        borderRadius: 8,
+        borderColor: 'grey',
+        borderWidth: 1,
+    },
     container:{
         width:'100%',
         right: 0,
@@ -82,7 +120,6 @@ const style = StyleSheet.create({
         alignItems: 'flex-end',
         justifyContent:'space-between',
         marginHorizontal:16,
-        backgroundColor:'pink'
     },
     button:{
         justifyContent: 'space-around',

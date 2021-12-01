@@ -7,7 +7,6 @@ import {
     ScrollView,
     Modal,
     SafeAreaView,
-    Checkbox
 } from "react-native";
 import Icon from 'react-native-ico';
 
@@ -24,8 +23,10 @@ import PilihProvinsi from '../../component/modals/PilihProvinsi.js';
 import PilihKabKot from '../../component/modals/PilihKabKot.js';
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 import IconFilter from '../../component/assets/icons/FilterIcon';
+import CloseIcon from '../../component/assets/icons/CloseIcon';
+// import FilterCheckBox from '../../component/modals/FilterCheckBox';
 
-const KontakKeswan = (props) =>{
+const FilterKontakKeswan = (props) =>{
 
     const {navigation} = props;
 
@@ -34,23 +35,37 @@ const KontakKeswan = (props) =>{
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
-                style={{padding:24}}>
-                    <ArrowBackWhite/>
+                style={{padding:20}}>
+                    <CloseIcon/>
                 </TouchableOpacity>
-                <Text style={style.header}>Kontak Keswan/Veteriner</Text>
-                {/* <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View> */}
-                <TouchableOpacity 
-                onPress={() => {navigation.navigate('FilterKontakKeswan')}} 
-                style={{padding:24}}>
-                    <IconFilter/>
+                <TouchableOpacity style={{marginRight:16, backgroundColor:'#57B860', padding:8, borderRadius:4}}>
+                    <Text style={{color:'white', fontWeight:'600', fontSize:16, paddingHorizontal: 8}}>Cari</Text>
                 </TouchableOpacity>
             </View>
             <ScrollView>
-                <Text>p</Text>
+                <PilihProvinsi/>
+                <PilihKabKot/>
             </ScrollView>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  checkbox: {
+    alignSelf: "center",
+  },
+  label: {
+    margin: 8,
+  },
+});
 
 const style = StyleSheet.create({
     container:{
@@ -61,7 +76,6 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'space-between',
-        backgroundColor:'#57B860'
     },
     header:{
         marginTop:16,
@@ -94,4 +108,4 @@ const style = StyleSheet.create({
 )
 
 
-export default KontakKeswan;
+export default FilterKontakKeswan;
