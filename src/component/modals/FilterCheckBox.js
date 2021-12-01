@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CheckBox, Text, StyleSheet, View } from "react-native";
 
-const CheckBox = (props) => {
+const FilterCheckBox = (props) => {
 
   const {navigation} = props;
   const [isSelected, setSelection] = useState(false);
@@ -37,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CheckBox;
+export default FilterCheckBox;

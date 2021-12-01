@@ -26,7 +26,7 @@ const LingkarDada = () => {
   return (
     <View style={modalstyle.container}>
       <View style={{flex:1}}>
-        <Text style={modalstyle.judul}>Lingkar Dada*</Text>
+        <Text style={modalstyle.judul}>Lingkar Dada (cm)*</Text>
         <View style={{paddingTop:12}}>
             <View style={modalstyle.form}>
               <UselessTextInput
@@ -38,15 +38,6 @@ const LingkarDada = () => {
               onChangeText={text => onChangeText(text)}
               value={value}
               />
-            </View>
-        </View>
-      <View style={modalstyle.line}></View>
-      </View>
-      <View style={{marginLeft:16}}>
-        <Text style={modalstyle.judul}></Text>
-        <View style={{paddingTop:12}}>
-            <View>
-              <Text style={modalstyle.text2}>cm</Text>
             </View>
         </View>
       <View style={modalstyle.line}></View>

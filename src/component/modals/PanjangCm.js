@@ -25,6 +25,7 @@ const PanjangCm = () => {
   // color.
   return (
     <View style={modalstyle.container}>
+      <Text style={modalstyle.judul}>Panjang Badan (cm)*</Text>
         <View style={{paddingTop:12}}>
             <View style={modalstyle.form}
             >
