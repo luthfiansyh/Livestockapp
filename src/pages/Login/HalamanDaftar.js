@@ -6,37 +6,66 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  Platform,
+  Button
 } from 'react-native';
 
 import Icon from "react-native-ico";
 import { RadioButton } from 'react-native-paper';
 import ArrowBack from "../../component/assets/icons/ArrowBack";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import CalendarIcon from "../../component/assets/icons/CalendarIcon";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 const HalamanDaftar = props => {
   const {navigation} = props;
 
   const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('')
+    
+    const [password, setPassword] = React.useState('');
 
-     const handleEmail = (text) => {
-        setEmail(text)
-     }
-     const handlePassword = (text) => {
-        setPassword(text)
-     }
-     const login = (email, pass) => {
-        alert('email: ' + email + ' password: ' + pass)
-     }
+    const handleEmail = (text) => {
+      setEmail(text)
+    }
 
-     const [checked, setChecked] = React.useState('first');
+    const handlePassword = (text) => {
+      setPassword(text)
+    }
+    const [checked, setChecked] = React.useState('first');
 
+    const [date, setDate] = React.useState(new Date());
+    const [mode, setMode] = React.useState('date');
+    const [show, setShow] = React.useState(false);
+    const [text, setText] = React.useState('DD/MM/YY');
+      
+      const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || date;
+      setShow(Platform.OS === 'ios');
+      
+      setDate(currentDate);
 
+      let tempDate = new Date(currentDate);
+      let fDate = tempdate.getDate() + '/' + (tempDate.getMonth() +1 ) + '/' + tempDate.getFullYear();
+      setText(fDate)
+      console.log(fDate)
+    };
+
+    const showMode = (currentMode) => {
+      setShow(true);
+      setMode(currentMode);
+    };
+
+    // const showDatepicker = () => {
+    //   showMode('date');
+    // };
+
+  
   return (
     <View>
-      <View>
+      <View style={{padding:24, backgroundColor:'#fff'}}>
         <TouchableOpacity 
         onPress={() => {navigation.goBack()}} 
-        style={{padding:24, backgroundColor:'#fff'}}>
+        >
           <ArrowBack/>
         </TouchableOpacity>
       </View>
@@ -44,7 +73,7 @@ const HalamanDaftar = props => {
       <View style={page.container}>
         <View style={page.downside}>
           <View style={page.upperside}>
-            <Text style={page.title}>HalamanDaftar</Text>
+            <Text style={page.title}>Halaman Daftar</Text>
             <Text style={page.text}>Masukan identitas Anda dengan benar agar kami dapat mengenal Anda lebih baik.</Text>
           </View>
         <Text style={page.texttitle}>Nama Lengkap</Text>
@@ -54,7 +83,6 @@ const HalamanDaftar = props => {
             underlineColorAndroid = "transparent"
             placeholder = "Nama Lengkap Anda"
             autoCapitalize = "characters"
-            onChangeText = {handleEmail}
           />
         </View>
         <Text style={page.texttitle}>Nama Panggilan</Text>
@@ -64,27 +92,48 @@ const HalamanDaftar = props => {
             underlineColorAndroid = "transparent"
             placeholder = "Nama Panggilan Anda"
             autoCapitalize = "none"
-            onChangeText = {handlePassword}
           />
         </View>
-        <Text style={page.texttitle}>Tanggal Lahir</Text>
+        <Text style={page.texttitle}>Password</Text>
         <View style={page.form}>
           <TextInput
             style={page.textinput}
             underlineColorAndroid = "transparent"
-            placeholder = "Masukkan Tanggal Lahir Anda"
+            secureTextEntry={true}
+            placeholder = "Masukkan Password"
             autoCapitalize = "none"
-            onChangeText = {handleEmail}
+            onChangeText = {handlePassword}
           />
         </View>
+        <Text style={page.texttitle}>Tanggal Lahir</Text>
+        <View>
+      <View style={page.form}>
+        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+        <Text style={page.textinput2}>{text}</Text>
+            <TouchableOpacity onPress={() => showMode('date')} title="" style={{marginRight:8}}>
+              <CalendarIcon/>
+            </TouchableOpacity>
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="spinner"
+                onChange={onChange}
+              />
+            )}
+      </View>
+      </View>
+    </View>
         <Text style={page.texttitle}>Nomor Telepon</Text>
         <View style={page.form}>
           <TextInput
             style={page.textinput}
             underlineColorAndroid = "transparent"
-            placeholder = "+62"
+            placeholder = "Masukkan Nomor Telepon"
             autoCapitalize = "none"
-            onChangeText = {handleEmail}
+            keyboardType="number-pad"
           />
         </View>
         <Text style={page.texttitle}>Jenis Kelamin</Text>
@@ -120,13 +169,14 @@ const HalamanDaftar = props => {
         </View>
         <Text style={page.texttitle}>Upload Foto Profil</Text>
         <View style={page.form}>
-          <TextInput
-            style={page.textinput}
-            underlineColorAndroid = "transparent"
-            placeholder = "Alamat Rumah Anda"
-            autoCapitalize = "none"
-            onChangeText = {handleEmail}
-          />
+          <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
+            <View style={page.textinput2}>
+              <Text style={{color: 'grey'}}>Upload Foto</Text>
+            </View>
+          <TouchableOpacity style={{marginRight:8, backgroundColor:'#57B860', padding:8, borderRadius:4}}>
+            <Text style={{color:'white', fontWeight:'600'}}>Upload</Text>
+          </TouchableOpacity>
+          </View>
         </View>
         <View style={page.buttonbackground}>
           <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('HalamanBeranda')}}>
@@ -184,7 +234,12 @@ const page = StyleSheet.create({
     opacity: .5
   },
   textinput:{
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+  },
+  textinput2:{
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    color:'grey'
   },
   texttitle:{
     marginTop: 16,
@@ -196,6 +251,7 @@ const page = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 2,
     borderColor: '#BBC8D4',
+    backgroundColor:'white'
   },
   container:{
     backgroundColor:'#3F3D56'

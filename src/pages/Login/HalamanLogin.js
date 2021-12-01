@@ -7,9 +7,7 @@ import {
   TouchableOpacity,
   TextInput
 } from 'react-native';
-import Inputs from "../../component/Inputs";
-
-
+import BgHome from "../../component/assets/illustrations/BgHome";
 
 const HalamanLogin = props => {
 
@@ -35,7 +33,9 @@ const HalamanLogin = props => {
           <Text style={page.title}>Selamat Datang,</Text>
           <Text style={page.text}>Senang melihat Anda Kembali. Silakan Masukkan Email dan Password.</Text>
         </View>
-        <View style={page.downside}>
+        <BgHome/>
+        <View style={{backgroundColor:'#57B860'}}>
+          <View style={page.downside}>
           <View style={{marginTop:1}}></View>
           <Text style={page.texttitle}>Email</Text>
           <View style={page.form}>
@@ -76,6 +76,8 @@ const HalamanLogin = props => {
             </TouchableOpacity>
           </View>
         </View>
+
+        </View>
       </View>
     </ScrollView>
   )
@@ -101,6 +103,7 @@ const page = StyleSheet.create({
   centerline:{
     justifyContent:'space-around',
     flexDirection:'row',
+    marginTop: 32
   },
   line:{
     width: "80%",
@@ -126,20 +129,22 @@ const page = StyleSheet.create({
   },
   container:{
     flex: 1,
-    backgroundColor:'#75C97D'
+    backgroundColor:'#DCEAFF'
   },
   upperside: {
-    flex: 1,
-    padding:"8%",
+    // paddingVertical:"24%",
+    paddingHorizontal:"8%",
     alignItems: "flex-start",
     justifyContent:'flex-start',
   },
   downside:{
-    flex: 0.7,
-    padding: 24,
+    paddingHorizontal: 24,
+    paddingTop: 24,
     backgroundColor:'white',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    justifyContent:'center',
+    paddingBottom: '8%'
   },
   paragraph:{
     color:'#4D4D4D',
@@ -149,11 +154,11 @@ const page = StyleSheet.create({
     paddingVertical: 16
   },
   text: {
-    color: "#fff",
-    fontSize: 14,
+    color: "#4D4D4D",
+    fontSize: 20,
     fontWeight: "400",
-    paddingEnd: "8%",
-    marginTop: "4%"
+    paddingEnd: "0%",
+    marginTop: "4%",
   },
   buttontext:{
     color:'white',
@@ -163,8 +168,8 @@ const page = StyleSheet.create({
   },
   title:{
       paddingTop: "8%",
-      color:'white',
-      fontSize: 24,
+      color:'#4D4D4D',
+      fontSize: 32,
       fontWeight:'bold',
       textAlign:'center',
   },
