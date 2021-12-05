@@ -14,7 +14,6 @@ const NavPengaturan = () => {
             headerShown: false
         }}>
             <Stack.Screen name="HalamanPengaturan" component={HalamanPengaturan}/>
-            <Stack.Screen name="HalamanProfil" component={HalamanProfil}/>
 
 
         </Stack.Navigator>

@@ -7,15 +7,11 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  Button
 } from 'react-native';
-
-import Icon from "react-native-ico";
 import { RadioButton } from 'react-native-paper';
 import ArrowBack from "../../component/assets/icons/ArrowBack";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CalendarIcon from "../../component/assets/icons/CalendarIcon";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 const HalamanDaftar = props => {
   const {navigation} = props;
@@ -54,11 +50,6 @@ const HalamanDaftar = props => {
       setShow(true);
       setMode(currentMode);
     };
-
-    // const showDatepicker = () => {
-    //   showMode('date');
-    // };
-
   
   return (
     <View>
@@ -94,6 +85,16 @@ const HalamanDaftar = props => {
             autoCapitalize = "none"
           />
         </View>
+        <Text style={page.texttitle}>Email</Text>
+          <View style={page.form}>
+            <TextInput
+              style={page.textinput}
+              underlineColorAndroid = "transparent"
+              placeholder = "Contoh: Budi@gmail.com"
+              autoCapitalize = "none"
+              onChangeText = {handleEmail}
+            />
+          </View>
         <Text style={page.texttitle}>Password</Text>
         <View style={page.form}>
           <TextInput
@@ -329,10 +330,6 @@ const page = StyleSheet.create({
       alignItems:'center',
       marginBottom: '10%'
   }
-});
-
-const style = StyleSheet.create({
-
 });
 
 export default HalamanDaftar;

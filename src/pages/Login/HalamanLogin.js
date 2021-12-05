@@ -8,6 +8,7 @@ import {
   TextInput
 } from 'react-native';
 import BgHome from "../../component/assets/illustrations/BgHome";
+import BgLogin from "../../component/assets/illustrations/BgLogin";
 
 const HalamanLogin = props => {
 
@@ -33,7 +34,7 @@ const HalamanLogin = props => {
           <Text style={page.title}>Selamat Datang,</Text>
           <Text style={page.text}>Senang melihat Anda Kembali. Silakan Masukkan Email dan Password.</Text>
         </View>
-        <BgHome/>
+        <BgLogin/>
         <View style={{backgroundColor:'#57B860'}}>
           <View style={page.downside}>
           <View style={{marginTop:1}}></View>

@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View, Button} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import { TouchableOpacity } from "react-native";
 import SplashImg1 from "../../component/assets/illustrations/SplashImg-1";
 
@@ -44,6 +44,7 @@ const page = StyleSheet.create({
     backgroundColor:'white',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    justifyContent:'space-between'
   },
   paragraph:{
     color:'#3A3B3C',
@@ -51,7 +52,7 @@ const page = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     lineHeight: 24,
-    paddingVertical: 16,
+    marginTop: 36
   },
   text: {
     color: "#fff",
@@ -71,10 +72,11 @@ const page = StyleSheet.create({
       textAlign:'center'
   },
   buttonbackground:{
-    marginTop: 72,
+    marginTop: 48,
+    marginBottom: 48,
     flexDirection:"row",
     justifyContent: 'flex-end',
-    justifyContent:'space-between'
+    justifyContent:'space-between',
   },
   button:{
     justifyContent: 'space-around',

@@ -6,20 +6,19 @@ const FourthSplash = (props) => {
   const {navigation} = props;
 
   return(
-      <View style={page.container}>
-        <View style={page.upperside}>
-          <SplashImg3/>
-        </View>
-        <View style={page.downside}>
-          <Text style={page.paragraph}>Dengan fitur Kalender Peternakan, maka semua tugas dan pengingat dapat terorganisir dengan mudah dan fleksibel. </Text>
+    <View style={page.container}>
+      <View style={page.upperside}>
+        <SplashImg3/>
+      </View>
+      <View style={page.downside}>
+        <Text style={page.paragraph}>Kalkulator Peternakan, Info Kontak Kesehatan Hewan dan Katalog Benih Pejantan lebih mudah didapatkan dengan fitur yang ada di Livestockapp. </Text>
         <View style={page.buttonbackground}>
-          <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('NavigationLogin')}}>
-            <Text style={page.buttontext}>Mengerti</Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('NavigationLogin')}}>
+              <Text style={page.buttontext}>Mengerti</Text>
+            </TouchableOpacity>
+          </View>
+      </View>
     </View>
-  </View>
-
   )
 };
 
@@ -40,6 +39,7 @@ const page = StyleSheet.create({
     backgroundColor:'white',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    justifyContent:'space-between'
   },
   paragraph:{
     color:'#3A3B3C',
@@ -47,7 +47,7 @@ const page = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     lineHeight: 24,
-    paddingVertical: 16
+    marginTop: 36
   },
   text: {
     color: "#fff",
@@ -67,7 +67,8 @@ const page = StyleSheet.create({
       textAlign:'center'
   },
   buttonbackground:{
-    marginTop: 72,
+    marginTop: 48,
+    marginBottom: 48,
     flexDirection:"row",
     justifyContent: 'flex-end',
   },
@@ -89,14 +90,6 @@ const page = StyleSheet.create({
     borderBottomStartRadius:8,
     borderTopStartRadius:8,
     borderBottomEndRadius:8
-  },
-  logo:{
-      backgroundColor:'#57B860',
-      width: 240,
-      height:172,
-      justifyContent:'center',
-      alignItems:'center',
-      marginBottom: '10%'
   }
 });
 
