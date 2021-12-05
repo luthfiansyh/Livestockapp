@@ -25,9 +25,14 @@ import NavPengaturan from "../pages/Pengaturan";
 import DetailPengukuran from "../pages/Komoditas/DetailPengukuran";
 import TabViewExample from "../pages/Komoditas/TabView";
 import KalkulatorBobot from "../pages/Beranda/KalkulatorBobot";
-import InfoHargaHewan from "../pages/Beranda/InfoHargaHewan";
+import KatalogPejantan from "../pages/Beranda/KatalogPejantan";
 import KontakKeswan from "../pages/Beranda/KontakKeswan";
 import DetailKomoditas from "../pages/Komoditas/DetailKomoditas";
+import FilterKontakKeswan from "../pages/Beranda/FilterKontakKeswan";
+import DetailKontakKeswan from "../pages/Beranda/DetailKontakKeswan";
+import FilterKatalogPejantan from "../pages/Beranda/FilterKatalogPejantan";
+import HalamanProfil from "../pages/Pengaturan/HalamanProfil";
+import DetailKatalogPejantan from "../pages/Beranda/DetailKatalogPejantan";
 
 
 
@@ -48,14 +53,19 @@ const Router = () => {
             <Stack.Screen name="NavigationLogin" component={NavLogin}/>
             <Stack.Screen name="HalamanBeranda" component={Home}/>
             <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot}/>
-            <Stack.Screen name="InfoHargaHewan" component={InfoHargaHewan}/>
+            <Stack.Screen name="KatalogPejantan" component={KatalogPejantan}/>
+            <Stack.Screen name="FilterKatalogPejantan" component={FilterKatalogPejantan}/>
+            <Stack.Screen name="DetailKatalogPejantan" component={DetailKatalogPejantan}/>
             <Stack.Screen name="KontakKeswan" component={KontakKeswan}/>
+            <Stack.Screen name="FilterKontakKeswan" component={FilterKontakKeswan}/>
+            <Stack.Screen name="DetailKontakKeswan" component={DetailKontakKeswan}/>
             <Stack.Screen name= "NavKalender" component={NavKalender}/>
             <Stack.Screen name= "NavKomoditas" component={NavKomoditas}/>
             <Stack.Screen name= "NavPengaturan" component={NavPengaturan}/>
             <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>
             <Stack.Screen name="HalamanPengaturan" component={HalamanPengaturan}/>
             <Stack.Screen name="DetailPengukuran" component={DetailPengukuran}/>
+            <Stack.Screen name="HalamanProfil" component={HalamanProfil}/>
 
 
 
@@ -102,7 +112,7 @@ function Home() {
           ),
         }}
         />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="Kalender"
         component={HalamanKalender}
         options={{
@@ -112,7 +122,7 @@ function Home() {
             </Svg>
           ),
         }}
-        />
+        /> */}
       <Tab.Screen
         name="Pengaturan"
         component={NavPengaturan}
