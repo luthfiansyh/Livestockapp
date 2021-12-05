@@ -26,7 +26,7 @@ const JenisKomoditas = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Jenis Komoditas*</Text>
+                    <Text style={modalstyle.judul}>Jenis Komoditas</Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}
@@ -55,7 +55,7 @@ const JenisKomoditas = (props) =>{
 const modalstyle = StyleSheet.create({
     container:{
         flex:1,
-        paddingHorizontal:20,
+        paddingHorizontal:16,
         paddingVertical: 16,
     },
     text:{

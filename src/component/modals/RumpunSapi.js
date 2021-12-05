@@ -26,7 +26,7 @@ const RumpunSapi = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Rumpun Komoditas*</Text>
+                    <Text style={modalstyle.judul}>Rumpun Komoditas</Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}

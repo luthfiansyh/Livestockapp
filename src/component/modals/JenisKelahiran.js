@@ -26,7 +26,7 @@ const JenisKelahiran = (props) =>{
 
     return(
                 <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}>Jenis Kelahiran*</Text>
+                    <Text style={modalstyle.judul}>Jenis Kelahiran</Text>
                     <TouchableOpacity
                     style={modalstyle.touchableopacity}
                     onPress= {() => changeModalVisibility(true)}

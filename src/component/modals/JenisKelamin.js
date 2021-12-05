@@ -17,7 +17,7 @@ const JenisKelamin = (props) => {
     const [checked, setChecked] = React.useState('first');
     return(
         <View style={page.container}>
-            <Text style={page.texttitle}>Jenis Kelamin*</Text>
+            <Text style={page.texttitle}>Jenis Kelamin</Text>
             <View style={page.radio}>
             <View style={page.align}>
                 <RadioButton
