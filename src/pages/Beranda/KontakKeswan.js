@@ -1,29 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
     ScrollView,
-    Modal,
-    SafeAreaView,
-    Checkbox
+    TouchableHighlight,
+    TextInput
 } from "react-native";
-import Icon from 'react-native-ico';
-
-import HeaderPage from '../../component/HeaderPage.js';
-import BobotHewan from '../../component/modals/BobotHewan.js';
-import JenisKelamin from '../../component/modals/JenisKelamin.js';
-import JenisKomoditas from '../../component/modals/JenisKomoditas.js';
-import RumpunSapi from '../../component/modals/RumpunSapi.js';
-import UkuranBobot from '../../component/modals/UkuranBobot.js';
-import HalamanBeranda from './HalamanBeranda.js';
-import LingkarDada from '../../component/modals/LingkarDada';
-import PanjangCm from '../../component/modals/PanjangCm.js';
-import PilihProvinsi from '../../component/modals/PilihProvinsi.js';
-import PilihKabKot from '../../component/modals/PilihKabKot.js';
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 import IconFilter from '../../component/assets/icons/FilterIcon';
+import RightChevron from '../../component/assets/icons/RightChevron';
+import SearchIcon from '../../component/assets/icons/SearchIcon';
 
 const KontakKeswan = (props) =>{
 
@@ -38,7 +26,6 @@ const KontakKeswan = (props) =>{
                     <ArrowBackWhite/>
                 </TouchableOpacity>
                 <Text style={style.header}>Kontak Keswan/Veteriner</Text>
-                {/* <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View> */}
                 <TouchableOpacity 
                 onPress={() => {navigation.navigate('FilterKontakKeswan')}} 
                 style={{padding:24}}>
@@ -46,11 +33,137 @@ const KontakKeswan = (props) =>{
                 </TouchableOpacity>
             </View>
             <ScrollView>
-                <Text>p</Text>
+                <View style={{marginBottom:24}}></View>
+                <View style={style.searchbar}>
+                    <TextInput
+                    style={style.searchtext}
+                    underlineColorAndroid = "transparent"
+                    placeholder = "Cari Kontak Keswan/Veteriner..."
+                    autoCapitalize = "none"
+                    />
+                    <View style={style.searchicon}>
+                        <SearchIcon/>
+                    </View>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {navigation.navigate('DetailKontakKeswan')}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <Text style={card.judul}>RSH Cikole Lembang</Text>
+                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
+                                <Text style={card.infodetail}>(022) 82782244)</Text>
+                            </View>
+                            <RightChevron/>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert ('Detail Kontak Keswan')}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <Text style={card.judul}>RSH Cikole Lembang</Text>
+                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
+                                <Text style={card.infodetail}>(022) 82782244)</Text>
+                            </View>
+                            <RightChevron/>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert ('Detail Kontak Keswan')}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <Text style={card.judul}>RSH Cikole Lembang</Text>
+                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
+                                <Text style={card.infodetail}>(022) 82782244)</Text>
+                            </View>
+                            <RightChevron/>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert ('Detail Kontak Keswan')}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <Text style={card.judul}>RSH Cikole Lembang</Text>
+                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
+                                <Text style={card.infodetail}>(022) 82782244)</Text>
+                            </View>
+                            <RightChevron/>
+                        </View>
+                    </TouchableHighlight>
+                </View>
             </ScrollView>
         </View>
     )
 }
+
+const card = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:'#ECECEC',
+        marginHorizontal: '4%',
+        marginTop: 0,
+        marginBottom: 16,
+        borderRadius: 8,
+        height: 84,
+        maxHeight: 100,
+        justifyContent:'center'
+    },
+    margin:{
+        marginHorizontal:16,
+        flexDirection:'row',
+        justifyContent:'center',
+    },
+    leftside:{
+        flexDirection:'row',
+        backgroundColor:'red'
+    },
+    photo:{
+        height:68,
+        width:68,
+        backgroundColor:'grey',
+        borderRadius:8,
+    },
+    infokomoditas:{
+        justifyContent:'space-around',
+        marginHorizontal: 8,
+        flexDirection:'row',
+        alignItems:'center'
+
+    },
+    icon:{
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    infodetail:{
+        fontSize:14,
+        color:'#626262',
+        marginVertical: 2
+    },
+    judul:{
+        fontSize: 16,
+        color:'#626262',
+        fontWeight: '700'
+    }
+
+})
 
 const style = StyleSheet.create({
     container:{
@@ -90,6 +203,23 @@ const style = StyleSheet.create({
         fontSize: 16,
         fontWeight:'800'
     },
+    searchbar:{
+        height: 48, 
+        borderWidth: 1,
+        marginHorizontal: 16,
+        marginBottom: 24,
+        borderRadius: 50,
+        flexDirection:'row',
+    },
+    searchtext:{
+        justifyContent:'center',
+        alignSelf:'center',
+        marginHorizontal: 16,
+        width: 300
+    },
+    searchicon:{
+        alignSelf:'center',
+    }
     }
 )
 

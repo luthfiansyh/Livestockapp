@@ -41,7 +41,7 @@ const HalamanBeranda = (props) =>{
                   </TouchableOpacity>
                 </View>
                 <View style={styles.row}>
-                  <TouchableOpacity onPress={() => {navigation.navigate('InfoHargaHewan')}} style={styles.cardleft}>
+                  <TouchableOpacity onPress={() => {navigation.navigate('KatalogPejantan')}} style={styles.cardleft}>
                     <View style={styles.justify}>
                       <Katalog/>
                     </View>

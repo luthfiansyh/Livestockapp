@@ -5,17 +5,17 @@ import {
     View,
     TouchableOpacity,
     ScrollView,
-    Modal,
-    SafeAreaView,
 } from "react-native";
 
-import PilihProvinsi from '../../component/modals/PilihProvinsi.js';
-import PilihKabKot from '../../component/modals/PilihKabKot.js';
+import JenisKomoditas from '../../component/modals/JenisKomoditas.js';
+import RumpunSapi from '../../component/modals/RumpunSapi.js';
 import CloseIcon from '../../component/assets/icons/CloseIcon';
+import { RadioButton } from 'react-native-paper';
 
-const FilterKontakKeswan = (props) =>{
+const FilterKatalogPejantan = (props) =>{
 
     const {navigation} = props;
+    const [checked, setChecked] = React.useState('first');
 
     return(
         <View style={{flex:1, backgroundColor:'white'}}>
@@ -27,35 +27,40 @@ const FilterKontakKeswan = (props) =>{
                 </TouchableOpacity>
                 <TouchableOpacity 
                 style={{marginRight:16, backgroundColor:'#57B860', padding:8, borderRadius:4}}
-                onPress={() => {navigation.goBack()}} 
+                onPress={() => {navigation.goBack()}}
                 >
                     <Text style={{color:'white', fontWeight:'600', fontSize:16, paddingHorizontal: 8}}>Cari</Text>
                 </TouchableOpacity>
             </View>
             <ScrollView>
-                <PilihProvinsi/>
-                <PilihKabKot/>
+                <JenisKomoditas/>
+                <RumpunSapi/>
+                <View style={style.radio}>
+                    <Text style={style.judul}>Urutkan</Text>
+                    <View style={style.align}>
+                        <RadioButton
+                        value="first"
+                        status={ checked === 'first' ? 'checked' : 'unchecked' }
+                        onPress={() => setChecked('first')}
+                        color="#57B860"
+                        />
+                        <Text>A - Z</Text>
+                    </View>
+                    <View style={style.align}>
+                        <RadioButton
+                        value="second"
+                        status={ checked === 'second' ? 'checked' : 'unchecked' }
+                        onPress={() => setChecked('second')}
+                        color="#57B860"
+                        />
+                        <Text>Z - A</Text>          
+                    </View>
+                </View>
             </ScrollView>
         </View>
     )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  checkboxContainer: {
-    flexDirection: "row",
-    marginBottom: 20,
-  },
-  checkbox: {
-    alignSelf: "center",
-  },
-  label: {
-    margin: 8,
-  },
-});
 
 const style = StyleSheet.create({
     container:{
@@ -94,8 +99,20 @@ const style = StyleSheet.create({
         fontSize: 16,
         fontWeight:'800'
     },
+    align:{
+    flexDirection:'row',
+    alignItems:'center'
+  },
+  radio:{
+    flexDirection:'column',
+    justifyContent:'flex-start',
+    marginHorizontal: 16
+  },
+  judul:{
+      fontSize: 14
+  }
     }
 )
 
 
-export default FilterKontakKeswan;
+export default FilterKatalogPejantan;

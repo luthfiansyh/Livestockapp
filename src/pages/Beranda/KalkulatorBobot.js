@@ -32,25 +32,13 @@ const KalkulatorBobot = (props) =>{
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
-                style={{padding:24}}>
+                style={{paddingVertical:24, paddingLeft: 24}}>
                     <ArrowBackWhite/>
                 </TouchableOpacity>
                 <Text style={style.header}>Kalkulator Peternakan</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
             <ScrollView style={{backgroundColor:'white'}}>
-
-                {/* <JenisKomoditas/>
-                <RumpunSapi/>
-                <JenisKelamin/>
-                <View style={style.buttonbackground}>
-                    <TouchableOpacity
-                    style={style.button}
-                    onPress={() => {alert('Cek hasil')}}
-                    >
-                        <Text style={style.buttontext}>HITUNG</Text>
-                    </TouchableOpacity>
-                </View> */}
                 <Text style={style.texttitle2}>Pilihan Jenis Kalkulator</Text>
                 <View style={style.pickers}>
                     <Picker
