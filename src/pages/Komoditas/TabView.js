@@ -10,7 +10,10 @@ import { StyleSheet,
 
 } from 'react-native';
 import Icon from 'react-native-ico';
+import IconEdit from '../../component/assets/icons/IconEdit';
 import DetailHewan from './DetailHewan';
+import Plusbutton from '../../component/assets/icons/Plus';
+import RightChevron from '../../component/assets/icons/RightChevron';
 // import ChartGraph from './ChartGraph';
 
 
@@ -23,7 +26,7 @@ const FirstRoute = () => (
                 <TouchableOpacity 
                 onPress={() => {alert('edit pressed')}}
                 >
-                    <Icon name="edit-interface-symbol-of-square-paper-with-a-pencil" group="coolicons" color="#66686A" width="20" height="20"/>
+                    <IconEdit/>
                 </TouchableOpacity>
             </View>
             <View style={style.box}>
@@ -85,7 +88,7 @@ const SecondRoute = () => (
                     onPress={() => {navigation.navigate('tambah pressed')}}
                     style={style.button}
                     >
-                        <Icon name="add-plus-button" group="material-design" color="white" width="15" height="15"/>
+                        <Plusbutton/>
                         <Text style={style.buttontext}>TAMBAH</Text>
                     </TouchableOpacity>
                 </View>
@@ -104,15 +107,15 @@ const ThirdRoute = (props) => {
     onPress={() => {navigation.navigate(DetailPengukuran)}} 
     style={style.row2}>
             <Text style={style.thumbnailtext}>10 Agustus 2021</Text>
-            <Icon name="right-chevron" group="font-awesome" color="#6C6C6C" width="15" height="15"/>
+            <RightChevron/>
     </TouchableOpacity>
     <TouchableOpacity style={style.row3}>
         <Text style={style.thumbnailtext}>3 Agustus 2021</Text>
-        <Icon name="right-chevron" group="font-awesome" color="#6C6C6C" width="15" height="15"/>
+        <RightChevron/>
     </TouchableOpacity>
     <TouchableOpacity style={style.row2}>
         <Text style={style.thumbnailtext}>27 Juli 2021</Text>
-        <Icon name="right-chevron" group="font-awesome" color="#6C6C6C" width="15" height="15"/>
+        <RightChevron/>
     </TouchableOpacity>
   </View>
 

@@ -10,7 +10,11 @@ import {
     useWindowDimensions,
 } from 'react-native';
 import Icon from 'react-native-ico';
+import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
+import IconTrash from '../../component/assets/icons/IconTrash';
 import TabViewExample from './TabView';
+import PengukuranHewan from './PengukuranHewan';
+import DetailPengukuran from './DetailPengukuran';
 
 
 const DetailHewan = (props) =>{
@@ -24,14 +28,14 @@ const DetailHewan = (props) =>{
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={style.icons}>
-                    <Icon name="go-back-left-arrow" group="material-design" color="#fff" size={24}/>
+                    <ArrowBackWhite/>
                 </TouchableOpacity>
                 <Text style={style.header}>Detail Hewan</Text>
                 <View style={style.icons}>
                 <TouchableOpacity 
                 onPress={() => {navigation.navigate(DetailPengukuran)}} 
                 >
-                    <Icon Icon name="trash" group="ui-interface" color="#fff" size={24}/>
+                    <IconTrash/>
                 </TouchableOpacity>
                 </View>
             </View>
@@ -54,7 +58,6 @@ const DetailHewan = (props) =>{
                     </View>
                 </View>
             </View>
-            <TabViewExample/>
         </View>
     )
 }

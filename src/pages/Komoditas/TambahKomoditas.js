@@ -24,7 +24,7 @@ const TambahKomoditas = (props) =>{
 
     const {navigation} = props;
     return(
-        <View  style={{flex:1}}>
+        <View  style={{flex:1, backgroundColor:'white'}}>
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 

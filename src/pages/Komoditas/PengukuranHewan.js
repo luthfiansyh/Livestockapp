@@ -1,22 +1,22 @@
 import React from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
-import ArrowBackWhite from "../../component/assets/icons/ArrowBackWhite";
+import ArrowBack from "../../component/assets/icons/ArrowBack";
 import IconTrash from '../../component/assets/icons/IconTrash';
 
-const DetailPengukuran = (props) =>{
+const PengukuranHewan = (props) =>{
 
     const {navigation} = props;
 
 
     return(
-        <View  style={{flex:1, backgroundColor:'white'}}>
+        <View  style={{flex:1}}>
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={style.icons}>
-                    <ArrowBackWhite/>
+                    <ArrowBack/>
                 </TouchableOpacity>
-                <Text style={style.header}>Detail Pengukuran</Text>
+                <Text style={style.header}>Detail Hewan</Text>
                 <View style={style.icons}>
                 <TouchableOpacity 
                 onPress={() => {alert('deleted')}} 
@@ -41,27 +41,6 @@ const DetailPengukuran = (props) =>{
                             <Text style={style.judul}>Klasifikasi</Text>
                             <Text style={style.isi}>Penggemukan</Text>
                         </View>
-                    </View>
-                </View>
-            </View>
-            <Text style={style.paragraph}>Berikut adalah hasil pengukuran pertumbuhan pertumbuhan yang dilakukan pada tanggal 17 Agustus 2021.</Text>
-            <View style={style.box}>
-                <View style={style.row}>
-                    <View style={style.column}>
-                        <Text style={style.left}>Bobot Badan (kg)</Text>
-                        <Text style={style.left}>Tinggi Badan (kg)</Text>
-                        <Text style={style.left}>Panjang Badan (cm)</Text>
-                        <Text style={style.left}>Tinggi Gumba (cm)</Text>
-                        <Text style={style.left}>Lebar Pinggul (cm)</Text>
-                        <Text style={style.left}>Lingkar Dada (cm)</Text>
-                    </View>
-                    <View style={style.column}>
-                        <Text style={style.right}>597</Text>
-                        <Text style={style.right}>172</Text>
-                        <Text style={style.right}>210</Text>
-                        <Text style={style.right}>168</Text>
-                        <Text style={style.right}>100</Text>
-                        <Text style={style.right}>200</Text>
                     </View>
                 </View>
             </View>
@@ -106,9 +85,8 @@ const style = StyleSheet.create({
         color:'white',
         marginRight:'4%'
     },
-    column:{
-        flexDirection:'column',
-        flex:1
+    row:{
+        flexDirection:'row',
     },
     judul:{
         fontSize:12,
@@ -120,41 +98,9 @@ const style = StyleSheet.create({
         fontSize:14,
         color:'white',
         fontWeight:'400',
-    },
-    paragraph:{
-        margin:16,
-        color:'#3A3B3C',
-        textAlign:'justify',
-        fontSize: 14,
-        fontWeight: "600",
-        lineHeight: 24,
-    },
-    row:{
-        flexDirection:'row',
-        justifyContent:'flex-start',
-    },
-    box:{
-        backgroundColor:'#EFEFEF',
-        paddingVertical:16,
-        borderRadius: 8,
-        marginVertical:8,
-        marginHorizontal: 16
-    },
-    left:{
-        color:'#66686A',
-        fontSize:14,
-        marginVertical:2,
-        marginLeft:16,
-        marginRight:24,
-    },
-    right:{
-        color:'black',
-        fontSize:14,
-        marginVertical:2,
-    },
-    
+    }
 })
 
 
 
-export default DetailPengukuran;
+export default PengukuranHewan;

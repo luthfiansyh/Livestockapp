@@ -14,41 +14,96 @@ const HalamanKomoditas = (props) =>{
 
 
     return(
-        <View  style={{flex:1}}>
+        <View  style={{flex:1, backgroundColor:'white'}}>
             <HeaderPage/>
             <ScrollView>    
                 <View style={{marginBottom:24}}></View>
                 <View style={card.container}>
-            <TouchableHighlight 
-            activeOpacity={0.5}
-            underlayColor="#DDDDDD"
-            onPress={() => {navigation.navigate('NavKomoditas')}}>
-                <View style={card.margin}>
-                    <View style={card.leftside}>
-                        <View style={card.photo}></View>
-                        <View style={card.infokomoditas}>
-                            <Text style={card.namakomoditas}>Sapi</Text>
-                            <View style ={card.infokomoditas2}>
-                                <View>
-                                    <Text style={card.subjudul}>Rumpun</Text>
-                                    <Text style={card.infodetail}>Belgian Blue</Text>
-                                </View>
-                                <View>
-                                    <Text style={card.subjudul}>Klasifikasi</Text>
-                                    <Text style={card.infodetail}>Penggemukan</Text>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {navigation.navigate('NavKomoditas')}}>
+                        <View style={card.margin}>
+                            <View style={card.leftside}>
+                                <View style={card.photo}></View>
+                                <View style={card.infokomoditas}>
+                                    <Text style={card.namakomoditas}>Sapi</Text>
+                                    <View style ={card.infokomoditas2}>
+                                        <View>
+                                            <Text style={card.subjudul}>Rumpun</Text>
+                                            <Text style={card.infodetail}>Belgian Blue</Text>
+                                        </View>
+                                        <View>
+                                            <Text style={card.subjudul}>Klasifikasi</Text>
+                                            <Text style={card.infodetail}>Penggemukan</Text>
+                                        </View>
+                                    </View>
                                 </View>
                             </View>
+                            <View style={card.icon}>
+                                <RightChevron/>
+                            </View>
                         </View>
-                    </View>
-                    <View style={card.icon}>
-                        <RightChevron/>
-                    </View>
+                    </TouchableHighlight>
                 </View>
-            </TouchableHighlight>
-        </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert('Clicked')}}>
+                        <View style={card.margin}>
+                            <View style={card.leftside}>
+                                <View style={card.photo}></View>
+                                <View style={card.infokomoditas}>
+                                    <Text style={card.namakomoditas}>Sapi</Text>
+                                    <View style ={card.infokomoditas2}>
+                                        <View>
+                                            <Text style={card.subjudul}>Rumpun</Text>
+                                            <Text style={card.infodetail}>Belgian Blue</Text>
+                                        </View>
+                                        <View>
+                                            <Text style={card.subjudul}>Klasifikasi</Text>
+                                            <Text style={card.infodetail}>Penggemukan</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={card.icon}>
+                                <RightChevron/>
+                            </View>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert('Clicked')}}>
+                        <View style={card.margin}>
+                            <View style={card.leftside}>
+                                <View style={card.photo}></View>
+                                <View style={card.infokomoditas}>
+                                    <Text style={card.namakomoditas}>Sapi</Text>
+                                    <View style ={card.infokomoditas2}>
+                                        <View>
+                                            <Text style={card.subjudul}>Rumpun</Text>
+                                            <Text style={card.infodetail}>Belgian Blue</Text>
+                                        </View>
+                                        <View>
+                                            <Text style={card.subjudul}>Klasifikasi</Text>
+                                            <Text style={card.infodetail}>Penggemukan</Text>
+                                        </View>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={card.icon}>
+                                <RightChevron/>
+                            </View>
+                        </View>
+                    </TouchableHighlight>
+                </View>
                 <View style={{marginBottom:84}}></View>
             </ScrollView>
-            <View style={styles.fab}>
                 <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {navigation.navigate('TambahKomoditas')}}
@@ -57,7 +112,6 @@ const HalamanKomoditas = (props) =>{
                         <Plusbutton/>
                     </View>
                 </TouchableOpacity>
-            </View>
         </View>
     )
 }
@@ -65,20 +119,19 @@ const HalamanKomoditas = (props) =>{
 const card = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#EBEBEB',
+        backgroundColor:'#ECECEC',
         marginHorizontal: '4%',
         marginTop: 0,
         marginBottom: 16,
         borderRadius: 8,
-        height: 84,
+        height: 96,
         maxHeight: 100,
-        elevation: 8,
+        justifyContent:'center'
     },
     margin:{
-        margin:8,
+        marginHorizontal:16,
         flexDirection:'row',
         justifyContent:'center',
-        
     },
     leftside:{
         flexDirection:'row',
@@ -87,7 +140,7 @@ const card = StyleSheet.create({
         height:68,
         width:68,
         backgroundColor:'grey',
-        borderRadius:8
+        borderRadius:8,
     },
     infokomoditas:{
         paddingLeft:'4%',
@@ -120,17 +173,20 @@ const card = StyleSheet.create({
 })
 
 const styles = StyleSheet.create({
-    fab:{
+    // fab:{
+    //     position: 'absolute',
+    //     right: "4%",
+    //     bottom: "10%",
+    //     backgroundColor:'#57B860'
+    // },
+    touchable:{
+        backgroundColor: '#57B860',
+        borderRadius: 100,
+        width: 48,
+        height: 48,
         position: 'absolute',
         right: "4%",
         bottom: "10%",
-    },
-    touchable:{
-        backgroundColor: "#57B860",
-        opacity: 0.8,
-        borderRadius: 100,
-        width: 48,
-        height: 48, 
     },
     icon:{
         margin:14

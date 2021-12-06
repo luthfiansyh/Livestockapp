@@ -16,7 +16,7 @@ const DetailKomoditas = (props) =>{
 
 
     return(
-        <View  style={{flex:1}}>
+        <View  style={{flex:1, backgroundColor:'white'}}>
             <View style={style.container}>
                 <TouchableOpacity 
                     onPress={() => {navigation.goBack()}} 
@@ -113,32 +113,27 @@ const DetailKomoditas = (props) =>{
                     </View>
                 </TouchableHighlight>
             </ScrollView>
-            <View style={styles.fab}>
-                <TouchableOpacity
-                style={styles.touchable}
-                onPress={() => {navigation.navigate(TambahPendataan)}}
-                >
-                    <View style={styles.icon}>
-                        <Plusbutton/>
-                    </View>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+            style={styles.touchable}
+            onPress={() => {navigation.navigate(TambahPendataan)}}
+            >
+                <View style={styles.icon}>
+                    <Plusbutton/>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    fab:{
-        position: 'absolute',
-        right: "4%",
-        bottom: "4%",
-    },
     touchable:{
         backgroundColor: "#57B860",
-        opacity: 0.8,
         borderRadius: 100,
         width: 48,
         height: 48, 
+        position: 'absolute',
+        right: "4%",
+        bottom: "4%",
     },
     icon:{
         margin:14
@@ -151,7 +146,7 @@ const card = StyleSheet.create({
         height: 84,
     },
     container:{
-        backgroundColor:'#E5E5E5',
+        backgroundColor:'#F6F6F6',
         height: 84,
     },
     row:{

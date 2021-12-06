@@ -5,6 +5,7 @@ import DetailHewan from './DetailHewan';
 import TambahPendataan from './TambahPendataan';
 import DetailPengukuran from './DetailPengukuran';
 import DetailHewanNav from './DetailHewanNav';
+import PengukuranHewan from './PengukuranHewan';
 
 
 const Stack = createNativeStackNavigator();
@@ -16,8 +17,9 @@ function NavKomoditas(){
             headerShown: false
         }}>
             <Stack.Screen name="DetailKomoditas" component={DetailKomoditas}/>
-            <Stack.Screen name="TambahPendataan" component={TambahPendataan}/>
             <Stack.Screen name="DetailHewan" component={DetailHewan}/>
+            <Stack.Screen name="Pengukuran Hewan" component={DetailPengukuran}/>
+            <Stack.Screen name="TambahPendataan" component={TambahPendataan}/>
         </Stack.Navigator>
   );
 }

@@ -4,6 +4,8 @@ import { FAB } from 'react-native-paper';
 import Icon from 'react-native-ico';
 
 import HeaderPage from '../../component/HeaderPage.js';
+import Plusbutton from '../../component/assets/icons/Plus';
+import ThumbnailArtikel from '../../component/ThumbnailArtikel.js';
 
 const HalamanKalender = (props) =>{
 
@@ -18,13 +20,16 @@ const HalamanKalender = (props) =>{
                 <View style={styles.inside}></View>
             </View>
             <ScrollView>
+                <Text>Halaman kalender</Text>
             </ScrollView>
             <View style={styles.fab}>
                 <TouchableOpacity
                 style={styles.touchable}
                 onPress={() => {navigation.navigate('NavKomoditas')}}
                 >
-                    <Icon style={styles.icon} name="plus" group="ui-interface" color="white"/>
+                    <View style={styles.icon}>
+                        <Plusbutton/>
+                    </View>
                 </TouchableOpacity>
             </View>
         </View>
