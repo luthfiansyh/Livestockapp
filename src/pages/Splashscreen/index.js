@@ -4,21 +4,24 @@ import FirstSplash from "./FirstSplash";
 import SecondSplash from "./SecondSplash";
 import ThirdSplash from "./ThirdSplash";
 import FourthSplash from "./FourthSplash";
+import LoginScreen from "../Login/LoginScreen";
+import OnboardingScreen from "./OnBoardingScreen";
+import HalamanDaftar from "../Login/HalamanDaftar";
 
 const Stack = createNativeStackNavigator();
 
-const Router = () => {
+const SplashScreens = () => {
     return (
         <Stack.Navigator  
         screenOptions={{
             headerShown: false
         }}>
             <Stack.Screen name="FirstSplash" component={FirstSplash}/>
-            <Stack.Screen name="SecondSplash" component={SecondSplash}/>
-            <Stack.Screen name="ThirdSplash" component={ThirdSplash}/>
-            <Stack.Screen name="FourthSplash" component={FourthSplash}/>
+            <Stack.Screen name="OnBoarding" component={OnboardingScreen}/>
+            <Stack.Screen name="SignIn" component={LoginScreen}/>
+            <Stack.Screen name="SignUp" component={HalamanDaftar}/>
         </Stack.Navigator>
     )
 }
 
-export default Router;
+export default SplashScreens;

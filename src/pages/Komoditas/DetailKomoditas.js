@@ -67,51 +67,66 @@ const DetailKomoditas = (props) =>{
                         </View>
                     </View>
                 </View>
-                <TouchableHighlight 
-                style={card.container}  
-                onPress={() => {navigation.navigate(DetailHewan)}} 
-                activeOpacity={0.6} underlayColor="transparent" >
-                    <View style={card.row}>
-                        <View style={card.wrap}>
-                            <Text style={card.title}>Budi - 001</Text>
-                            <View>
-                                <Text style={card.isi}> 6 Tahun 0 Bulan 1 Hari</Text>
-                                <Text style={card.isi}>Jantan</Text>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {navigation.navigate("DetailHewan")}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <View style={{flexDirection:'row'}}>
+                                    <Text style={card.judul}>Budi</Text>
+                                    <Text style={card.judul}>-</Text>
+                                    <Text style={card.judul}>001</Text>
+                                </View>
+                                <Text style={card.infodetail}>6 Tahun 0 Bulan 1 Hari </Text>
+                                <Text style={card.infodetail}>Jantan</Text>
                             </View>
+                            <RightChevron/>
                         </View>
-                        <RightChevron/>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight 
-                style={card.container2}  
-                onPress={() => {navigation.navigate(DetailHewan)}} 
-                activeOpacity={0.6} underlayColor="transparent" >
-                    <View style={card.row}>
-                        <View style={card.wrap}>
-                            <Text style={card.title}>Putih - 002</Text>
-                            <View>
-                                <Text style={card.isi}> 6 Tahun 0 Bulan 1 Hari</Text>
-                                <Text style={card.isi}>Jantan</Text>
+                    </TouchableHighlight>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert ('Detail Hewan')}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <View style={{flexDirection:'row'}}>
+                                    <Text style={card.judul}>Adi</Text>
+                                    <Text style={card.judul}>-</Text>
+                                    <Text style={card.judul}>002</Text>
+                                </View>
+                                <Text style={card.infodetail}>6 Tahun 0 Bulan 1 Hari </Text>
+                                <Text style={card.infodetail}>Jantan</Text>
                             </View>
+                            <RightChevron/>
                         </View>
-                        <RightChevron/>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight 
-                style={card.container}  
-                onPress={() => {navigation.navigate(DetailHewan)}} 
-                activeOpacity={0.6} underlayColor="transparent" >
-                    <View style={card.row}>
-                        <View style={card.wrap}>
-                            <Text style={card.title}>Blacky - 003</Text>
-                            <View>
-                                <Text style={card.isi}> 6 Tahun 0 Bulan 1 Hari</Text>
-                                <Text style={card.isi}>Jantan</Text>
+                    </TouchableHighlight>
+                </View>
+                <View style={card.container}>
+                    <TouchableHighlight 
+                    activeOpacity={0.5}
+                    underlayColor="#ECECEC"
+                    onPress={() => {alert ('Detail Hewan')}}
+                    >
+                        <View style={card.infokomoditas}>
+                            <View style={{flexDirection:'column'}}>
+                                <View style={{flexDirection:'row'}}>
+                                    <Text style={card.judul}>Putri</Text>
+                                    <Text style={card.judul}>-</Text>
+                                    <Text style={card.judul}>003</Text>
+                                </View>
+                                <Text style={card.infodetail}>6 Tahun 0 Bulan 1 Hari </Text>
+                                <Text style={card.infodetail}>Betina</Text>
                             </View>
+                            <RightChevron/>
                         </View>
-                        <RightChevron/>
-                    </View>
-                </TouchableHighlight>
+                    </TouchableHighlight>
+                </View>
             </ScrollView>
             <TouchableOpacity
             style={styles.touchable}
@@ -121,6 +136,7 @@ const DetailKomoditas = (props) =>{
                     <Plusbutton/>
                 </View>
             </TouchableOpacity>
+            
         </View>
     )
 }
@@ -141,34 +157,53 @@ const styles = StyleSheet.create({
 })
 
 const card = StyleSheet.create({
-    container2:{
-        backgroundColor:'transparent',
-        height: 84,
-    },
     container:{
-        backgroundColor:'#F6F6F6',
-        height: 84,
-    },
-    row:{
-        flexDirection:'row',
-        justifyContent:'space-between',
         flex:1,
-        alignItems:'center',
-        paddingRight:"3%"
+        backgroundColor:'#ECECEC',
+        marginHorizontal: '4%',
+        marginTop: 0,
+        marginBottom: 16,
+        borderRadius: 8,
+        height: 84,
+        maxHeight: 100,
+        justifyContent:'center'
     },
-    wrap:{
-        marginLeft:'3%',
+    margin:{
+        marginHorizontal:16,
+        flexDirection:'row',
+        justifyContent:'center',
+    },
+    leftside:{
+        flexDirection:'row',
+        backgroundColor:'red'
+    },
+    photo:{
+        height:68,
+        width:68,
+        backgroundColor:'grey',
+        borderRadius:8,
+    },
+    infokomoditas:{
         justifyContent:'space-between',
-        height:'100%',
-        paddingVertical:'2%'
+        marginHorizontal: 16,
+        flexDirection:'row',
+        alignItems:'center',
+
     },
-    title:{
+    icon:{
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    infodetail:{
         fontSize:14,
-        color:"#3B3E42"
+        color:'#626262',
+        marginVertical: 2
     },
-    isi:{
-        fontSize:12,
-        color:"grey"
+    judul:{
+        fontSize: 16,
+        color:'#626262',
+        fontWeight: '700',
+        marginRight: 8
     }
 
 })

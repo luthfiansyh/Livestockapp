@@ -7,8 +7,6 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import Icon from 'react-native-ico';
-import Tombol from '../../component/Tombol.js';
 import Head from '../../component/Head.js';
 import ThumbnailArtikel from '../../component/ThumbnailArtikel.js';
 import Kalkulator from '../../component/assets/icons/Kalkulator';

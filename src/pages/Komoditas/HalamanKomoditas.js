@@ -22,7 +22,7 @@ const HalamanKomoditas = (props) =>{
                     <TouchableHighlight 
                     activeOpacity={0.5}
                     underlayColor="#ECECEC"
-                    onPress={() => {navigation.navigate('NavKomoditas')}}>
+                    onPress={() => {navigation.navigate('DetailKomoditas')}}>
                         <View style={card.margin}>
                             <View style={card.leftside}>
                                 <View style={card.photo}></View>
@@ -104,14 +104,14 @@ const HalamanKomoditas = (props) =>{
                 </View>
                 <View style={{marginBottom:84}}></View>
             </ScrollView>
-                <TouchableOpacity
-                style={styles.touchable}
-                onPress={() => {navigation.navigate('TambahKomoditas')}}
-                >
-                    <View style={styles.icon}>
-                        <Plusbutton/>
-                    </View>
-                </TouchableOpacity>
+            <TouchableOpacity
+            style={styles.touchable}
+            onPress={() => {navigation.navigate('TambahKomoditas')}}
+            >
+                <View style={styles.icon}>
+                    <Plusbutton/>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }

@@ -13,7 +13,7 @@ const ThirdSplash = (props) => {
         <View style={page.downside}>
           <Text style={page.paragraph}>LivestockApp memudahkan permasalahan yang Anda hadapi dalam proses pendataan dan perkembangan komoditas ternak.</Text>
         <View style={page.buttonbackground}>
-          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('NavigationLogin')}}>
+          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('SignIn')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
           </TouchableOpacity>
           <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('FourthSplash')}}>

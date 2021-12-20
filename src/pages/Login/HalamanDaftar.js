@@ -7,7 +7,9 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
+  ToastAndroid
 } from 'react-native';
+import FirebaseUtil from "../../utils/FirebaseUtil";
 import { RadioButton } from 'react-native-paper';
 import ArrowBack from "../../component/assets/icons/ArrowBack";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -50,6 +52,19 @@ const HalamanDaftar = props => {
       setShow(true);
       setMode(currentMode);
     };
+
+    const [create, setCreate] = React.useState('')
+    const signUp = () => {
+      if(!email || !password){
+            ToastAndroid.show("Data belum terisi semua", 3000);
+            return;
+       }else{
+            FirebaseUtil.signUp(email, password).catch((e) => {
+            console.log(e);
+            alert('Email atau password invalid');
+      });
+       }
+     }
   
   return (
     <View>
@@ -73,7 +88,7 @@ const HalamanDaftar = props => {
             style={page.textinput}
             underlineColorAndroid = "transparent"
             placeholder = "Nama Lengkap Anda"
-            autoCapitalize = "characters"
+            autoCapitalize = "words"
           />
         </View>
         <Text style={page.texttitle}>Nama Panggilan</Text>
@@ -93,17 +108,19 @@ const HalamanDaftar = props => {
               placeholder = "Contoh: Budi@gmail.com"
               autoCapitalize = "none"
               onChangeText = {handleEmail}
+              value={email}
             />
           </View>
         <Text style={page.texttitle}>Password</Text>
         <View style={page.form}>
           <TextInput
             style={page.textinput}
-            underlineColorAndroid = "transparent"
-            secureTextEntry={true}
-            placeholder = "Masukkan Password"
-            autoCapitalize = "none"
-            onChangeText = {handlePassword}
+              underlineColorAndroid = "transparent"
+              secureTextEntry={true}
+              placeholder = "Masukkan Password"
+              autoCapitalize = "none"
+              onChangeText = {handlePassword}
+              value={password}
           />
         </View>
         <Text style={page.texttitle}>Tanggal Lahir</Text>
@@ -179,11 +196,18 @@ const HalamanDaftar = props => {
           </TouchableOpacity>
           </View>
         </View>
-        <View style={page.buttonbackground}>
-          <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('HalamanBeranda')}}>
-            <Text style={page.buttontext}>Daftar</Text>
-          </TouchableOpacity>
-        </View>
+        {create ? (
+              <></>
+            ) : (
+              <>
+                <View style={page.buttonbackground}>
+                  <TouchableOpacity style={page.button} onPress={() => signUp()}>
+                    <Text style={page.buttontext}>Daftar</Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            )
+            }
       </View>
     </View>
         <View style={{marginBottom:36}}></View>

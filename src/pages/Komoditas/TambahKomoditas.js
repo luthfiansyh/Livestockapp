@@ -19,8 +19,25 @@ import LuasLahan from '../../component/modals/LuasLahan';
 import UkuranPanjang from '../../component/modals/UkuranPanjang';
 import LahanDigunakan from '../../component/modals/LahanDigunakan';
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
+// import 'firebase/firestore';
+
+
 
 const TambahKomoditas = (props) =>{
+
+    // addData = () => {
+    //     firestore()
+    //     .collection('Users')
+    //     .add({
+    //         jeniskomoditas: 'Sapi',
+    //         rumpunkomoditas: 'Belgian Blue',
+    //         klasifikasi: 'Perah',
+
+    //     })
+    //     .then(() => {
+    //         console.log('Komoditas berhasil ditambahkan!');
+    //     });
+    // }
 
     const {navigation} = props;
     return(

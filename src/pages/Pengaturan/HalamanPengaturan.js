@@ -1,12 +1,22 @@
-import React from 'react';
-import {View,Text, ScrollView, StyleSheet, TouchableHighlight, TouchableOpacity} from 'react-native';
+import React, {useContext} from 'react';
+import {View,Text, ScrollView, StyleSheet, TouchableHighlight, TouchableOpacity, Button} from 'react-native';
 import ArrowBack from '../../component/assets/icons/ArrowBack';
 import IconEdit from '../../component/assets/icons/IconEdit';
 import RightChevron from '../../component/assets/icons/RightChevron';
+import FirebaseUtil from '../../utils/FirebaseUtil';
+import { LoginContext } from '../../utils/LoginProvider';
 
 const HalamanPengaturan = (props) =>{
     const {navigation} = props;
     
+    const { user } = useContext(LoginContext);
+    const signOut = () => {
+        FirebaseUtil.signOut().catch((e) =>{
+            console.log(e);
+            alert('Ada kesalahan');
+        })
+    };
+
     return(
         <View style={{flex:1}}>
             <ScrollView>
@@ -34,7 +44,7 @@ const HalamanPengaturan = (props) =>{
                 onPress={() => {alert("Tentang Kami")}}
                 >
                     <View style={styles.card}>
-                        <Text style={styles.text}>Tentang Kami</Text>
+                        <Text style={styles.text}>Tentang Livestockapp</Text>
                         <RightChevron/>
                     </View>
                 </TouchableHighlight>
@@ -42,7 +52,7 @@ const HalamanPengaturan = (props) =>{
                 onPress={() => {alert("Kontak")}}
                 >
                     <View style={styles.card}>
-                        <Text style={styles.text}>Kontak</Text>
+                        <Text style={styles.text}>Tips dan Trik</Text>
                         <RightChevron/>
                     </View>
                 </TouchableHighlight>
@@ -50,7 +60,7 @@ const HalamanPengaturan = (props) =>{
                 onPress={() => {alert("Bantuan")}}
                 >
                     <View style={styles.card}>
-                        <Text style={styles.text}>Bantuan</Text>
+                        <Text style={styles.text}>FAQ</Text>
                         <RightChevron/>
                     </View>
                 </TouchableHighlight>
@@ -58,12 +68,13 @@ const HalamanPengaturan = (props) =>{
                     <Text style={styles.isijudul}>LOGOUT</Text>
                 </View>
                 <TouchableHighlight
-                onPress={() => {navigation.navigate("NavigationLogin")}}
+                onPress={() => signOut()}
                 >
                     <View style={styles.card}>
                         <Text style={styles.text}>Logout Akun</Text>
                     </View>
                 </TouchableHighlight>
+                <Text>Email {user?.email}</Text>
             </ScrollView>
         </View>
     )

@@ -1,6 +1,7 @@
 import React from "react";
 import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
 import SplashImg3 from "../../component/assets/illustrations/SplashImg-3";
+import LoginScreen from "../Login/LoginScreen";
 
 const FourthSplash = (props) => {
   const {navigation} = props;
@@ -13,7 +14,7 @@ const FourthSplash = (props) => {
       <View style={page.downside}>
         <Text style={page.paragraph}>Kalkulator Peternakan, Info Kontak Kesehatan Hewan dan Katalog Benih Pejantan lebih mudah didapatkan dengan fitur yang ada di Livestockapp. </Text>
         <View style={page.buttonbackground}>
-            <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('NavigationLogin')}}>
+            <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('SignIn')}}>
               <Text style={page.buttontext}>Mengerti</Text>
             </TouchableOpacity>
           </View>

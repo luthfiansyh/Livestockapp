@@ -44,9 +44,10 @@ const KalkulatorBobot = (props) =>{
                     <Picker
                     selectedValue={selectedLanguage}
                     onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
+                    mode="dialog"
                     >
                         <Picker.Item label="Prediksi Bobot Sapi" value="Bobot" color="black"/>
-                        <Picker.Item label="Umur Hewan" value="Umur" color="black"/>
+                        <Picker.Item label="Umur Hewan" value="Umur" color="black"  />
                     </Picker>
                 </View>
                 <LingkarDada/>

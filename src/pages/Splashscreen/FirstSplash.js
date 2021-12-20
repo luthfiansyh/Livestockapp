@@ -6,7 +6,7 @@ const FirstSplash = (props) => {
   const {navigation} = props;
 
   setTimeout(() => {
-    navigation.navigate('SecondSplash')},3000);
+    navigation.navigate('OnBoarding')},1500);
 
   return(
   <View style={page.container}>

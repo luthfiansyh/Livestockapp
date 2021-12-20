@@ -103,7 +103,7 @@ const KontakKeswan = (props) =>{
                             <View style={{flexDirection:'column'}}>
                                 <Text style={card.judul}>RSH Cikole Lembang</Text>
                                 <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
-                                <Text style={card.infodetail}>(022) 82782244)</Text>
+                                <Text style={card.infodetail}> 022 - 82782244</Text>
                             </View>
                             <RightChevron/>
                         </View>

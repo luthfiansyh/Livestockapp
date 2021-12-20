@@ -14,7 +14,7 @@ const SecondSplash = (props) => {
         <View style={page.downside}>
           <Text style={page.paragraph}>Jadilah peternak modern! LivestockApp membantu Anda mewujudkan digitalisasi ekosistem peternakan sebagai upaya meningkatkan kualitas ternak Anda.</Text>
         <View style={page.buttonbackground}>
-          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('NavigationLogin')}}>
+          <TouchableOpacity style={page.secondarybutton} onPress={() => {navigation.navigate('SignIn')}}>
             <Text style={{color:'#4D4D4D'}}>LEWATI</Text>
           </TouchableOpacity>
           <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('ThirdSplash')}}>

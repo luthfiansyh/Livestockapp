@@ -6,14 +6,15 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Button
+  Button,
+  ToastAndroid
 } from 'react-native';
 import BgHome from "../../component/assets/illustrations/BgHome";
 import BgLogin from "../../component/assets/illustrations/BgLogin";
 import FirebaseUtil from "../../utils/FirebaseUtil";
 
 
-const HalamanLogin = props => {
+const LoginScreen = props => {
 
   const {navigation} = props;
 
@@ -26,25 +27,23 @@ const HalamanLogin = props => {
      const handlePassword = (text) => {
         setPassword(text)
      }
-     const login = (email, pass) => {
-        alert('email: ' + email + ' password: ' + pass)
-     }
 
-     const [create, setCreate] = React.useState('')
+      const [create, setCreate] = React.useState('')
 
      const signIn = () => {
-      FirebaseUtil.signIn(email, password).catch((e) => {
-        console.log(e);
-        alert('Email / password salah');
+       if(!email || !password){
+            ToastAndroid.show("Email atau password kosong", 3000);
+            return;
+       }
+       else{
+            FirebaseUtil.signIn(email, password).catch((e) => {
+            console.log(e);
+            alert('Email atau password invalid');
       });
+       }
     };
 
-     const signUp = () => {
-       FirebaseUtil.signUp(email, password).catch((e) => {
-        console.log(e);
-        alert('Something wrong');
-      });
-     }
+
 
   return (
     <ScrollView style={{backgroundColor:'white'}}>
@@ -61,6 +60,7 @@ const HalamanLogin = props => {
           <View style={page.form}>
             <TextInput
               style={page.textinput}
+              placeholderTextColor="grey"
               underlineColorAndroid = "transparent"
               placeholder = "Contoh: Budi@gmail.com"
               autoCapitalize = "none"
@@ -72,6 +72,7 @@ const HalamanLogin = props => {
           <View style={page.form}>
             <TextInput
               style={page.textinput}
+              placeholderTextColor="grey"
               underlineColorAndroid = "transparent"
               secureTextEntry={true}
               placeholder = "Masukkan Password"
@@ -86,10 +87,8 @@ const HalamanLogin = props => {
               <></>
             ) : (
               <>
-                {/* <Button title="Sign In" onPress={() => signIn()}/> */}
-                {/* <Text onPress={() => setCreate(true)}>create an account</Text> */}
                 <View style={page.buttonbackground}>
-                  <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('LoadingScreen')}}>
+                  <TouchableOpacity style={page.button} onPress={() => signIn()}>
                     <Text style={page.buttontext}>Masuk</Text>
                   </TouchableOpacity>
                 </View>
@@ -98,23 +97,11 @@ const HalamanLogin = props => {
                   </View>
                   <View style={page.rowdaftar}>
                     <Text style={{marginRight:8}}>Belum punya akun?</Text>
-                    <Text style={page.daftar} onPress={() => setCreate(false)}>Daftar</Text>
+                    <Text style={page.daftar} onPress={() => {navigation.navigate('SignUp')}}>Daftar</Text>
                   </View>
               </>
             )
             }
-            {/* <TouchableOpacity style={page.button} onPress={() => {navigation.navigate('HalamanBeranda')}}>
-              <Text style={page.buttontext}>Masuk</Text>
-            </TouchableOpacity> */}
-          {/* <View style={page.centerline}>
-            <View style={page.line}></View>
-          </View>
-          <View style={page.rowdaftar}>
-            <Text style={{marginRight:8}}>Belum punya akun?</Text>
-            <TouchableOpacity onPress={() => {navigation.navigate('HalamanDaftar')}}>
-            <Text style={page.daftar}>Daftar</Text>
-            </TouchableOpacity>
-          </View> */}
         </View>
         </View>
       </View>
@@ -153,25 +140,28 @@ const page = StyleSheet.create({
     opacity: .5
   },
   textinput:{
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
+    fontFamily:'Mulish-Medium',
+    color:'#565656',
+    fontSize: 14
   },
   texttitle:{
     marginTop: 16,
     fontSize: 16,
-    fontWeight: '600',
-    marginBottom:"4%"
+    marginBottom:"4%",
+    fontFamily: 'Mulish-Bold',
+    color:'#565656'
   },
   form:{
     borderRadius: 8,
-    borderWidth: 2,
-    borderColor: '#BBC8D4',
+    borderWidth: 1,
+    borderColor: '#565656',
   },
   container:{
     flex: 1,
     backgroundColor:'#DCEAFF'
   },
   upperside: {
-    // paddingVertical:"24%",
     paddingHorizontal:"8%",
     alignItems: "flex-start",
     justifyContent:'flex-start',
@@ -185,32 +175,27 @@ const page = StyleSheet.create({
     justifyContent:'center',
     paddingBottom: '8%'
   },
-  paragraph:{
-    color:'#4D4D4D',
-    textAlign:'justify',
-    fontSize: 16,
-    fontWeight: "700",
-    paddingVertical: 16
-  },
   text: {
     color: "#4D4D4D",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "400",
     paddingEnd: "0%",
     marginTop: "4%",
+    fontFamily:'Mulish-Regular'
   },
   buttontext:{
     color:'white',
     textAlign:'center',
     fontSize: 16,
-    fontWeight:'800'
+    fontWeight:'800',
+    fontFamily:'Mulish-Bold'
   },
   title:{
       paddingTop: "8%",
       color:'#4D4D4D',
       fontSize: 32,
-      fontWeight:'bold',
       textAlign:'center',
+      fontFamily:'Mulish-Bold'
   },
   buttonbackground:{
     marginTop: "24%",
@@ -250,4 +235,4 @@ const page = StyleSheet.create({
   }
 });
 
-export default HalamanLogin;
+export default LoginScreen;
