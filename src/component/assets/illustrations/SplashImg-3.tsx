@@ -14,7 +14,7 @@ interface Splash1{
     height?: number,
 }
 
-const SplashImg3 = ({width = 360, height= 360} : Splash1) => {
+const SplashImg3 = ({width = 240, height= 240} : Splash1) => {
     return(
         <Svg width={width} height={height} viewBox="0 0 360 360">
             <Mask id="mask0_443:6456" x="0" y="0" width="360" height="360">
