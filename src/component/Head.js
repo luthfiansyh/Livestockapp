@@ -20,7 +20,7 @@ const Head = () => {
         <BgHome/>
       <View style={{paddingBottom: 12, paddingLeft: 12, backgroundColor:"#57B860"}}>
         <Text style={{fontSize: 28, color: 'white', fontWeight: "800"}}>Halo,</Text>
-        <Text style={{fontSize: 28, color: 'white', fontWeight: "800"}}>Luthfiansyah</Text>
+        <Text style={{fontSize: 28, color: 'white', fontFamily: 'Mulish-Regular'}}>Luthfiansyah</Text>
       </View>
     </View>
   )

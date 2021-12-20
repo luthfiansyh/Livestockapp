@@ -85,7 +85,7 @@ function Home() {
         screenOptions={{
             headerShown: false,
             tabBarActiveTintColor: '#57B860',
-            tabBarStyle: { position: 'absolute' },
+            tabBarStyle: { position: 'absolute', height: 56, paddingBottom: 8},
             tabBarInactiveTintColor:'#C4C4C4',
         }}
         >
