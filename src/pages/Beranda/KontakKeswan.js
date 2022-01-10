@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {
     StyleSheet,
     Text,
@@ -6,16 +6,61 @@ import {
     TouchableOpacity,
     ScrollView,
     TouchableHighlight,
-    TextInput
+    TextInput,
+    SafeAreaView
 } from "react-native";
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 import IconFilter from '../../component/assets/icons/FilterIcon';
+import SeeDetails from '../../component/assets/icons/IconSeeDetails';
 import RightChevron from '../../component/assets/icons/RightChevron';
 import SearchIcon from '../../component/assets/icons/SearchIcon';
+import CardKeswan from '../../component/CardKeswan';
+import { firebase } from '@react-native-firebase/firestore';
+import { FlatList } from 'react-native-gesture-handler';
+
+
 
 const KontakKeswan = (props) =>{
 
     const {navigation} = props;
+
+    const VeterinerRef = firebase.firestore().collection('veteriner');
+    const [veteriner, setVeteriner] =  React.useState([]);
+    const [loading, setLoading] = React.useState([]);
+    const [textShown, setTextShown] = React.useState(false);
+    const [lengthMore,setLengthMore] = React.useState(false); //to show the "Read more & Less Line"
+
+    const toggleNumberOfLines = () => { //To toggle the show text or hide it
+    setTextShown(!textShown);
+    }
+
+    const onTextLayout = useCallback(e =>{
+    setLengthMore(e.nativeEvent.lines.length >=2); //to check the text is more than 4 lines or not
+    // console.log(e.nativeEvent);
+    },[]);
+
+    useEffect(() => {
+        return VeterinerRef.onSnapshot( querySnapshot => {
+            const list = [];
+            querySnapshot.forEach(doc => {
+                const { nama_rsh, kontak, alamat} = doc.data();
+                list.push({
+                    id: doc.id,
+                    alamat,
+                    kontak,
+                    nama_rsh,
+                });
+            });
+
+            setVeteriner(list);
+
+            if(loading){
+                setLoading(false);
+            }
+    });
+    },[]);
+
+    
 
     return(
         <View style={{flex:1, backgroundColor:'white'}}>
@@ -32,7 +77,7 @@ const KontakKeswan = (props) =>{
                     <IconFilter/>
                 </TouchableOpacity>
             </View>
-            <ScrollView>
+            <SafeAreaView>
                 <View style={{marginBottom:24}}></View>
                 <View style={style.searchbar}>
                     <TextInput
@@ -45,71 +90,40 @@ const KontakKeswan = (props) =>{
                         <SearchIcon/>
                     </View>
                 </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {navigation.navigate('DetailKontakKeswan')}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <Text style={card.judul}>RSH Cikole Lembang</Text>
-                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
-                                <Text style={card.infodetail}>(022) 82782244)</Text>
+                <View>
+                    <FlatList
+                    data={veteriner}
+                    keyExtractor={(item) => item.id}
+                    removeClippedSubviews={true}
+                    renderItem={({item}) =>
+                        <View style={card.container}>
+                            <View style={{paddingHorizontal: 16}}>
+                                <View style={{flexDirection:'column'}}>
+                                    <Text style={card.judul}>{item.nama_rsh}</Text>
+                                    <Text 
+                                    style={card.infodetail}
+                                    onTextLayout={onTextLayout}
+                                    numberOfLines={textShown ? undefined : 2}
+                                    >
+                                        {item.alamat}
+                                    </Text>
+                                    <Text style={card.infodetail}>{item.kontak}</Text>
+                                    <TouchableOpacity
+                                     activeOpacity={0.5}
+                                    underlayColor="#fff"
+                                    style={card.infokomoditas}
+                                    onPress={() => {navigation.navigate('DetailKontakKeswan')}}
+                                    >
+                                    <SeeDetails/>
+                                    <Text style={card.detailtext}>Info Detail</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                            <RightChevron/>
                         </View>
-                    </TouchableHighlight>
+                    }
+                    />
                 </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert ('Detail Kontak Keswan')}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <Text style={card.judul}>RSH Cikole Lembang</Text>
-                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
-                                <Text style={card.infodetail}>(022) 82782244)</Text>
-                            </View>
-                            <RightChevron/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert ('Detail Kontak Keswan')}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <Text style={card.judul}>RSH Cikole Lembang</Text>
-                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
-                                <Text style={card.infodetail}>(022) 82782244)</Text>
-                            </View>
-                            <RightChevron/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert ('Detail Kontak Keswan')}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <Text style={card.judul}>RSH Cikole Lembang</Text>
-                                <Text style={card.infodetail}>Jl. Raya Tangkuban Parahu No.KM. 22,2, Cikole...</Text>
-                                <Text style={card.infodetail}> 022 - 82782244</Text>
-                            </View>
-                            <RightChevron/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-            </ScrollView>
+            </SafeAreaView>
         </View>
     )
 }
@@ -117,14 +131,16 @@ const KontakKeswan = (props) =>{
 const card = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#ECECEC',
-        marginHorizontal: '4%',
+        backgroundColor:'#fff',
+        borderWidth: 1,
+        borderColor: '#DDDDFF',
+        marginHorizontal: 16,
         marginTop: 0,
-        marginBottom: 16,
+        marginBottom: 24,
         borderRadius: 8,
-        height: 84,
-        maxHeight: 100,
-        justifyContent:'center'
+        height: 150,
+        justifyContent:'center',
+        elevation: 8,
     },
     margin:{
         marginHorizontal:16,
@@ -135,17 +151,12 @@ const card = StyleSheet.create({
         flexDirection:'row',
         backgroundColor:'red'
     },
-    photo:{
-        height:68,
-        width:68,
-        backgroundColor:'grey',
-        borderRadius:8,
-    },
     infokomoditas:{
-        justifyContent:'space-around',
-        marginHorizontal: 8,
+        justifyContent:'flex-end',
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop: 16,
+        alignSelf:'flex-end'
 
     },
     icon:{
@@ -155,12 +166,21 @@ const card = StyleSheet.create({
     infodetail:{
         fontSize:14,
         color:'#626262',
-        marginVertical: 2
+        marginVertical: 2,
+        fontFamily:'Mulish-Regular',
+        lineHeight: 18
     },
     judul:{
         fontSize: 16,
         color:'#626262',
-        fontWeight: '700'
+        fontFamily:'Mulish-Bold',
+        marginBottom: 8
+    },
+    detailtext:{
+        fontFamily:'Mulish-Bold',
+        fontSize: 12,
+        color: '#565656',
+        marginLeft: 8
     }
 
 })
@@ -179,7 +199,7 @@ const style = StyleSheet.create({
     header:{
         marginTop:16,
         fontSize: 20,
-        fontWeight: "600",
+        fontFamily:'Mulish-Bold',
         color:'white',
         marginBottom:16
     },
@@ -215,7 +235,8 @@ const style = StyleSheet.create({
         justifyContent:'center',
         alignSelf:'center',
         marginHorizontal: 16,
-        width: 300
+        width: 300,
+        fontFamily:'Mulish-Regular'
     },
     searchicon:{
         alignSelf:'center',

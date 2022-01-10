@@ -8,7 +8,12 @@ import KalkulatorBobot from './KalkulatorBobot';
 import LoadingScreen from './LoadingScreen';
 import HomeScreen from './HomeScreen';
 import Home from './Home';
-
+import KontakKeswan from './KontakKeswan';
+import DetailKontakKeswan from './DetailKontakKeswan';
+import FilterKontakKeswan from './FilterKontakKeswan';
+import KatalogPejantan from './KatalogPejantan';
+import DetailKatalogPejantan from './DetailKatalogPejantan';
+import FilterKatalogPejantan from './FilterKatalogPejantan';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,8 +23,14 @@ function NavHome(){
       screenOptions={{
             headerShown: false
         }}>
-            {/* <Stack.Screen name="BerandaScreen" component={HalamanBeranda}/> */}
-            <Stack.Screen name="Kalkulator Hewan" component={KalkulatorBobot}/>
+              <Stack.Screen name="HomeScreen" component={HomeScreen} />
+              <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot} />
+              <Stack.Screen name="KontakKeswan" component={KontakKeswan} />
+              <Stack.Screen name="DetailKontakKeswan" component={DetailKontakKeswan} />
+              <Stack.Screen name="FilterKontakKeswan" component={FilterKontakKeswan}/>
+              <Stack.Screen name="KatalogPejantan" component={KatalogPejantan}/>
+              <Stack.Screen name="DetailKatalogPejantan" component={DetailKatalogPejantan} />
+              <Stack.Screen name="FilterKatalogPejantan" component={FilterKatalogPejantan}/>
         </Stack.Navigator>
   );
 }               

@@ -7,20 +7,18 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  ToastAndroid
+  ToastAndroid,
+  Alert
 } from 'react-native';
 import FirebaseUtil from "../../utils/FirebaseUtil";
+import firestore from '@react-native-firebase/firestore';
 import { RadioButton } from 'react-native-paper';
 import ArrowBack from "../../component/assets/icons/ArrowBack";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CalendarIcon from "../../component/assets/icons/CalendarIcon";
 
 const HalamanDaftar = props => {
-  const {navigation} = props;
-
-  const [email, setEmail] = React.useState('');
-    
-    const [password, setPassword] = React.useState('');
+    const {navigation} = props;
 
     const handleEmail = (text) => {
       setEmail(text)
@@ -29,7 +27,6 @@ const HalamanDaftar = props => {
     const handlePassword = (text) => {
       setPassword(text)
     }
-    const [checked, setChecked] = React.useState('first');
 
     const [date, setDate] = React.useState(new Date());
     const [mode, setMode] = React.useState('date');
@@ -53,15 +50,56 @@ const HalamanDaftar = props => {
       setMode(currentMode);
     };
 
-    const [create, setCreate] = React.useState('')
+    const [create, setCreate] = React.useState('');
+    const [namapengguna, setNamaPengguna] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+
+    let errorFlag = false;
+
+    const AddData = () => {
+       firestore()
+            .collection('User')
+            .add({
+                namapengguna: namapengguna,
+                email: email,
+                password: password
+            })
+    }
+
     const signUp = () => {
-      if(!email || !password){
-            ToastAndroid.show("Data belum terisi semua", 3000);
+      firestore()
+            .collection('User')
+            .add({
+                namapengguna: namapengguna,
+                email: email,
+                password: password
+      });
+      if(!email && !password){
+          ToastAndroid.show("Data belum terisi semua", 3000);
+          return;
+       }
+      if(password.length < 8){
+          ToastAndroid.show("Password minimal 8 karakter", 3000);
+          return;
+       }
+      if(password.length > 20){
+          ToastAndroid.show("Password maksimal 20 karakter", 3000);
+          return;
+      }
+      if(!password){
+            ToastAndroid.show("Password tidak boleh kosong ", 3000);
+            return;
+       }
+       if(!email){
+            ToastAndroid.show("email tidak boleh kosong", 3000);
             return;
        }else{
             FirebaseUtil.signUp(email, password).catch((e) => {
             console.log(e);
-            alert('Email atau password invalid');
+            Alert.alert('Terjadi Kesalahan','Email sudah terdaftar atau salah penulisan, silakan periksa ulang', [{text: 'OK'}] );
+            return;
       });
        }
      }
@@ -82,22 +120,16 @@ const HalamanDaftar = props => {
             <Text style={page.title}>Halaman Daftar</Text>
             <Text style={page.text}>Masukan identitas Anda dengan benar agar kami dapat mengenal Anda lebih baik.</Text>
           </View>
-        <Text style={page.texttitle}>Nama Lengkap</Text>
+        <Text style={page.texttitle}>Nama Pengguna</Text>
         <View style={page.form}>
           <TextInput
             style={page.textinput}
             underlineColorAndroid = "transparent"
-            placeholder = "Nama Lengkap Anda"
+            placeholder = "Masukkan Nama Anda"
+            onChangeText={(itemValue, itemIndex) => setNamaPengguna(itemValue)}
+            value={namapengguna}
             autoCapitalize = "words"
-          />
-        </View>
-        <Text style={page.texttitle}>Nama Panggilan</Text>
-        <View style={page.form}>
-          <TextInput
-            style={page.textinput}
-            underlineColorAndroid = "transparent"
-            placeholder = "Nama Panggilan Anda"
-            autoCapitalize = "none"
+            maxLength={20}
           />
         </View>
         <Text style={page.texttitle}>Email</Text>
@@ -107,8 +139,10 @@ const HalamanDaftar = props => {
               underlineColorAndroid = "transparent"
               placeholder = "Contoh: Budi@gmail.com"
               autoCapitalize = "none"
-              onChangeText = {handleEmail}
+              onChangeText = {(itemValue, itemIndex) => setEmail(itemValue)}
               value={email}
+              maxLength={30}
+              
             />
           </View>
         <Text style={page.texttitle}>Password</Text>
@@ -119,11 +153,13 @@ const HalamanDaftar = props => {
               secureTextEntry={true}
               placeholder = "Masukkan Password"
               autoCapitalize = "none"
-              onChangeText = {handlePassword}
+              onChangeText = {(itemValue, itemIndex) => setPassword(itemValue)}
               value={password}
+              maxLength={20}
+
           />
         </View>
-        <Text style={page.texttitle}>Tanggal Lahir</Text>
+        {/* <Text style={page.texttitle}>Tanggal Lahir</Text>
         <View>
       <View style={page.form}>
         <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
@@ -195,7 +231,7 @@ const HalamanDaftar = props => {
             <Text style={{color:'white', fontWeight:'600'}}>Upload</Text>
           </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
         {create ? (
               <></>
             ) : (
@@ -274,9 +310,8 @@ const page = StyleSheet.create({
   },
   form:{
     borderRadius: 8,
-    borderWidth: 2,
-    borderColor: '#BBC8D4',
-    backgroundColor:'white'
+    borderWidth: 1,
+    borderColor: '#565656',
   },
   container:{
     backgroundColor:'#3F3D56'

@@ -64,7 +64,7 @@ const HomeScreen = (props) =>{
               <View style={styles.row}>
                 <View style={{alignItems:'center'}}>
                   <TouchableOpacity
-                  onPress={() => {navigation.navigate('KalkulatorBobot')}}
+                  onPress={() => {navigation.navigate('CardTest')}}
                   >
                   <Kalkulator/>
                 </TouchableOpacity>
@@ -100,6 +100,10 @@ const HomeScreen = (props) =>{
 
             </View>
           <ThumbnailArtikel/>
+          <View style={{marginBottom: 24}}></View>
+          <ThumbnailArtikel/>
+          <View style={{marginBottom: 72}}></View>
+
         </ScrollView>
       </View>
     )

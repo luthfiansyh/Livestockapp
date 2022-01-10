@@ -7,6 +7,7 @@ import FourthSplash from "./FourthSplash";
 import LoginScreen from "../Login/LoginScreen";
 import OnboardingScreen from "./OnBoardingScreen";
 import HalamanDaftar from "../Login/HalamanDaftar";
+import LoadingSplash from "./LoadingSplash";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const SplashScreens = () => {
         screenOptions={{
             headerShown: false
         }}>
+            {/* <Stack.Screen name="LoadingSplash" componrn={LoadingSplash}/> */}
             <Stack.Screen name="FirstSplash" component={FirstSplash}/>
             <Stack.Screen name="OnBoarding" component={OnboardingScreen}/>
             <Stack.Screen name="SignIn" component={LoginScreen}/>

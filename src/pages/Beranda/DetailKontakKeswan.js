@@ -5,7 +5,9 @@ import {
     View,
     TouchableOpacity,
     ScrollView,
-    TouchableHighlight
+    FlatList,
+    SectionList,
+    
 } from "react-native";
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 
@@ -14,7 +16,7 @@ const DetailKontakKeswan = (props) =>{
     const {navigation} = props;
 
     return(
-        <View style={{flex:1, backgroundColor:'white'}}>
+        <View style={{flex:1, backgroundColor:'#fff'}}>
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
@@ -24,7 +26,7 @@ const DetailKontakKeswan = (props) =>{
                 <Text style={style.header}>Detail Kontak</Text>
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
-            <ScrollView>
+            <ScrollView style={{flex: 1}}>
                 <View style={{marginBottom:12}}></View>
                 <View style={card.infokomoditas}>
                     <View style={{flexDirection:'column'}}>
@@ -44,6 +46,23 @@ const DetailKontakKeswan = (props) =>{
                         <Text style={card.infodetail}>(022) 2501151</Text>
                     </View>
                 </View>
+                <View style={card.infokomoditas}>
+                    <View style={{flexDirection:'column'}}>
+                        <Text style={card.judul}>Layanan</Text>
+                        <View style={card.sectionlist}>
+                            <FlatList
+                                data={[
+                                {key: 'Pengobatan'},
+                                {key: 'Operasi Minor'},
+                                {key: 'Operasi Mayor'},
+                                {key: 'Orthopedi'},
+                                {key: 'Vaksinasi'},
+                                ]}
+                                renderItem={({item}) => <Text style={card.item}>{item.key}</Text>}
+                                />
+                        </View>
+                    </View>
+                </View>
             </ScrollView>
         </View>
     )
@@ -59,7 +78,7 @@ const card = StyleSheet.create({
         borderRadius: 8,
         height: 84,
         maxHeight: 100,
-        justifyContent:'center'
+        justifyContent:'center',
     },
     margin:{
         marginHorizontal:16,
@@ -89,17 +108,25 @@ const card = StyleSheet.create({
     },
     infodetail:{
         fontSize:14,
-        color:'#626262',
-        marginTop: 4,
-        fontWeight: '700',
-        lineHeight: 17.5
+        color:'#000',
+        marginTop: 8,
+        fontFamily: 'Mulish-Regular',
     },
     judul:{
-        fontSize: 14,
-        color:'#626262',
+        fontSize: 16,
+        fontFamily:'Mulish-Bold',
+        color:'#565656',
         marginBottom: 4
-
-    }
+    },
+    sectionlist:{
+        flex: 1,
+        paddingTop: 8
+    },
+  item: {
+    fontSize: 14,
+    height: 22,
+    fontFamily:'Mulish-Regular'
+  },
 
 })
 
@@ -119,7 +146,8 @@ const style = StyleSheet.create({
         fontSize: 20,
         fontWeight: "600",
         color:'white',
-        marginBottom:16
+        marginBottom:16,
+        fontFamily:'Mulish-Bold'
     },
     buttonbackground:{
         marginTop: "16%",

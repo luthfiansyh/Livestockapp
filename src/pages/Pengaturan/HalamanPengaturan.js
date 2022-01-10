@@ -74,7 +74,7 @@ const HalamanPengaturan = (props) =>{
                         <Text style={styles.text}>Logout Akun</Text>
                     </View>
                 </TouchableHighlight>
-                <Text>Email {user?.email}</Text>
+                {/* <Text>Email {user?.email}</Text> */}
             </ScrollView>
         </View>
     )

@@ -7,6 +7,7 @@ import {
     ScrollView,
     Modal,
     SafeAreaView,
+    TextInput
 } from "react-native";
 
 import {Picker} from '@react-native-picker/picker';
@@ -26,6 +27,8 @@ const KalkulatorBobot = (props) =>{
 
     const {navigation} = props;
     const [selectedLanguage, setSelectedLanguage] = React.useState();
+    const [lingkardada, onChangeLingkarDada] = React.useState('');
+    const [panjangbadan, onChangePanjangBadan] = React.useState('');
 
     return(
         <View style={{flex:1}}>
@@ -39,7 +42,7 @@ const KalkulatorBobot = (props) =>{
                 <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
             </View>
             <ScrollView style={{backgroundColor:'white'}}>
-                <Text style={style.texttitle2}>Pilihan Jenis Kalkulator</Text>
+                {/* <Text style={style.texttitle2}>Pilihan Jenis Kalkulator</Text>
                 <View style={style.pickers}>
                     <Picker
                     selectedValue={selectedLanguage}
@@ -49,9 +52,32 @@ const KalkulatorBobot = (props) =>{
                         <Picker.Item label="Prediksi Bobot Sapi" value="Bobot" color="black"/>
                         <Picker.Item label="Umur Hewan" value="Umur" color="black"  />
                     </Picker>
+                </View> */}
+                <View style={{marginTop: 24, backgroundColor:'pink'}}></View>
+                <Text style={style.judul}>Lingkar Dada (cm2) </Text>
+                <View style={style.form}>
+                    <TextInput
+                        style={style.textinput}
+                        keyboardType='numeric'
+                        underlineColorAndroid = "transparent"
+                        placeholderTextColor="grey"
+                        placeholder = "1"
+                        onChangeText={onChangeLingkarDada}
+                        value={lingkardada}
+                    />
                 </View>
-                <LingkarDada/>
-                <PanjangCm/>
+                <Text style={style.judul}>Panjang badan (cm2) </Text>
+                <View style={style.form}>
+                    <TextInput
+                        style={style.textinput}
+                        keyboardType='numeric'
+                        underlineColorAndroid = "transparent"
+                        placeholderTextColor="grey"
+                        placeholder = "1"
+                        onChangeText={onChangePanjangBadan}
+                        value={panjangbadan}
+                    />
+                </View>
                 <View style={style.buttonbackground}>
                     <TouchableOpacity
                     style={style.button}
@@ -66,18 +92,12 @@ const KalkulatorBobot = (props) =>{
 }
 
 const style = StyleSheet.create({
-    texttitle:{
-    marginTop: 16,
-    marginLeft: 16,
-    fontSize: 16,
-    fontWeight: '600',
-    },
     texttitle2:{
-    marginTop: 16,
+    marginTop: 36,
     fontSize: 14,
-    fontWeight: '600',
+    fontFamily:'Mulish-SemiBold',
     textAlign:'center',
-    color:'#959595'
+    color:'#565656'
     },
     pickers:{
         margin: 16,
@@ -98,7 +118,7 @@ const style = StyleSheet.create({
     header:{
         marginTop:16,
         fontSize: 20,
-        fontWeight: "600",
+        fontFamily: 'Mulish-Bold',
         color:'white',
         marginBottom:16
     },
@@ -115,12 +135,33 @@ const style = StyleSheet.create({
         width: "100%",
         height: 48,
         backgroundColor:'#57B860',
+        borderRadius: 8
     },
     buttontext:{
         color:'white',
         textAlign:'center',
         fontSize: 16,
-        fontWeight:'800'
+        fontFamily:'Mulish-Bold'
+    },
+    textinput:{
+        fontFamily:'Mulish-Regular',
+        fontSize: 14,
+        paddingHorizontal: 16,
+    },
+    judul:{
+        fontSize:16,
+        paddingHorizontal: 16,
+        fontFamily:'Mulish-Bold',
+        color:'#565656',
+        marginTop: 16
+    },
+    form:{
+        margin: 16,
+        borderRadius: 8,
+        borderColor: 'grey',
+        borderWidth: 1,
+        backgroundColor:'white',
+
     },
     }
 )

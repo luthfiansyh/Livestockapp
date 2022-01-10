@@ -19,7 +19,8 @@ const LoginScreen = props => {
   const {navigation} = props;
 
   const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('')
+  const [password, setPassword] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
      const handleEmail = (text) => {
         setEmail(text)
@@ -31,16 +32,21 @@ const LoginScreen = props => {
       const [create, setCreate] = React.useState('')
 
      const signIn = () => {
-       if(!email || !password){
-            ToastAndroid.show("Email atau password kosong", 3000);
+       if(!email){
+            ToastAndroid.show("Email tidak boleh kosong", 3000);
+            return;
+       }
+       if(!password){
+            ToastAndroid.show("password tidak boleh kosong", 3000);
             return;
        }
        else{
             FirebaseUtil.signIn(email, password).catch((e) => {
             console.log(e);
-            alert('Email atau password invalid');
-      });
+            alert('Email atau password invalid. Silakan cek kembali');
+          });
        }
+       setLoading(true);
     };
 
 
@@ -52,7 +58,7 @@ const LoginScreen = props => {
           <Text style={page.title}>Selamat Datang,</Text>
           <Text style={page.text}>Senang melihat Anda Kembali. Silakan Masukkan Email dan Password.</Text>
         </View>
-        <BgLogin/>
+        <BgLogin></BgLogin>
         <View style={{backgroundColor:'#57B860'}}>
           <View style={page.downside}>
           <View style={{marginTop:1}}></View>
@@ -81,7 +87,7 @@ const LoginScreen = props => {
               value={password}
             />
           </View>
-          <Text style={page.forgot}>Lupa Password?</Text>
+          {/* <Text style={page.forgot}>Lupa Password?</Text> */}
           <View/>
             {create ? (
               <></>
@@ -159,7 +165,7 @@ const page = StyleSheet.create({
   },
   container:{
     flex: 1,
-    backgroundColor:'#DCEAFF'
+    backgroundColor:'#cfebfd'
   },
   upperside: {
     paddingHorizontal:"8%",

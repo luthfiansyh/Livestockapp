@@ -12,7 +12,7 @@ import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 import IconFilter from '../../component/assets/icons/FilterIcon';
 import RightChevron from '../../component/assets/icons/RightChevron';
 import SearchIcon from '../../component/assets/icons/SearchIcon';
-
+import SeeDetails from '../../component/assets/icons/IconSeeDetails';
 const KatalogPejantan = (props) =>{
 
     const {navigation} = props;
@@ -48,17 +48,15 @@ const KatalogPejantan = (props) =>{
                     </View>
                 </View>
                 <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {navigation.navigate('DetailKatalogPejantan')}}
-                    >
+                    <View>
                         <View style={card.margin}>
                             <View style={card.leftside}>
-                                <View style={card.photo}></View>
+                                <View style={card.photo}>
+                                    
+                                </View>
                                 <View style={card.infokomoditas}>
                                     <View style={{flexDirection:'row'}}>
-                                        <Text style={card.namakomoditas}>Rambo</Text>
+                                        <Text style={card.namakomoditas}>Sapi</Text>
                                         <Text style={card.namakomoditas}>-</Text>
                                         <Text style={card.namakomoditas}>001</Text>
                                     </View>
@@ -73,27 +71,31 @@ const KatalogPejantan = (props) =>{
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={card.icon}>
-                                <RightChevron/>
-                            </View>
+                            </View>  
                         </View>
-                    </TouchableHighlight>
+                        <TouchableOpacity
+                        activeOpacity={0.5}
+                        underlayColor="#fff"
+                        style={card.detail}
+                        onPress={() => {navigation.navigate('DetailKatalogPejantan')}}
+                        >
+                        <SeeDetails/>
+                        <Text style={card.detailtext}>Details</Text>
+                    </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert('Clicked')}}
-                    >
+                    <View>
                         <View style={card.margin}>
                             <View style={card.leftside}>
-                                <View style={card.photo}></View>
+                                <View style={card.photo}>
+                                    
+                                </View>
                                 <View style={card.infokomoditas}>
                                     <View style={{flexDirection:'row'}}>
-                                        <Text style={card.namakomoditas}>Rambo</Text>
+                                        <Text style={card.namakomoditas}>Sapi</Text>
                                         <Text style={card.namakomoditas}>-</Text>
-                                        <Text style={card.namakomoditas}>002</Text>
+                                        <Text style={card.namakomoditas}>001</Text>
                                     </View>
                                     <View style ={card.infokomoditas2}>
                                         <View>
@@ -106,27 +108,31 @@ const KatalogPejantan = (props) =>{
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={card.icon}>
-                                <RightChevron/>
-                            </View>
+                            </View>  
                         </View>
-                    </TouchableHighlight>
+                        <TouchableOpacity
+                        activeOpacity={0.5}
+                        underlayColor="#fff"
+                        style={card.detail}
+                        onPress={() => {alert('Details')}}
+                        >
+                        <SeeDetails/>
+                        <Text style={card.detailtext}>Details</Text>
+                    </TouchableOpacity>
+                    </View>
                 </View>
                 <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert('Clicked')}}
-                    >
+                    <View>
                         <View style={card.margin}>
                             <View style={card.leftside}>
-                                <View style={card.photo}></View>
+                                <View style={card.photo}>
+                                    
+                                </View>
                                 <View style={card.infokomoditas}>
                                     <View style={{flexDirection:'row'}}>
-                                        <Text style={card.namakomoditas}>Rambo</Text>
+                                        <Text style={card.namakomoditas}>Sapi</Text>
                                         <Text style={card.namakomoditas}>-</Text>
-                                        <Text style={card.namakomoditas}>003</Text>
+                                        <Text style={card.namakomoditas}>001</Text>
                                     </View>
                                     <View style ={card.infokomoditas2}>
                                         <View>
@@ -139,12 +145,18 @@ const KatalogPejantan = (props) =>{
                                         </View>
                                     </View>
                                 </View>
-                            </View>
-                            <View style={card.icon}>
-                                <RightChevron/>
-                            </View>
+                            </View>  
                         </View>
-                    </TouchableHighlight>
+                        <TouchableOpacity
+                        activeOpacity={0.5}
+                        underlayColor="#fff"
+                        style={card.detail}
+                        onPress={() => {alert('Details')}}
+                        >
+                        <SeeDetails/>
+                        <Text style={card.detailtext}>Details</Text>
+                    </TouchableOpacity>
+                    </View>
                 </View>
             </ScrollView>
         </View>
@@ -154,17 +166,21 @@ const KatalogPejantan = (props) =>{
 const card = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#ECECEC',
+        backgroundColor:'#fff',
         marginHorizontal: '4%',
         marginTop: 0,
         marginBottom: 16,
         borderRadius: 8,
-        height: 96,
-        maxHeight: 100,
-        justifyContent:'center'
+        height: 140,
+        // maxHeight: 100,
+        justifyContent:'center',
+        borderColor: '#DDDDFF',
+        borderWidth: 1,
+        elevation: 6
     },
     margin:{
         marginHorizontal:16,
+        marginVertical: 8,
         flexDirection:'row',
         justifyContent:'center',
     },
@@ -174,8 +190,9 @@ const card = StyleSheet.create({
     photo:{
         height:68,
         width:68,
-        backgroundColor:'grey',
-        borderRadius:8,
+        backgroundColor:'#57B860',
+        borderRadius:8
+    
     },
     infokomoditas:{
         paddingLeft:'4%',
@@ -186,6 +203,14 @@ const card = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
     },
+    detail:{
+        justifyContent:'flex-end',
+        marginLeft: 280,
+        flexDirection:'row',
+        alignItems:'center',
+        marginTop: 16,
+        marginRight: 16
+    },
     icon:{
         alignItems:'center',
         justifyContent:'center',
@@ -193,15 +218,25 @@ const card = StyleSheet.create({
     subjudul:{
         fontSize:12,
         fontWeight:'normal',
-        marginBottom: 4,
-        color:'grey'
+        marginBottom: 2,
+        color:'#959595',
+        fontFamily:'Mulish-SemiBold'
     },
     infodetail:{
         fontSize:14,
+        fontFamily:'Mulish-SemiBold',
+        color:'#3c3c3c'
     },
     namakomoditas:{
-        fontSize: 16, 
-        paddingRight: 8
+        fontSize: 16,
+        fontFamily:'Mulish-Bold',
+        color:'#565656'
+    },
+    detailtext:{
+        fontFamily:'Mulish-Bold',
+        fontSize: 12,
+        color: '#565656',
+        marginLeft: 8
     }
 
 
