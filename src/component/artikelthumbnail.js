@@ -14,12 +14,11 @@ const ArtikelThumbnail = (props) =>{
     const {navigation} = props;
 
     return(
-    <View>
-        <View style={styles.card}>
-            <View style={styles.imagethumbnail}></View>
-            <View style={styles.justify}>
-                <Text style={styles.title}>Judul Judul Artikel Judul Artikel Artikel Judul Artikel...</Text>
-                <Text style={styles.update}>Tanggal upload</Text>
+    <View style={{flex: 1, paddingLeft: 8}}>
+        <View style={{height: 240, justifyContent:'center'}}>
+            <View style={styles.card}>
+                <View style={styles.justify}>
+                </View>
             </View>
         </View>
     </View>
@@ -27,15 +26,15 @@ const ArtikelThumbnail = (props) =>{
 }
 
 const styles = StyleSheet.create({
-    scroll:{
-        backgroundColor:'white', 
-        flexDirection: 'row',  
-        paddingStart:"4%",
-        paddingEnd:"4%",
-        backgroundColor:'pink', 
-    },
     card:{
-        flex: 1, backgroundColor:'#EDEDED', height:148, width:200, borderRadius: 8, marginEnd: 12
+        flex: 1, 
+        backgroundColor:'#EDEDED', 
+        height:200,
+        maxHeight: 200, 
+        width:360, 
+        borderRadius: 8, 
+        marginEnd: 12,
+        elevation: 8
     },
     imagethumbnail:{
         flex:0.5, backgroundColor:'#C4C4C4', borderTopLeftRadius:8, borderTopRightRadius: 8, paddingBottom:4

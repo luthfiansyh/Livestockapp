@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     Text:{
         marginTop:16,
         fontSize: 20,
-        fontWeight: "600",
+        fontFamily:'Mulish-Bold',
         color:'white'
     },
     inside:{
