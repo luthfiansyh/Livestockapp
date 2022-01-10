@@ -1,23 +1,17 @@
 import React, {useContext} from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator ,TransitionPresets} from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from '@react-navigation/native';
 import { LoginContext } from './LoginProvider';
-import Svg, {Path, Circle} from "react-native-svg";
+import 'react-native-gesture-handler';
+import Svg, {Path} from "react-native-svg";
+
+//pages
 import LoadingScreen from '../pages/Beranda/LoadingScreen';
 import HomeScreen from '../pages/Beranda/HomeScreen';
-import LoginScreen from '../pages/Login/LoginScreen';
-import NavHome from '../pages/Beranda';
 import HalamanKomoditas from '../pages/Komoditas';
-import NavPengaturan from '../pages/Pengaturan';
 import HalamanPengaturan from '../pages/Pengaturan/HalamanPengaturan';
-import HalamanDaftar from '../pages/Login/HalamanDaftar';
-import FirstSplash from '../pages/Splashscreen/FirstSplash';
-import SecondSplash from '../pages/Splashscreen/SecondSplash';
-import ThirdSplash from '../pages/Splashscreen/ThirdSplash';
-import FourthSplash from '../pages/Splashscreen/FourthSplash';
 import SplashScreens from '../pages/Splashscreen';
-import NavKomoditas from '../pages/Komoditas';
 import DetailHewan from '../pages/Komoditas/DetailHewan';
 import KalkulatorBobot from '../pages/Beranda/KalkulatorBobot';
 import DetailKomoditas from '../pages/Komoditas/DetailKomoditas';
@@ -30,36 +24,42 @@ import DetailKatalogPejantan from '../pages/Beranda/DetailKatalogPejantan';
 import DetailPengukuran from '../pages/Komoditas/DetailPengukuran';
 import HalamanProfil from '../pages/Pengaturan/HalamanProfil';
 import TambahKomoditas from'../pages/Komoditas/TambahKomoditas';
+import LoadingScreenHome from '../pages/Beranda/LoadingScreenHome';
+import CardTest from '../component/Cardtest';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
+
+const config = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 50,
+    mass: 3,
+    overshootClamping: false,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
 
 export default function AppStack() {
     const {user, isLoading} = useContext(LoginContext);
-    
+
     return (
         <NavigationContainer>
             <Stack.Navigator
-            screenOptions={{
-            headerShown: false
-            }}
-            >
-                {isLoading ? 
-                (
-                    <Stack.Screen 
-                    name="loading" 
-                    component={LoadingScreen
-                    }/>
-                ) : user ? (
-                    <Stack.Screen name="Login" component ={LoginStack}/>
-                ) : (
-                    <Stack.Screen name="Splashscreen" component={SplashScreens} />
-                )}
+            screenOptions={() => ({ ...TransitionPresets.SlideFromRightIOS})}>
+            {isLoading ? ( <Stack.Screen name="LoadingScreen" options={{headerShown: false}} component={LoadingScreen}/>
+            ) : user ? (
+                <Stack.Screen name="Container" options={{headerShown: false}} component ={Container}/>
+            ) : (
+                <Stack.Screen name="Splashscreen" options={{headerShown: false}} component={SplashScreens} />
+            )}
             </Stack.Navigator>
         </NavigationContainer>
     )
 }
 
-function LoginStack() {
+function Container() {
     
     return (
             <Stack.Navigator
@@ -67,6 +67,7 @@ function LoginStack() {
             headerShown: false
             }}
             >
+              <Stack.Screen name="Loading" component={LoadingScreenHome}/>
               <Stack.Screen name="HomeScreen" component={Hometab} />
               {/* Subhalaman di Halaman Beranda */}
               <Stack.Screen name="KalkulatorBobot" component={KalkulatorBobot} />
