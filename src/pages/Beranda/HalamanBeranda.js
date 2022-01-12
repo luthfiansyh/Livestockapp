@@ -25,7 +25,7 @@ const HalamanBeranda = (props) =>{
             <View style={{flex:1}}>
               <View style={styles.container}>
                 <View style={styles.row}>
-                  <TouchableOpacity onPress={() => {navigation.navigate('KalkulatorBobot')}} style={styles.cardleft}>
+                  <TouchableOpacity onPress={() => alert('Kalkulaor')} style={styles.cardleft}>
                     <View style={styles.justify}>
                       <Kalkulator/>
                     </View>

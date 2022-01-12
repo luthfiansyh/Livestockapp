@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
-  ToastAndroid
+  ToastAndroid,
+  Alert
 } from 'react-native';
 import BgHome from "../../component/assets/illustrations/BgHome";
 import BgLogin from "../../component/assets/illustrations/BgLogin";
@@ -40,10 +41,14 @@ const LoginScreen = props => {
             ToastAndroid.show("password tidak boleh kosong", 3000);
             return;
        }
+       if(password.length < 8){
+          ToastAndroid.show("Password minimal 8 karakter", 3000);
+          return;
+       }
        else{
             FirebaseUtil.signIn(email, password).catch((e) => {
             console.log(e);
-            alert('Email atau password invalid. Silakan cek kembali');
+            Alert.alert('Terjadi Kesalahan','Email atau password invalid. Silakan periksa ulang.',[{text:'OK'}] );
           });
        }
        setLoading(true);

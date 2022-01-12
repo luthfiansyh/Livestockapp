@@ -7,7 +7,8 @@ import {
     ScrollView,
     TextInput,
     Alert,
-    ToastAndroid
+    ToastAndroid,
+    Modal
 } from "react-native";
 
 import { RadioButton } from 'react-native-paper';
@@ -79,7 +80,7 @@ const TambahKomoditas = (props) =>{
                 userID: user.uid,
             })
             console.log('Komoditas berhasil ditambahkan!');
-            Alert.alert("Komoditas Ditambahkan","Berhasil menambahkan komoditas!",[{text: 'Tutup', onPress:() => navigation.navigate('HalamanKomoditas')}]);
+            Alert.alert("Komoditas Ditambahkan" ,"Berhasil menambahkan komoditas!",[{text: 'Tutup', onPress:() => navigation.navigate('HalamanKomoditas')}]);
 
         }
     }

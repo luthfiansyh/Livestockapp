@@ -43,12 +43,13 @@ const KontakKeswan = (props) =>{
         return VeterinerRef.onSnapshot( querySnapshot => {
             const list = [];
             querySnapshot.forEach(doc => {
-                const { nama_rsh, kontak, alamat} = doc.data();
+                const { nama_rsh, kontak, alamat, layanan} = doc.data();
                 list.push({
                     id: doc.id,
                     alamat,
                     kontak,
                     nama_rsh,
+                    layanan
                 });
             });
 
@@ -78,20 +79,10 @@ const KontakKeswan = (props) =>{
                 </TouchableOpacity>
             </View>
             <SafeAreaView>
-                <View style={{marginBottom:24}}></View>
-                <View style={style.searchbar}>
-                    <TextInput
-                    style={style.searchtext}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "Cari Kontak Keswan/Veteriner..."
-                    autoCapitalize = "none"
-                    />
-                    <View style={style.searchicon}>
-                        <SearchIcon/>
-                    </View>
-                </View>
-                <View>
+                <View style={{height: '90%', flexGrow: 1}}>
                     <FlatList
+                    style={{height: '100%',flexGrow:1}}
+                    fadingEdgeLength={50}
                     data={veteriner}
                     keyExtractor={(item) => item.id}
                     removeClippedSubviews={true}
@@ -135,12 +126,12 @@ const card = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#DDDDFF',
         marginHorizontal: 16,
-        marginTop: 0,
-        marginBottom: 24,
+        marginBottom: 12,
+        marginTop: 16,
         borderRadius: 8,
         height: 150,
         justifyContent:'center',
-        elevation: 8,
+        elevation: 5,
     },
     margin:{
         marginHorizontal:16,
@@ -190,7 +181,7 @@ const style = StyleSheet.create({
         width:'100%',
         right: 0,
         top:0,
-        height:64,
+        height: 72,
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'space-between',

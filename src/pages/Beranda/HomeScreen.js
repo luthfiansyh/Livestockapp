@@ -25,7 +25,7 @@ const HomeScreen = (props) =>{
     const {navigation} = props;
     return(
       <View style={{flex:1, backgroundColor:'white'}}>
-        <ScrollView style={{height:1}}>
+        <ScrollView style={{height:1}} showsVerticalScrollIndicator={false}>
           <Head/>
             <View style={{flex:1}}>
               {/* <View style={styles.container}>
@@ -64,7 +64,7 @@ const HomeScreen = (props) =>{
               <View style={styles.row}>
                 <View style={{alignItems:'center'}}>
                   <TouchableOpacity
-                  onPress={() => {navigation.navigate('CardTest')}}
+                  onPress={() => alert('Kalkulator')}
                   >
                   <Kalkulator/>
                 </TouchableOpacity>

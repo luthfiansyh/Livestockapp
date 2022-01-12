@@ -5,6 +5,8 @@ import IconEdit from '../../component/assets/icons/IconEdit';
 import RightChevron from '../../component/assets/icons/RightChevron';
 import FirebaseUtil from '../../utils/FirebaseUtil';
 import { LoginContext } from '../../utils/LoginProvider';
+import { firebase } from '@react-native-firebase/auth';
+// import { firebase } from '@react-native-firebase/firestore';
 
 const HalamanPengaturan = (props) =>{
     const {navigation} = props;

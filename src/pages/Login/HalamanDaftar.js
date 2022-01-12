@@ -58,24 +58,14 @@ const HalamanDaftar = props => {
 
     let errorFlag = false;
 
-    const AddData = () => {
-       firestore()
-            .collection('User')
-            .add({
-                namapengguna: namapengguna,
-                email: email,
-                password: password
-            })
-    }
-
     const signUp = () => {
-      firestore()
-            .collection('User')
-            .add({
-                namapengguna: namapengguna,
-                email: email,
-                password: password
-      });
+      // firestore()
+      //       .collection('User')
+      //       .add({
+      //           namapengguna: namapengguna,
+      //           email: email,
+      //           password: password
+      // });
       if(!email && !password){
           ToastAndroid.show("Data belum terisi semua", 3000);
           return;
@@ -98,7 +88,7 @@ const HalamanDaftar = props => {
        }else{
             FirebaseUtil.signUp(email, password).catch((e) => {
             console.log(e);
-            Alert.alert('Terjadi Kesalahan','Email sudah terdaftar atau salah penulisan, silakan periksa ulang', [{text: 'OK'}] );
+            Alert.alert('Terjadi Kesalahan','Email sudah terdaftar atau salah penulisan, silakan periksa ulang.', [{text: 'OK'}] );
             return;
       });
        }
@@ -113,7 +103,7 @@ const HalamanDaftar = props => {
           <ArrowBack/>
         </TouchableOpacity>
       </View>
-      <ScrollView style={{backgroundColor:'white'}}>
+      <ScrollView style={{backgroundColor:'white', height: '100%'}}>
       <View style={page.container}>
         <View style={page.downside}>
           <View style={page.upperside}>
@@ -314,7 +304,7 @@ const page = StyleSheet.create({
     borderColor: '#565656',
   },
   container:{
-    backgroundColor:'#3F3D56'
+    backgroundColor:'#3F3D56',
   },
   upperside: {
     flex: 1,

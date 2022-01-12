@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect, useContext } from 'react';
 import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight, FlatList} from 'react-native';
 import Icon from 'react-native-ico';
 import RightChevron from '../../component/assets/icons/RightChevron';
@@ -10,45 +10,26 @@ import IconSapi from '../../component/assets/icons/Sapi';
 import SeeDetails from '../../component/assets/icons/IconSeeDetails';
 
 import HeaderPage from '../../component/HeaderPage.js';
-import firestore, {getDocs, collection} from '@react-native-firebase/firestore';
 import { firebase } from '@react-native-firebase/firestore';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import CardTest from '../../component/Cardtest';
-import { renderNode } from 'react-native-elements/dist/helpers';
+import { LoginContext } from '../../utils/LoginProvider';
+
 
 const HalamanKomoditas = (props) => {
 
     const {navigation} = props;
-
-
-
-    // const [listkomoditas, setListKomoditas] = React.useState('');
-
-    // const getDataDoc = async () => {
-    //     const user = await firestore().collection('Komoditas').doc('ExbqfwJlzvcwRdwnA1qZ').get();
-
-    //     console.log(user);
-    // };
-
-        const KomoditasRef = firebase.firestore().collection('Komoditas');
+        
+        const { user } = useContext(LoginContext);
+        const uid = firebase.auth().currentUser.uid;
         const [komoditas, setKomoditas] = React.useState('');
         const [loading, setLoading] = React.useState(true);
 
-
-        useEffect(() => {
-        const getKomoditas = async() => {
-            const data = await getDocs(KomoditasRef);
-            setKomoditas(data.docs.map((doc) => ({...doc.data(), id: docs.id})));
-        };
-        getKomoditas()
-    }, [])
-
-
     useEffect(() => {
+        const KomoditasRef = firebase.firestore().collection('Komoditas').where("userID", "==", uid);
+        // const KomoditasRef = firebase.firestore().collection('Komoditas')
         return KomoditasRef.onSnapshot( querySnapshot => {
             const list = [];
             querySnapshot.forEach(doc => {
-                const { alamat, jenis_komoditas, klasifikasi, luaslahan, luaslahandigunakan, rumpun_komoditas, userID } = doc.data();
+                const { alamat, jenis_komoditas, klasifikasi, luaslahan, luaslahandigunakan, rumpun_komoditas, UserID } = doc.data();
                 list.push({
                     id: doc.id,
                     alamat,
@@ -57,7 +38,7 @@ const HalamanKomoditas = (props) => {
                     luaslahan,
                     luaslahandigunakan,
                     rumpun_komoditas,
-                    userID,
+                    // UserID,
                 });
             });
 
@@ -68,48 +49,25 @@ const HalamanKomoditas = (props) => {
             }
     });
     },[]);
+    
 
-    //  useEffect(() => {
-    //      const fetchPosts = async() => {
-    //         try{
-    //             const list = [];
-
-    //             firestore()
-    //             .collection('Komoditas')
-    //             .get()
-    //             .then((querySnapshot) => {
-    //                 console.log('Total Posts: ', querySnapshot.size);
-
-    //                 querySnapshot.forEach(doc => {
-    //                     const {jenis_komoditas, rumpun, klasifikasi, alamat, luaslahan, luaslahandigunakan, userID} = doc.data();
-    //                     list.push({
-    //                         id: doc.id,
-    //                         userID,
-    //                         jenis_komoditas: jenis_komoditas,
-    //                         rumpun_komoditas: rumpun,
-    //                         klasifikasi: klasifikasi,
-    //                         alamat: alamat,
-    //                         luaslahan: luaslahan,
-    //                         luaslahandigunakan: luaslahandigunakan,
-    //                     })
-    //                 })
-    //             }
-    //             )
-    //         } catch(e){
-    //             console.log(e);
-    //         }
-    //     }
-    // })
 
         return(
-                <View  style={{backgroundColor:'#F9F9F9'}}>
+                <View  style={{backgroundColor:'white', flex: 1}}>
                     <HeaderPage/>
-                    <SafeAreaView>    
-                        <View style={{backgroundColor:'pink', height: 600}}>
+                        <View style={{height: '83.5%', backgroundColor:'white'}}>
                             <FlatList
+                            style={card.flatlist}
+                            showsVerticalScrollIndicator={false}
                             data={komoditas}
+                            fadingEdgeLength={50}
                             renderItem={({item}) => (
                                 <View style={card.container}>
+                                    <TouchableOpacity
+                                    activeOpacity={0.5}
+                                    underlayColor="#fff"
+                                    onPress={() => {navigation.navigate('DetailKomoditas')}}
+                                    >
                                     <View style={card.margin}>
                                         <View style={card.leftside}>
                                             <View style={card.photo}></View>
@@ -128,14 +86,12 @@ const HalamanKomoditas = (props) => {
                                             </View>
                                         </View>
                                     </View>
-                                    <TouchableOpacity
-                                    activeOpacity={0.5}
-                                    underlayColor="#fff"
+                                    <View
                                     style={card.detail}
-                                    onPress={() => {navigation.navigate('DetailKomoditas')}}
                                     >
                                     <SeeDetails/>
                                     <Text style={card.detailtext}>Details</Text>
+                                    </View>
                                     </TouchableOpacity>
                                 </View>
                             )}
@@ -143,12 +99,12 @@ const HalamanKomoditas = (props) => {
                             removeClippedSubviews={true}
                             />
                         </View>
-                    </SafeAreaView>
                     <TouchableOpacity
-                    style={styles.touchable}
+                    style={fab.touchable }
+                    activeOpacity={0.7}
                     onPress={() => {navigation.navigate('TambahKomoditas')}}
                     >
-                        <View style={styles.icon}>
+                        <View style={fab.icon}>
                             <Plusbutton/>
                         </View>
                     </TouchableOpacity>
@@ -160,13 +116,16 @@ const card = StyleSheet.create({
     container:{
         backgroundColor:'#fff',
         marginHorizontal: 16,
-        marginVertical: 16,
+        top: 4,
+        bottom: 4,
+        marginTop: 8,
+        marginBottom: 16,
         borderRadius: 8,
         height: 140,
         justifyContent:'center',
         borderColor: '#DDDDFF',
         borderWidth: 1,
-        elevation: 6
+        elevation: 2
     },
     margin:{
         marginHorizontal:16,
@@ -227,31 +186,28 @@ const card = StyleSheet.create({
         fontSize: 12,
         color: '#565656',
         marginLeft: 8
+    },
+    flatlist:{
+        // flex: 1,
+        flexGrow: 1,
+        height: '100%',
+
     }
-
-
-
-
 })
 
-const styles = StyleSheet.create({
-    // fab:{
-    //     position: 'absolute',
-    //     right: "4%",
-    //     bottom: "10%",
-    //     backgroundColor:'#57B860'
-    // },
+const fab = StyleSheet.create({
     touchable:{
         backgroundColor: '#57B860',
         borderRadius: 100,
-        width: 48,
-        height: 48,
+        width: 56,
+        height: 56,
         position: 'absolute',
         right: "4%",
         bottom: "10%",
+        alignItems:'center',
+        justifyContent:'center'
     },
     icon:{
-        margin:14
     }
 })
 

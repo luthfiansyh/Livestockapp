@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
     StyleSheet,
     Text,
@@ -6,16 +6,45 @@ import {
     TouchableOpacity,
     ScrollView,
     TouchableHighlight,
-    TextInput
+    TextInput,
+    FlatList
 } from "react-native";
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 import IconFilter from '../../component/assets/icons/FilterIcon';
 import RightChevron from '../../component/assets/icons/RightChevron';
 import SearchIcon from '../../component/assets/icons/SearchIcon';
 import SeeDetails from '../../component/assets/icons/IconSeeDetails';
+import { firebase } from '@react-native-firebase/firestore';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 const KatalogPejantan = (props) =>{
 
     const {navigation} = props;
+    const [katalogpejantan, setKatalogPejantan] = React.useState('');
+    const [loading, setLoading] = React.useState(true);
+
+    useEffect(() => {
+        const KatalogPejantanRef = firebase.firestore().collection('pejantan')
+        return KatalogPejantanRef.onSnapshot( querySnapshot => {
+            const list = [];
+            querySnapshot.forEach(doc => {
+                const { jenis_komoditas, klasifikasi, kode_hewan, nama_pejantan, rumpun_komoditas } = doc.data();
+                list.push({
+                    nama_pejantan,
+                    kode_hewan,
+                    jenis_komoditas,
+                    klasifikasi,
+                    rumpun_komoditas
+                });
+            });
+
+            setKatalogPejantan(list);
+
+            if(loading){
+                setLoading(false);
+            }
+    });
+    },[]);
 
     return(
         <View style={{flex:1, backgroundColor:'white'}}>
@@ -34,149 +63,70 @@ const KatalogPejantan = (props) =>{
                     <IconFilter/>
                 </TouchableOpacity>
             </View>
-            <ScrollView>
-                <View style={{marginBottom:24}}></View>
-                <View style={style.searchbar}>
-                    <TextInput
-                    style={style.searchtext}
-                    underlineColorAndroid = "transparent"
-                    placeholder = "Cari Katalog Pejantan..."
-                    autoCapitalize = "none"
-                    />
-                    <View style={style.searchicon}>
-                        <SearchIcon/>
-                    </View>
-                </View>
-                <View style={card.container}>
-                    <View>
-                        <View style={card.margin}>
-                            <View style={card.leftside}>
-                                <View style={card.photo}>
-                                    
-                                </View>
-                                <View style={card.infokomoditas}>
-                                    <View style={{flexDirection:'row'}}>
-                                        <Text style={card.namakomoditas}>Sapi</Text>
-                                        <Text style={card.namakomoditas}>-</Text>
-                                        <Text style={card.namakomoditas}>001</Text>
-                                    </View>
-                                    <View style ={card.infokomoditas2}>
-                                        <View>
-                                            <Text style={card.subjudul}>Komoditas</Text>
-                                            <Text style={card.infodetail}>Sapi</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={card.subjudul}>Rumpun</Text>
-                                            <Text style={card.infodetail}>Belgian Blue</Text>
+            <SafeAreaView>
+                <View style={{height: '95%'}}>
+                            <FlatList
+                            style={card.flatlist}
+                            showsVerticalScrollIndicator={false}
+                            data={katalogpejantan}
+                            fadingEdgeLength={50}
+                            renderItem={({item}) => (
+                                <View style={card.container}>
+                                    <TouchableOpacity
+                                    activeOpacity={0.5}
+                                    underlayColor="#fff"
+                                    onPress={() => {navigation.navigate('DetailKomoditas')}}
+                                    >
+                                    <View style={card.margin}>
+                                        <View style={card.leftside}>
+                                            <View style={card.photo}></View>
+                                            <View style={card.infokomoditas}>
+                                                <Text style={card.namakomoditas}>{item.nama_pejantan}</Text>
+                                                <View style ={card.infokomoditas2}>
+                                                    <View>
+                                                        <Text style={card.subjudul}>Rumpun</Text>
+                                                        <Text style={card.infodetail}>{item.rumpun_komoditas}</Text>
+                                                    </View>
+                                                    <View>
+                                                        <Text style={card.subjudul}>Klasifikasi</Text>
+                                                        <Text style={card.infodetail}>{item.klasifikasi}</Text>
+                                                    </View>
+                                                </View>
+                                            </View>
                                         </View>
                                     </View>
+                                    <View
+                                    style={card.detail}
+                                    >
+                                    <SeeDetails/>
+                                    <Text style={card.detailtext}>Info Detail</Text>
+                                    </View>
+                                    </TouchableOpacity>
                                 </View>
-                            </View>  
+                            )}
+                            keyExtractor={(item) => item.id}
+                            removeClippedSubviews={true}
+                            />
                         </View>
-                        <TouchableOpacity
-                        activeOpacity={0.5}
-                        underlayColor="#fff"
-                        style={card.detail}
-                        onPress={() => {navigation.navigate('DetailKatalogPejantan')}}
-                        >
-                        <SeeDetails/>
-                        <Text style={card.detailtext}>Details</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={card.container}>
-                    <View>
-                        <View style={card.margin}>
-                            <View style={card.leftside}>
-                                <View style={card.photo}>
-                                    
-                                </View>
-                                <View style={card.infokomoditas}>
-                                    <View style={{flexDirection:'row'}}>
-                                        <Text style={card.namakomoditas}>Sapi</Text>
-                                        <Text style={card.namakomoditas}>-</Text>
-                                        <Text style={card.namakomoditas}>001</Text>
-                                    </View>
-                                    <View style ={card.infokomoditas2}>
-                                        <View>
-                                            <Text style={card.subjudul}>Komoditas</Text>
-                                            <Text style={card.infodetail}>Sapi</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={card.subjudul}>Rumpun</Text>
-                                            <Text style={card.infodetail}>Belgian Blue</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </View>  
-                        </View>
-                        <TouchableOpacity
-                        activeOpacity={0.5}
-                        underlayColor="#fff"
-                        style={card.detail}
-                        onPress={() => {alert('Details')}}
-                        >
-                        <SeeDetails/>
-                        <Text style={card.detailtext}>Details</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={card.container}>
-                    <View>
-                        <View style={card.margin}>
-                            <View style={card.leftside}>
-                                <View style={card.photo}>
-                                    
-                                </View>
-                                <View style={card.infokomoditas}>
-                                    <View style={{flexDirection:'row'}}>
-                                        <Text style={card.namakomoditas}>Sapi</Text>
-                                        <Text style={card.namakomoditas}>-</Text>
-                                        <Text style={card.namakomoditas}>001</Text>
-                                    </View>
-                                    <View style ={card.infokomoditas2}>
-                                        <View>
-                                            <Text style={card.subjudul}>Komoditas</Text>
-                                            <Text style={card.infodetail}>Sapi</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={card.subjudul}>Rumpun</Text>
-                                            <Text style={card.infodetail}>Belgian Blue</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </View>  
-                        </View>
-                        <TouchableOpacity
-                        activeOpacity={0.5}
-                        underlayColor="#fff"
-                        style={card.detail}
-                        onPress={() => {alert('Details')}}
-                        >
-                        <SeeDetails/>
-                        <Text style={card.detailtext}>Details</Text>
-                    </TouchableOpacity>
-                    </View>
-                </View>
-            </ScrollView>
+            </SafeAreaView>
         </View>
     )
 }
 
 const card = StyleSheet.create({
     container:{
-        flex:1,
         backgroundColor:'#fff',
-        marginHorizontal: '4%',
-        marginTop: 0,
+        marginHorizontal: 16,
+        top: 4,
+        bottom: 4,
+        marginTop: 8,
         marginBottom: 16,
         borderRadius: 8,
-        height: 140,
-        // maxHeight: 100,
+        height: 150,
         justifyContent:'center',
         borderColor: '#DDDDFF',
         borderWidth: 1,
-        elevation: 6
+        elevation: 2
     },
     margin:{
         marginHorizontal:16,
@@ -205,11 +155,11 @@ const card = StyleSheet.create({
     },
     detail:{
         justifyContent:'flex-end',
-        marginLeft: 280,
+        alignSelf:'flex-end',
         flexDirection:'row',
         alignItems:'center',
         marginTop: 16,
-        marginRight: 16
+        marginRight: 16,
     },
     icon:{
         alignItems:'center',
@@ -237,12 +187,13 @@ const card = StyleSheet.create({
         fontSize: 12,
         color: '#565656',
         marginLeft: 8
+    },
+    flatlist:{
+        // flex: 1,
+        flexGrow: 1,
+        height: '100%'
     }
-
-
-
 })
-
 
 const style = StyleSheet.create({
     container:{
@@ -258,9 +209,9 @@ const style = StyleSheet.create({
     header:{
         marginTop:16,
         fontSize: 20,
-        fontWeight: "600",
         color:'white',
-        marginBottom:16
+        marginBottom:16,
+        fontFamily: 'Mulish-Bold'
     },
     buttonbackground:{
         marginTop: "16%",
