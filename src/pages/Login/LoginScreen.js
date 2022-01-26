@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   StyleSheet,
@@ -6,13 +6,14 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  Button,
   ToastAndroid,
-  Alert
+  Alert,
+  Modal
 } from 'react-native';
-import BgHome from "../../component/assets/illustrations/BgHome";
-import BgLogin from "../../component/assets/illustrations/BgLogin";
 import FirebaseUtil from "../../utils/FirebaseUtil";
+import IconEye from "../../component/assets/icons/IconEye";
+import LoginBg from "../../component/assets/illustrations/LoginBg";
+
 
 
 const LoginScreen = props => {
@@ -22,6 +23,11 @@ const LoginScreen = props => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+  const [hidePass, setHidePass] = React.useState(true);
+  const [inputEmailOnFocus, setInputEmailOnFocus] = useState(false);
+  const [inputPassOnFocus, setInputPassOnFocus] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
 
      const handleEmail = (text) => {
         setEmail(text)
@@ -48,7 +54,7 @@ const LoginScreen = props => {
        else{
             FirebaseUtil.signIn(email, password).catch((e) => {
             console.log(e);
-            Alert.alert('Terjadi Kesalahan','Email atau password invalid. Silakan periksa ulang.',[{text:'OK'}] );
+            setModalVisible(!modalVisible);
           });
        }
        setLoading(true);
@@ -57,104 +63,209 @@ const LoginScreen = props => {
 
 
   return (
-    <ScrollView style={{backgroundColor:'white'}}>
-      <View style={page.container}>
-        <View style={page.upperside}>
-          <Text style={page.title}>Selamat Datang,</Text>
-          <Text style={page.text}>Senang melihat Anda Kembali. Silakan Masukkan Email dan Password.</Text>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            
+            >
+                <View style={[[modal.centeredView, modalVisible ? {backgroundColor: 'rgba(0,0,0,0.5)'} : '']]}>
+                    <View style={modal.modalview}>
+                        <Text style={modal.title}>Terjadi Kesalahan..</Text>
+                        <Text style={modal.information}>Email atau password invalid. Silakan periksa ulang.</Text>
+                          <TouchableOpacity 
+                        style={modal.primarybutton}
+                        onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Text style={modal.textbutton}>Oke</Text>
+                        </TouchableOpacity>
+                        
+                    </View>
+                </View>
+
+            </Modal>
+        <View style={header.wrapjudul}>
+          <Text style={header.judul}>Selamat Datang Kembali,</Text>
+          <Text style={header.isijudul}>Masukkan email dan password untuk melanjutkan.</Text>
         </View>
-        <BgLogin></BgLogin>
-        <View style={{backgroundColor:'#57B860'}}>
-          <View style={page.downside}>
-          <View style={{marginTop:1}}></View>
-          <Text style={page.texttitle}>Email</Text>
-          <View style={page.form}>
+        <View style={header.illustration}>
+          <LoginBg/>
+        </View>
+          <View style={styles.downside}>
+          <Text style={form.texttitle}>Email</Text>
+          <View 
+          style={[form.input, inputEmailOnFocus && form.inputOnFocus]}
+          >
             <TextInput
-              style={page.textinput}
+              style={form.textinput}
               placeholderTextColor="grey"
               underlineColorAndroid = "transparent"
               placeholder = "Contoh: Budi@gmail.com"
               autoCapitalize = "none"
               onChangeText = {handleEmail}
               value={email}
+              onFocus={() => {setInputEmailOnFocus (true)}}
+              onBlur={() => {setInputEmailOnFocus (false)}}
             />
           </View>
-          <Text style={page.texttitle}>Password</Text>
-          <View style={page.form}>
+          <Text style={form.texttitle}>Password</Text>
+          <View
+          style={[form.input, inputPassOnFocus && form.inputOnFocus]}
+          >
             <TextInput
-              style={page.textinput}
+              style={form.textinput}
               placeholderTextColor="grey"
               underlineColorAndroid = "transparent"
-              secureTextEntry={true}
+              secureTextEntry={ hidePass ? true : false}
               placeholder = "Masukkan Password"
               autoCapitalize = "none"
               onChangeText = {handlePassword}
               value={password}
+              onFocus={() => {setInputPassOnFocus (true)}}
+              onBlur={() => {setInputPassOnFocus (false)}}
+              on
             />
+            <TouchableOpacity
+          onPress={() => setHidePass(!hidePass)}
+          activeOpacity={1}
+          style={form.iconeye}
+          >
+              <IconEye/>
+          </TouchableOpacity>
           </View>
-          {/* <Text style={page.forgot}>Lupa Password?</Text> */}
+          <Text style={styles.forgot}>Lupa Password?</Text>
           <View/>
             {create ? (
               <></>
             ) : (
               <>
-                <View style={page.buttonbackground}>
-                  <TouchableOpacity style={page.button} onPress={() => signIn()}>
-                    <Text style={page.buttontext}>Masuk</Text>
+                <View style={button.buttonbackground}>
+                  <TouchableOpacity style={button.button} onPress={() => signIn()}>
+                    <Text style={button.buttontext}>Masuk</Text>
                   </TouchableOpacity>
                 </View>
-                <View style={page.centerline}>
-                    <View style={page.line}></View>
+                <View style={styles.centerline}>
+                    <View style={styles.line}></View>
                   </View>
-                  <View style={page.rowdaftar}>
-                    <Text style={{marginRight:8}}>Belum punya akun?</Text>
-                    <Text style={page.daftar} onPress={() => {navigation.navigate('SignUp')}}>Daftar</Text>
+                  <View style={styles.rowdaftar}>
+                    <Text style={styles.daftarleft}>Belum punya akun?</Text>
+                    <Text style={styles.daftar} onPress={() => {navigation.navigate('SignUp')}}>Daftar</Text>
                   </View>
               </>
             )
             }
-        </View>
         </View>
       </View>
     </ScrollView>
   )
 }
 
-const page = StyleSheet.create({
-  daftar:{
-    color:'#57B860',
-    fontWeight:'800',
-    textDecorationLine: 'underline',
-    fontSize:14
-  },
-  rowdaftar:{
-    flexDirection:'row',
+const modal = StyleSheet.create({
+    centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+    },
+    modalview:{
+        flexDirection:'column',
+        justifyContent:'space-around',
+        backgroundColor: "#fff",
+        borderRadius: 16,
+        width:'85%',
+        height:180,
+        shadowColor: 'rgba(0,0,0,0.25)',
+        elevation: 5,
+        borderColor:'#C4C4C4',
+        borderWidth: 1
+    },
+    primarybutton:{
+        // backgroundColor:'#57B860',
+        alignItems:'center',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 8,
+        width: 84,
+        alignSelf:'flex-end',
+        marginRight: 16
+    },
+    textbutton:{
+        fontFamily:'Mulish-Bold',
+        color: '#57B860',
+        fontSize: 16,
+    },
+    canceltext:{
+        fontFamily:'Mulish-Bold',
+        color: '#656565',
+        fontSize: 16
+    },
+    title:{
+        fontFamily:'Mulish-Bold',
+        fontSize: 20,
+        color:'#3d3d3d',
+        textAlign:'center',
+        width: '100%',
+        paddingHorizontal: 16,
+        textAlign:'left',
+        marginTop: 8
+    },
+    information:{
+        fontFamily:'Mulish-Regular',
+        fontSize: 14,
+        color:'#656565',
+        textAlign:'left',
+        paddingHorizontal: 16
+
+    }
+})
+
+const header = StyleSheet.create({
+  illustration:{
+    alignItems:'center',
     justifyContent:'center',
-    marginTop:'4%',
+    marginTop: 24,
   },
-  forgot:{
-    marginLeft: 8,
-    marginTop: 16,
-    fontWeight: '600'
+  judul:{
+    fontFamily:'Mulish-Bold',
+    color: '#4d4d4d',
+    fontSize: 24
   },
-  centerline:{
-    justifyContent:'space-around',
+  isijudul:{
+    fontSize: 16,
+    fontFamily:'Mulish-Regular',
+    marginTop: 8,
+    color: '#4d4d4d',
+    
+  },
+  wrapjudul:{
+    marginHorizontal: 24,
+    marginTop: 50,
+    flexDirection:'column'
+  },
+})
+
+const form = StyleSheet.create({
+  input: {
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: '#565656',
     flexDirection:'row',
-    marginTop: 32
-  },
-  line:{
-    width: "80%",
-    height: 1,
-    backgroundColor: 'grey',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    opacity: .5
+    justifyContent:'space-between',
+    backgroundColor:'#F9F9F9'
+      },
+  inputOnFocus: {
+    borderWidth: 1,
+    borderColor: '#57B860', 
+    backgroundColor:'#fff'
   },
   textinput:{
     paddingHorizontal: 16,
     fontFamily:'Mulish-Medium',
     color:'#565656',
-    fontSize: 14
+    fontSize: 14,
+    borderRadius: 8,
+    width: '100%'
   },
   texttitle:{
     marginTop: 16,
@@ -163,49 +274,19 @@ const page = StyleSheet.create({
     fontFamily: 'Mulish-Bold',
     color:'#565656'
   },
-  form:{
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#565656',
-  },
-  container:{
-    flex: 1,
-    backgroundColor:'#cfebfd'
-  },
-  upperside: {
-    paddingHorizontal:"8%",
-    alignItems: "flex-start",
-    justifyContent:'flex-start',
-  },
-  downside:{
-    paddingHorizontal: 24,
-    paddingTop: 24,
-    backgroundColor:'white',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
+  iconeye:{
     justifyContent:'center',
-    paddingBottom: '8%'
+    marginRight: 10,
+    right: 36
   },
-  text: {
-    color: "#4D4D4D",
-    fontSize: 18,
-    fontWeight: "400",
-    paddingEnd: "0%",
-    marginTop: "4%",
-    fontFamily:'Mulish-Regular'
-  },
+})
+
+const button = StyleSheet.create({
   buttontext:{
-    color:'white',
-    textAlign:'center',
-    fontSize: 16,
-    fontWeight:'800',
-    fontFamily:'Mulish-Bold'
-  },
-  title:{
-      paddingTop: "8%",
-      color:'#4D4D4D',
-      fontSize: 32,
+      color:'white',
       textAlign:'center',
+      fontSize: 16,
+      fontWeight:'800',
       fontFamily:'Mulish-Bold'
   },
   buttonbackground:{
@@ -236,14 +317,66 @@ const page = StyleSheet.create({
     borderTopStartRadius:8,
     borderBottomEndRadius:8
   },
-  logo:{
-      backgroundColor:'#57B860',
-      width: 240,
-      height:172,
-      justifyContent:'center',
-      alignItems:'center',
-      marginBottom: '10%'
-  }
+
+})
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+    backgroundColor:'#F4F4F4',
+  },
+  downside:{
+    paddingHorizontal: 24,
+    paddingTop: 24,
+    backgroundColor:'white',
+    justifyContent:'center',
+    paddingBottom: '8%',
+    borderTopStartRadius: 24,
+    borderTopEndRadius: 24,
+    paddingBottom: 100
+  },
+  forgot:{
+    marginLeft: 0,
+    marginTop: 16,
+    fontFamily: 'Mulish-Medium',
+    fontSize: 12,
+    color:'#565656',
+    alignSelf:'flex-end'
+  },
+  centerline:{
+    justifyContent:'space-around',
+    flexDirection:'row',
+    marginTop: 32
+  },
+  line:{
+    width: "80%",
+    height: 1,
+    backgroundColor: '#565656',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    opacity: .5
+  },
+  rowdaftar:{
+    flexDirection:'row',
+    justifyContent:'center',
+    marginTop:'4%',
+  },
+  daftar:{
+    color:'#57B860',
+    textDecorationLine: 'underline',
+    fontSize:14,
+    fontFamily: 'Mulish-Bold'
+  },
+  daftarleft:{
+    color:'#565656',
+    fontSize:14,
+    fontFamily:'Mulish-SemiBold',
+    marginRight: 8
+  },
 });
+
+const container = StyleSheet.create({
+
+})
 
 export default LoginScreen;

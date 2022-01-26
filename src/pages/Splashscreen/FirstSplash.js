@@ -21,6 +21,7 @@ const page = StyleSheet.create({
     padding: 24,
     alignItems: "center",
     justifyContent:'center',
+    backgroundColor:'white'
   },
   text: {
     color: "#fff",

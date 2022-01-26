@@ -1,242 +1,139 @@
-import React, { Component } from 'react';
-import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight} from 'react-native';
+import React, { Component, useEffect, useContext } from 'react';
+import {View,Text, StyleSheet, ScrollView, TouchableOpacity, TouchableHighlight, FlatList} from 'react-native';
 import Icon from 'react-native-ico';
-import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
-import IconEdit from '../../component/assets/icons/IconEdit';
-import IconTrash from '../../component/assets/icons/IconTrash';
-import Plusbutton from '../../component/assets/icons/Plus';
 import RightChevron from '../../component/assets/icons/RightChevron';
-import DetailHewan from './DetailHewan';
-import DetailHewanNav from './DetailHewanNav';
-import TambahPendataan from './TambahPendataan';
+import CardKomoditas from '../../component/CardKomoditas.js';
+import FloatingButton from '../../component/FloatingPlusButton.js';
+import Plusbutton from '../../component/assets/icons/Plus';
+import Katalog from '../../component/assets/icons/Katalog';
+import IconSapi from '../../component/assets/icons/Sapi';
+import SeeDetails from '../../component/assets/icons/IconSeeDetails';
 
-const DetailKomoditas = (props) =>{
+import HeaderPage from '../../component/HeaderPage.js';
+import { firebase } from '@react-native-firebase/firestore';
+import { LoginContext } from '../../utils/LoginProvider';
+import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
+
+
+const DetailKomoditas = (props) => {
 
     const {navigation} = props;
+        
+        const { user } = useContext(LoginContext);
+        const uid = firebase.auth().currentUser.uid;
+        const [komoditas, setKomoditas] = React.useState('');
+        const [loading, setLoading] = React.useState(true);
 
 
-    return(
-        <View  style={{flex:1, backgroundColor:'white'}}>
-            <View style={style.container}>
-                <TouchableOpacity 
-                    onPress={() => {navigation.goBack()}} 
-                    style={{padding:24}}>
-                        <ArrowBackWhite/>
-                </TouchableOpacity>
-                <Text style={style.header}>Detail Komoditas</Text>
-                <View style={style.icons}>
-                    <TouchableOpacity 
-                    onPress={() => {alert('edit pressed')}}
-                    style={style.margin}
+
+    useEffect(() => {
+        const KomoditasRef = firebase.firestore()
+        .collection('Komoditas')
+        .doc(KomoditasId)
+        .get()
+        // .where("userID", "==", user.uid)
+
+        // const KomoditasRef = firebase.firestore().collection('Komoditas')
+        .then()
+    },[]);
+
+    useEffect(() => {
+        const KomoditasRef = firebase.firestore().collection('Komoditas').doc(id).where("userID", "==", uid);
+        return KomoditasRef.onSnapshot( querySnapshot => {
+            const list = [];
+            querySnapshot.forEach(doc => {
+                const { alamat, jenis_komoditas, klasifikasi, luaslahan, luaslahandigunakan, rumpun_komoditas, UserID } = doc.data();
+                list.push({
+                    id: doc.id,
+                    alamat,
+                    jenis_komoditas,
+                    klasifikasi,
+                    luaslahan,
+                    luaslahandigunakan,
+                    rumpun_komoditas,
+                });
+            });
+
+            setKomoditas(list);
+
+            if(loading){
+                setLoading(false);
+            }
+    });
+    },[]);
+
+    
+    
+
+
+        return(
+                <View  style={{backgroundColor:'white', flex: 1}}>
+                    <View style={styles.container}>
+                        <TouchableOpacity 
+                        onPress={() => {navigation.goBack()}} 
+                        style={{padding:24}}>
+                            <ArrowBackWhite/>
+                        </TouchableOpacity>
+                        <Text style={styles.header}>DetailKomoditas</Text>
+                    </View>
+                        <View style={{height: '83.5%', backgroundColor:'white'}}>
+                            <FlatList
+                            style={card.flatlist}
+                            showsVerticalScrollIndicator={false}
+                            data={komoditas}
+                            fadingEdgeLength={50}
+                            renderItem={({item}) => (
+                                <View style={card.container}>
+                                    <TouchableOpacity
+                                    activeOpacity={1}
+                                    underlayColor="#fff"
+                                    onPress={() => {navigation.navigate('DetailKomoditas')}}
+                                    >
+                                    <View style={card.margin}>
+                                        <View style={card.leftside}>
+                                            <View style={card.photo}></View>
+                                            <View style={card.infokomoditas}>
+                                                <Text style={card.namakomoditas}>{item.jenis_komoditas}</Text>
+                                                <View style ={card.infokomoditas2}>
+                                                    <View>
+                                                        <Text style={card.subjudul}>Rumpun</Text>
+                                                        <Text style={card.infodetail}>{item.luaslahan}</Text>
+                                                    </View>
+                                                    <View>
+                                                        <Text style={card.subjudul}>Klasifikasi</Text>
+                                                        <Text style={card.infodetail}>{item.luaslahandigunakan}</Text>
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                                    <View
+                                    style={card.detail}
+                                    >
+                                    <SeeDetails/>
+                                    <Text style={card.detailtext}>Details</Text>
+                                    </View>
+                                    </TouchableOpacity>
+                                </View>
+                            )}
+                            keyExtractor={(item) => item.id}
+                            removeClippedSubviews={true}
+                            />
+                        </View>
+                    <TouchableOpacity
+                    style={fab.touchable }
+                    activeOpacity={0.7}
+                    onPress={() => {navigation.navigate('TambahPendataan')}}
                     >
-                        <IconEdit/>
+                        <View style={fab.icon}>
+                            <Plusbutton/>
+                        </View>
                     </TouchableOpacity>
-                    <TouchableOpacity 
-                    onPress={() => {alert('delete pressed')}} 
-                    >
-                        <IconTrash/>
-                    </TouchableOpacity>
                 </View>
-            </View>
-            <ScrollView>
-                <View style={text.row}>
-                    <View style={text.column}>
-                        <View style={text.content}>
-                            <Text style = {text.title}>Total Luas Lahan (m2)</Text>
-                            <Text style={text.isi}>160</Text>
-                        </View>
-                        <View style={text.content}>
-                            <Text style = {text.title}>Rumpun</Text>
-                            <Text style={text.isi}>Brahman</Text>
-                        </View>
-                    </View>
-                    <View style={text.column}>
-                        <View style={text.content}>
-                            <Text style = {text.title}>Luas Lahan Digunakan (m2)</Text>
-                            <Text style={text.isi}>160</Text>
-                        </View>
-                        <View style={text.content}>
-                            <Text style = {text.title}>Klasifikasi</Text>
-                            <Text style={text.isi}>Penggemukan</Text>
-                        </View>
-                    </View>
-                    <View style={text.column}>
-                        <View style={text.content}>
-                            <Text style = {text.title}>Total Hewan</Text>
-                            <Text style={text.isi}>3</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {navigation.navigate("DetailHewan")}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={card.judul}>Budi</Text>
-                                    <Text style={card.judul}>-</Text>
-                                    <Text style={card.judul}>001</Text>
-                                </View>
-                                <Text style={card.infodetail}>6 Tahun 0 Bulan 1 Hari </Text>
-                                <Text style={card.infodetail}>Jantan</Text>
-                            </View>
-                            <RightChevron/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert ('Detail Hewan')}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={card.judul}>Adi</Text>
-                                    <Text style={card.judul}>-</Text>
-                                    <Text style={card.judul}>002</Text>
-                                </View>
-                                <Text style={card.infodetail}>6 Tahun 0 Bulan 1 Hari </Text>
-                                <Text style={card.infodetail}>Jantan</Text>
-                            </View>
-                            <RightChevron/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-                <View style={card.container}>
-                    <TouchableHighlight 
-                    activeOpacity={0.5}
-                    underlayColor="#ECECEC"
-                    onPress={() => {alert ('Detail Hewan')}}
-                    >
-                        <View style={card.infokomoditas}>
-                            <View style={{flexDirection:'column'}}>
-                                <View style={{flexDirection:'row'}}>
-                                    <Text style={card.judul}>Putri</Text>
-                                    <Text style={card.judul}>-</Text>
-                                    <Text style={card.judul}>003</Text>
-                                </View>
-                                <Text style={card.infodetail}>6 Tahun 0 Bulan 1 Hari </Text>
-                                <Text style={card.infodetail}>Betina</Text>
-                            </View>
-                            <RightChevron/>
-                        </View>
-                    </TouchableHighlight>
-                </View>
-            </ScrollView>
-            <TouchableOpacity
-            style={styles.touchable}
-            onPress={() => {navigation.navigate(TambahPendataan)}}
-            >
-                <View style={styles.icon}>
-                    <Plusbutton/>
-                </View>
-            </TouchableOpacity>
-            
-        </View>
-    )
-}
+            )
+        }
 
 const styles = StyleSheet.create({
-    touchable:{
-        backgroundColor: "#57B860",
-        borderRadius: 100,
-        width: 48,
-        height: 48, 
-        position: 'absolute',
-        right: "4%",
-        bottom: "4%",
-    },
-    icon:{
-        margin:14
-    }
-})
-
-const card = StyleSheet.create({
-    container:{
-        flex:1,
-        backgroundColor:'#ECECEC',
-        marginHorizontal: '4%',
-        marginTop: 0,
-        marginBottom: 16,
-        borderRadius: 8,
-        height: 84,
-        maxHeight: 100,
-        justifyContent:'center'
-    },
-    margin:{
-        marginHorizontal:16,
-        flexDirection:'row',
-        justifyContent:'center',
-    },
-    leftside:{
-        flexDirection:'row',
-        backgroundColor:'red'
-    },
-    photo:{
-        height:68,
-        width:68,
-        backgroundColor:'grey',
-        borderRadius:8,
-    },
-    infokomoditas:{
-        justifyContent:'space-between',
-        marginHorizontal: 16,
-        flexDirection:'row',
-        alignItems:'center',
-
-    },
-    icon:{
-        alignItems:'center',
-        justifyContent:'center',
-    },
-    infodetail:{
-        fontSize:14,
-        color:'#626262',
-        marginVertical: 2
-    },
-    judul:{
-        fontSize: 16,
-        color:'#626262',
-        fontWeight: '700',
-        marginRight: 8
-    }
-
-})
-
-const text = StyleSheet.create({
-    title:{
-        color:'grey',
-        fontSize: 12,
-        justifyContent:'center'
-    },
-    isi:{
-        color:'#3B3E42',
-        fontSize: 14,
-        fontWeight:'600'
-    },
-    content:{
-        marginHorizontal:12,
-        marginVertical: 8
-    },
-    row:{
-        flexDirection:'row',
-        justifyContent:'center',
-        marginHorizontal:16
-    }, 
-    column:{
-        flexDirection:'column',
-        justifyContent:'flex-start',
-        marginVertical:12,
-    }
-
-})
-
-const style = StyleSheet.create({
     container:{
         width:'100%',
         right: 0,
@@ -245,7 +142,8 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems:'center',
         justifyContent:'space-between',
-        backgroundColor:'#57B860'
+        backgroundColor:'#57B860',
+        
     },
     header:{
         marginTop:16,
@@ -253,14 +151,127 @@ const style = StyleSheet.create({
         fontFamily:'Mulish-Bold',
         color:'white',
         marginBottom:16,
+        flex: 1,
         textAlign:'center',
+        marginRight: 72,
     },
-    icons:{
-        flexDirection:'row',
-        paddingRight:16,
+    margins:{
+        height: 24,
+        width:24,
+        marginLeft: 24,
+        marginTop:16
+    },
+    Text:{
+        marginTop:16,
+        fontSize: 20,
+        fontFamily:'Mulish-Bold',
+        color:'white'
+    },
+    inside:{
+        height: 24,
+        width:24,
+        marginRight: 24,
+        marginTop:16
+    }
+
+})
+
+const card = StyleSheet.create({
+    container:{
+        backgroundColor:'#fff',
+        marginHorizontal: 16,
+        top: 4,
+        bottom: 4,
+        marginTop: 8,
+        marginBottom: 16,
+        borderRadius: 8,
+        height: 140,
+        justifyContent:'center',
+        borderColor: '#DDDDFF',
+        borderWidth: 1,
+        elevation: 2
     },
     margin:{
-        marginRight:16
+        marginHorizontal:16,
+        marginVertical: 8,
+        flexDirection:'row',
+        justifyContent:'center',
+    },
+    leftside:{
+        flexDirection:'row',
+    },
+    photo:{
+        height:68,
+        width:68,
+        backgroundColor:'#57B860',
+        borderRadius:8
+    
+    },
+    infokomoditas:{
+        paddingLeft:'4%',
+        justifyContent:'space-between',
+        width: '78%'
+    },
+    infokomoditas2:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+    },
+    detail:{
+        justifyContent:'flex-end',
+        alignSelf:'flex-end',
+        flexDirection:'row',
+        alignItems:'center',
+        marginTop: 16,
+        marginRight: 16,
+    },
+    icon:{
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    subjudul:{
+        fontSize:12,
+        fontWeight:'normal',
+        marginBottom: 2,
+        color:'#959595',
+        fontFamily:'Mulish-SemiBold'
+    },
+    infodetail:{
+        fontSize:14,
+        fontFamily:'Mulish-SemiBold',
+        color:'#3c3c3c'
+    },
+    namakomoditas:{
+        fontSize: 16,
+        fontFamily:'Mulish-Bold',
+        color:'#565656'
+    },
+    detailtext:{
+        fontFamily:'Mulish-Bold',
+        fontSize: 12,
+        color: '#565656',
+        marginLeft: 8
+    },
+    flatlist:{
+        // flex: 1,
+        flexGrow: 1,
+        height: '100%',
+
+    }
+})
+
+const fab = StyleSheet.create({
+    touchable:{
+        backgroundColor: '#57B860',
+        borderRadius: 100,
+        width: 56,
+        height: 56,
+        position: 'absolute',
+        right: "4%",
+        bottom: "4%",
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    icon:{
     }
 })
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   View,
   StyleSheet,
@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   Platform,
   ToastAndroid,
-  Alert
+  Alert,
+  Modal
 } from 'react-native';
 import FirebaseUtil from "../../utils/FirebaseUtil";
 import firestore from '@react-native-firebase/firestore';
@@ -16,56 +17,22 @@ import { RadioButton } from 'react-native-paper';
 import ArrowBack from "../../component/assets/icons/ArrowBack";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CalendarIcon from "../../component/assets/icons/CalendarIcon";
+import IconEye from "../../component/assets/icons/IconEye";
 
 const HalamanDaftar = props => {
     const {navigation} = props;
-
-    const handleEmail = (text) => {
-      setEmail(text)
-    }
-
-    const handlePassword = (text) => {
-      setPassword(text)
-    }
-
-    const [date, setDate] = React.useState(new Date());
-    const [mode, setMode] = React.useState('date');
-    const [show, setShow] = React.useState(false);
-    const [text, setText] = React.useState('DD/MM/YY');
-      
-      const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'ios');
-      
-      setDate(currentDate);
-
-      let tempDate = new Date(currentDate);
-      let fDate = tempdate.getDate() + '/' + (tempDate.getMonth() +1 ) + '/' + tempDate.getFullYear();
-      setText(fDate)
-      console.log(fDate)
-    };
-
-    const showMode = (currentMode) => {
-      setShow(true);
-      setMode(currentMode);
-    };
-
     const [create, setCreate] = React.useState('');
     const [namapengguna, setNamaPengguna] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-
-
-    let errorFlag = false;
+    const [hidePass, setHidePass] = React.useState(true);
+    const [inputEmailOnFocus, setInputEmailOnFocus] = useState(false);
+    const [inputPassOnFocus, setInputPassOnFocus] = useState(false);
+    const [inputNameOnFocus, setInputNameOnFocus] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [userid, setUserId] = React.useState('');
 
     const signUp = () => {
-      // firestore()
-      //       .collection('User')
-      //       .add({
-      //           namapengguna: namapengguna,
-      //           email: email,
-      //           password: password
-      // });
       if(!email && !password){
           ToastAndroid.show("Data belum terisi semua", 3000);
           return;
@@ -85,10 +52,11 @@ const HalamanDaftar = props => {
        if(!email){
             ToastAndroid.show("email tidak boleh kosong", 3000);
             return;
-       }else{
+       }
+       else{
             FirebaseUtil.signUp(email, password).catch((e) => {
             console.log(e);
-            Alert.alert('Terjadi Kesalahan','Email sudah terdaftar atau salah penulisan, silakan periksa ulang.', [{text: 'OK'}] );
+            setModalVisible(!modalVisible)
             return;
       });
        }
@@ -96,6 +64,27 @@ const HalamanDaftar = props => {
   
   return (
     <View>
+      <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            
+            >
+                <View style={[[modal.centeredView, modalVisible ? {backgroundColor: 'rgba(0,0,0,0.5)'} : '']]}>
+                    <View style={modal.modalview}>
+                        <Text style={modal.title}>Terjadi Kesalahan..</Text>
+                        <Text style={modal.information}>Email sudah terdaftar atau salah penulisan, silakan periksa ulang.</Text>
+                          <TouchableOpacity 
+                        style={modal.primarybutton}
+                        onPress={() => setModalVisible(!modalVisible)}
+                        >
+                            <Text style={modal.textbutton}>Oke</Text>
+                        </TouchableOpacity>
+                        
+                    </View>
+                </View>
+
+            </Modal>
       <View style={{padding:24, backgroundColor:'#fff'}}>
         <TouchableOpacity 
         onPress={() => {navigation.goBack()}} 
@@ -110,124 +99,64 @@ const HalamanDaftar = props => {
             <Text style={page.title}>Halaman Daftar</Text>
             <Text style={page.text}>Masukan identitas Anda dengan benar agar kami dapat mengenal Anda lebih baik.</Text>
           </View>
-        <Text style={page.texttitle}>Nama Pengguna</Text>
-        <View style={page.form}>
+        <Text style={form.texttitle}>Nama Pengguna</Text>
+        <View style={[form.input, inputNameOnFocus && form.inputOnFocus]}>
           <TextInput
-            style={page.textinput}
+            style={form.textinput}
             underlineColorAndroid = "transparent"
             placeholder = "Masukkan Nama Anda"
             onChangeText={(itemValue, itemIndex) => setNamaPengguna(itemValue)}
             value={namapengguna}
             autoCapitalize = "words"
             maxLength={20}
+            onFocus={() => {setInputNameOnFocus (true)}}
+            onBlur={() => {setInputNameOnFocus (false)}}
           />
         </View>
-        <Text style={page.texttitle}>Email</Text>
-          <View style={page.form}>
+        <Text style={form.texttitle}>Email</Text>
+          <View style={[form.input, inputEmailOnFocus && form.inputOnFocus]}>
             <TextInput
-              style={page.textinput}
+              style={form.textinput}
               underlineColorAndroid = "transparent"
               placeholder = "Contoh: Budi@gmail.com"
               autoCapitalize = "none"
               onChangeText = {(itemValue, itemIndex) => setEmail(itemValue)}
               value={email}
               maxLength={30}
-              
+              onFocus={() => {setInputEmailOnFocus (true)}}
+              onBlur={() => {setInputEmailOnFocus (false)}}
             />
           </View>
-        <Text style={page.texttitle}>Password</Text>
-        <View style={page.form}>
+        <Text style={form.texttitle}>Password</Text>
+        <View style={[form.input, inputPassOnFocus && form.inputOnFocus]}>
           <TextInput
-            style={page.textinput}
+              style={form.textinput}
               underlineColorAndroid = "transparent"
-              secureTextEntry={true}
+              secureTextEntry={ hidePass ? true : false}
               placeholder = "Masukkan Password"
               autoCapitalize = "none"
               onChangeText = {(itemValue, itemIndex) => setPassword(itemValue)}
               value={password}
               maxLength={20}
-
+              onFocus={() => {setInputPassOnFocus (true)}}
+              onBlur={() => {setInputPassOnFocus (false)}}
           />
-        </View>
-        {/* <Text style={page.texttitle}>Tanggal Lahir</Text>
-        <View>
-      <View style={page.form}>
-        <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
-        <Text style={page.textinput2}>{text}</Text>
-            <TouchableOpacity onPress={() => showMode('date')} title="" style={{marginRight:8}}>
-              <CalendarIcon/>
-            </TouchableOpacity>
-            {show && (
-              <DateTimePicker
-                testID="dateTimePicker"
-                value={date}
-                mode={mode}
-                is24Hour={true}
-                display="spinner"
-                onChange={onChange}
-              />
-            )}
-      </View>
-      </View>
-    </View>
-        <Text style={page.texttitle}>Nomor Telepon</Text>
-        <View style={page.form}>
-          <TextInput
-            style={page.textinput}
-            underlineColorAndroid = "transparent"
-            placeholder = "Masukkan Nomor Telepon"
-            autoCapitalize = "none"
-            keyboardType="number-pad"
-          />
-        </View>
-        <Text style={page.texttitle}>Jenis Kelamin</Text>
-        <View style={page.radio}>
-          <View style={page.align}>
-            <RadioButton
-            value="first"
-            status={ checked === 'first' ? 'checked' : 'unchecked' }
-            onPress={() => setChecked('first')}
-            color="#57B860"
-            />
-            <Text>Laki - Laki</Text>
-          </View>
-          <View style={page.align2}>
-            <RadioButton
-              value="second"
-              status={ checked === 'second' ? 'checked' : 'unchecked' }
-              onPress={() => setChecked('second')}
-              color="#57B860"
-            />
-            <Text>Perempuan</Text>          
-          </View>
-        </View>
-        <Text style={page.texttitle}>Alamat Rumah</Text>
-        <View style={page.form}>
-          <TextInput
-            style={page.textinput}
-            underlineColorAndroid = "transparent"
-            placeholder = "Alamat Rumah Anda"
-            autoCapitalize = "none"
-            onChangeText = {handleEmail}
-          />
-        </View>
-        <Text style={page.texttitle}>Upload Foto Profil</Text>
-        <View style={page.form}>
-          <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-between'}}>
-            <View style={page.textinput2}>
-              <Text style={{color: 'grey'}}>Upload Foto</Text>
-            </View>
-          <TouchableOpacity style={{marginRight:8, backgroundColor:'#57B860', padding:8, borderRadius:4}}>
-            <Text style={{color:'white', fontWeight:'600'}}>Upload</Text>
+          <TouchableOpacity
+          onPress={() => setHidePass(!hidePass)}
+          activeOpacity={1}
+          style={form.iconeye}
+          >
+              <IconEye/>
           </TouchableOpacity>
-          </View>
-        </View> */}
+        </View>
         {create ? (
               <></>
             ) : (
               <>
                 <View style={page.buttonbackground}>
-                  <TouchableOpacity style={page.button} onPress={() => signUp()}>
+                  <TouchableOpacity style={page.button} onPress={() => {
+                    signUp()
+                  }}>
                     <Text style={page.buttontext}>Daftar</Text>
                   </TouchableOpacity>
                 </View>
@@ -242,10 +171,133 @@ const HalamanDaftar = props => {
   )
 }
 
+const modal = StyleSheet.create({
+    centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+    },
+    modalview:{
+        flexDirection:'column',
+        justifyContent:'space-around',
+        backgroundColor: "#fff",
+        borderRadius: 16,
+        width:'85%',
+        height:180,
+        shadowColor: 'rgba(0,0,0,0.25)',
+        elevation: 5,
+        borderColor:'#C4C4C4',
+        borderWidth: 1
+    },
+    primarybutton:{
+        // backgroundColor:'#57B860',
+        alignItems:'center',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 8,
+        width: 84,
+        alignSelf:'flex-end',
+        marginRight: 16
+    },
+    textbutton:{
+        fontFamily:'Mulish-Bold',
+        color: '#57B860',
+        fontSize: 16,
+    },
+    canceltext:{
+        fontFamily:'Mulish-Bold',
+        color: '#656565',
+        fontSize: 16
+    },
+    title:{
+        fontFamily:'Mulish-Bold',
+        fontSize: 20,
+        color:'#3d3d3d',
+        textAlign:'center',
+        width: '100%',
+        paddingHorizontal: 16,
+        textAlign:'left',
+        marginTop: 8
+    },
+    information:{
+        fontFamily:'Mulish-Regular',
+        fontSize: 14,
+        color:'#656565',
+        textAlign:'left',
+        paddingHorizontal: 16
+
+    }
+})
+
+const header = StyleSheet.create({
+  illustration:{
+    alignItems:'center',
+    justifyContent:'center',
+    marginTop: 24,
+  },
+  judul:{
+    fontFamily:'Mulish-Bold',
+    color: '#4d4d4d',
+    fontSize: 24
+  },
+  isijudul:{
+    fontSize: 16,
+    fontFamily:'Mulish-Regular',
+    marginTop: 8,
+    color: '#4d4d4d',
+    
+  },
+  wrapjudul:{
+    marginHorizontal: 24,
+    marginTop: 50,
+    flexDirection:'column'
+  },
+})
+
+const form = StyleSheet.create({
+  input: {
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: '#565656',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    backgroundColor:'#F9F9F9'
+      },
+  inputOnFocus: {
+    borderWidth: 1,
+    borderColor: '#57B860',
+    backgroundColor:'#fff'
+  },
+  textinput:{
+    paddingHorizontal: 16,
+    fontFamily:'Mulish-Medium',
+    color:'#565656',
+    fontSize: 14,
+    borderRadius: 8,
+    width: '100%'
+  },
+  texttitle:{
+    marginTop: 16,
+    fontSize: 16,
+    marginBottom:"4%",
+    fontFamily: 'Mulish-Bold',
+    color:'#565656'
+  },
+  iconeye:{
+    justifyContent:'center',
+    marginRight: 10,
+    right: 36
+  },
+})
+
 const page = StyleSheet.create({
   align:{
     flexDirection:'row',
     alignItems:'center'
+  },
+  iconeye:{
+    justifyContent:'center',
+    marginRight: 8
   },
   align2:{
     flexDirection:'row',
@@ -302,6 +354,8 @@ const page = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#565656',
+    flexDirection:'row',
+    justifyContent:'space-between'
   },
   container:{
     backgroundColor:'#3F3D56',

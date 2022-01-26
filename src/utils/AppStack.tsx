@@ -26,6 +26,8 @@ import HalamanProfil from '../pages/Pengaturan/HalamanProfil';
 import TambahKomoditas from'../pages/Komoditas/TambahKomoditas';
 import LoadingScreenHome from '../pages/Beranda/LoadingScreenHome';
 import CardTest from '../component/Cardtest';
+import TambahPendataan from '../pages/Komoditas/TambahPendataan';
+import EditKomoditas from '../pages/Komoditas/EditKomoditas';
 
 const Stack = createStackNavigator();
 
@@ -81,6 +83,8 @@ function Container() {
               {/* Subhalaman di Halaman Komoditas */}
               <Stack.Screen name="TambahKomoditas" component={TambahKomoditas}/>
               <Stack.Screen name="DetailKomoditas" component={DetailKomoditas}/>
+              <Stack.Screen name="EditKomoditas" component={EditKomoditas}/>
+              <Stack.Screen name="TambahPendataan" component={TambahPendataan}/>
               <Stack.Screen name="DetailHewan" component={DetailHewan}/>
               <Stack.Screen name="DetailPengukuran" component={DetailPengukuran}/>
 

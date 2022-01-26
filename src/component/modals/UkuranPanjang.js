@@ -1,91 +1,91 @@
-import React, { useState } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    TouchableOpacity,
-    Modal,
-} from "react-native";
-import Icon from 'react-native-ico';
-import JenisKomoditasPicker from '../../component/modalpicker/JenisKomoditasPicker';
-import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
-import UkuranPanjangPicker from '../modalpicker/UkuranPanjangPicker';
-import Dropdown from '../assets/icons/IconDropdown';
+// import React, { useState } from 'react';
+// import {
+//     StyleSheet,
+//     Text,
+//     View,
+//     TouchableOpacity,
+//     Modal,
+// } from "react-native";
+// import Icon from 'react-native-ico';
+// import JenisKomoditasPicker from '../../component/modalpicker/JenisKomoditasPicker';
+// import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
+// import UkuranPanjangPicker from '../modalpicker/UkuranPanjangPicker';
+// import Dropdown from '../assets/icons/IconDropdown';
 
-const UkuranPanjang = (props) =>{
+// const UkuranPanjang = (props) =>{
 
-    const {navigation} = props;
-    const[chooseData, setchooseData] = useState('- m2 -');
-    const[isModalVisible, setisModalVisible] = useState(false);
-    const changeModalVisibility = (bool) => {
-       setisModalVisible(bool)
-    }
+//     const {navigation} = props;
+//     const[chooseData, setchooseData] = useState('- m2 -');
+//     const[isModalVisible, setisModalVisible] = useState(false);
+//     const changeModalVisibility = (bool) => {
+//        setisModalVisible(bool)
+//     }
 
-    const setData = (option) => {
-        setchooseData(option)
-    }
+//     const setData = (option) => {
+//         setchooseData(option)
+//     }
 
-    return(
-                <View style={modalstyle.container}>
-                    <Text style={modalstyle.judul}></Text>
-                    <TouchableOpacity
-                    style={modalstyle.touchableopacity}
-                    onPress= {() => changeModalVisibility(true)}
-                    >
-                        <View style={{flexDirection:'row', alignItems:'center', width:'100%', justifyContent:'space-between'}}>
-                            <Text style={modalstyle.text}>{chooseData}</Text>
-                            <Dropdown/>
-                        </View>
-                        <View style={modalstyle.line}></View>
-                    </TouchableOpacity>
-                    <Modal
-                    transparent={true}
-                    animationType='fade'
-                    visible={isModalVisible}
-                    nRequestClose={() => changeModalVisibility(false) }
-                    >
-                        <UkuranPanjangPicker
-                        changeModalVisibility={changeModalVisibility}
-                        setData={setData}
-                        />
-                    </Modal>
-                </View>
-    )
-}
+//     return(
+//                 <View style={modalstyle.container}>
+//                     <Text style={modalstyle.judul}></Text>
+//                     <TouchableOpacity
+//                     style={modalstyle.touchableopacity}
+//                     onPress= {() => changeModalVisibility(true)}
+//                     >
+//                         <View style={{flexDirection:'row', alignItems:'center', width:'100%', justifyContent:'space-between'}}>
+//                             <Text style={modalstyle.text}>{chooseData}</Text>
+//                             <Dropdown/>
+//                         </View>
+//                         <View style={modalstyle.line}></View>
+//                     </TouchableOpacity>
+//                     <Modal
+//                     transparent={true}
+//                     animationType='fade'
+//                     visible={isModalVisible}
+//                     nRequestClose={() => changeModalVisibility(false) }
+//                     >
+//                         <UkuranPanjangPicker
+//                         changeModalVisibility={changeModalVisibility}
+//                         setData={setData}
+//                         />
+//                     </Modal>
+//                 </View>
+//     )
+// }
 
-const modalstyle = StyleSheet.create({
-    container:{
-        flex:0.5,
-        paddingHorizontal:20,
-        paddingVertical: 16,
-    },
-    text:{
-        marginVertical:20,
-        fontSize: 16,
-        color:'#000',
-    },
-    touchableopacity:{
-        alignItems:'center',
-        justifyContent: 'center',
-        alignSelf:'stretch',
-        paddingHorizontal: 8,
-    },
-    icon:{
-        width:16,
-        height:16,
-    },
-    judul:{
-        fontSize:14,
-    },
-    line:{
-    width: "100%",
-    height: 1,
-    backgroundColor: 'grey',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    opacity: .5
-  }
+// const modalstyle = StyleSheet.create({
+//     container:{
+//         flex:0.5,
+//         paddingHorizontal:20,
+//         paddingVertical: 16,
+//     },
+//     text:{
+//         marginVertical:20,
+//         fontSize: 16,
+//         color:'#000',
+//     },
+//     touchableopacity:{
+//         alignItems:'center',
+//         justifyContent: 'center',
+//         alignSelf:'stretch',
+//         paddingHorizontal: 8,
+//     },
+//     icon:{
+//         width:16,
+//         height:16,
+//     },
+//     judul:{
+//         fontSize:14,
+//     },
+//     line:{
+//     width: "100%",
+//     height: 1,
+//     backgroundColor: 'grey',
+//     flexDirection: 'row',
+//     justifyContent: 'center',
+//     opacity: .5
+//   }
 
-})
+// })
 
-export default UkuranPanjang;
+// export default UkuranPanjang;

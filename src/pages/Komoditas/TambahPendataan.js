@@ -1,64 +1,359 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     StyleSheet,
     Text,
     View,
     TouchableOpacity,
     ScrollView,
-    Modal,
-    SafeAreaView
+    TextInput,
+    Alert,
+    ToastAndroid,
+    Modal
 } from "react-native";
-import Icon from 'react-native-ico';
-import ModalPicker from '../../component/modalpicker/JenisKomoditasPicker';
-import UselessTextInputMultiline from '../../component/modals/AlamatPeternakan';
-import AlamatPeternakan from '../../component/modals/AlamatPeternakan';
-import JenisKomoditas from '../../component/modals/JenisKomoditas';
-import RumpunSapi from '../../component/modals/RumpunSapi';
-import Klasifikasi from '../../component/modals/Klasifikasi';
-import TextInputNamaHewan from '../../component/modals/NamaHewan';
-import TextInputKodeHewan from '../../component/modals/KodeHewan';
-import SistemPemeliharaan from '../../component/modals/SistemPemeliharaan';
-import JenisKelamin from '../../component/modals/JenisKelamin';
-import Example from '../../component/CalenderPicker';
-import JenisKelahiran from '../../component/modals/JenisKelahiran';
-import AsalSapi from '../../component/modals/AsalSapi';
+
+import { RadioButton } from 'react-native-paper';
+
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
+import {Picker} from '@react-native-picker/picker';
+import firestore from '@react-native-firebase/firestore';
+import { LoginContext } from '../../utils/LoginProvider';
+
 
 
 const TambahPendataan = (props) =>{
-
+    
+    const { user } = useContext(LoginContext);
     const {navigation} = props;
+    const [jenis_komoditas, setJenisKomoditas] = React.useState();
+    const [rumpun, setRumpun] = React.useState();
+    const [klasifikasi, setKlasifikasi] = React.useState();
+    const [alamat, setAlamat] = React.useState('');
+    const [namahewan, setNamaHewan] = React.useState('');
+    
+    const [kodehewan, setKodeHewan] = React.useState('');
+    const [luaslahandigunakan, setLuasLahanDigunakan] = React.useState('');
+    const [checked, setChecked] = React.useState('first');
+    const [shouldShowKambing, setShouldShowKambing] = React.useState(false);
+    const [shouldShowSapi, setShouldShowSapi] = React.useState(false);
+    const [shouldShowSimpan1, setShouldShowSimpan1] = React.useState(false);
+    const [shouldShowSimpan2, setShouldShowSimpan2] = React.useState(false);
+    const [shouldShowSimpan3, setShouldShowSimpan3] = React.useState(false);
+    const [NHonfocus, setNHOnFocus] = useState(false);
+    const [KHonfocus, setKHOnFocus] = useState(false);
+    const [lahandigunakanonfocus, setLahanDigunakanOnFocus] = useState(false);
+
+
+
+
+
+
+
+
+
+    const AddData = () =>{
+        if(!luaslahandigunakan || !luaslahan || !alamat || !rumpun || !klasifikasi){
+            ToastAndroid.show("Data belum terisi semua", 3000);
+            return;
+        }
+        if(!alamat){
+            ToastAndroid.show("Alamat tidak boleh kosong", 3000);
+            return;
+        }
+        if(!rumpun){
+            ToastAndroid.show("Rumpun tidak boleh kosong", 3000);
+            return;
+        }
+        if(!klasifikasi){
+            ToastAndroid.show("Klasifikasi tidak boleh kosong", 3000);
+            return;
+        }
+        if(!luaslahan){
+            ToastAndroid.show("Luas Lahan belum terisi", 3000);
+            return;
+        }if(!luaslahandigunakan){
+            ToastAndroid.show("Luas Lahan Digunakan belum terisi", 3000);
+            return;
+        }
+        else{
+            firestore()
+            .collection('Komoditas')
+            .add({
+                jenis_komoditas: jenis_komoditas,
+                rumpun_komoditas: rumpun,
+                klasifikasi: klasifikasi,
+                alamat: alamat,
+                luaslahan: luaslahan,
+                luaslahandigunakan: luaslahandigunakan,
+                userID: user.uid,
+            })
+            console.log('Komoditas berhasil ditambahkan!');
+            Alert.alert("Komoditas Ditambahkan" ,"Berhasil menambahkan komoditas!",[{text: 'Tutup', onPress:() => navigation.navigate('HalamanKomoditas')}]);
+
+        }
+    }
+
+    const setData = () =>{
+        firestore()
+        .collection('Komoditas')
+        .doc('ExbqfwJlzvcwRdwnA1qZ')
+        .set({
+            jenis_komoditas: 'Sapi',
+            rumpun_komoditas: 'Belgian Blue 2',
+            klasifikasi: 'Penggemukan 2',
+        })
+        .then(() => {
+            console.log('Komoditas Berhasil di edit');
+            alert('Edit', 'Komoditas berhasil diedit', 'tutup');
+            navigation.navigate('HalamanKomoditas');
+        });
+    }
+
+    const removeData = () =>{
+        firestore()
+        .collection('Komoditas')
+        .doc('ExbqfwJlzvcwRdwnA1qZ')
+        .delete()
+        .then(() => {
+            console.log('Komoditas berhasil dihapus!');
+            alert('Komoditas berhasil dihapus');
+            navigation.navigate('HalamanKomoditas');
+        });
+    }
+
     return(
-        <View  style={{flex:1, backgroundColor:'white'}}>
+        <View  style={{flex:1, backgroundColor:'#F9F9F9'}}>
             <View style={style.container}>
                 <TouchableOpacity 
                 onPress={() => {navigation.goBack()}} 
                 style={{padding:24}}>
                     <ArrowBackWhite/>
                 </TouchableOpacity>
-                <Text style={style.header}>Tambah Pendataan Hewan</Text>
-                <View style={{height: 24, width:24, marginRight: 24, marginTop:16}}></View>
+                <Text style={style.header}>Tambah Pendataan</Text>
             </View>
             <ScrollView>
-                <View style={{marginTop:16}}></View>
-                    <TextInputNamaHewan/>
-                    <TextInputKodeHewan/>
-                    <SistemPemeliharaan/>
-                    <JenisKelamin/>
-                    <JenisKelahiran/>
-                    <AsalSapi/>
+                <View style={{marginTop: 24}}></View>
+                <Text style={style.judul}>Jenis Komoditas</Text>
+                <View style={style.form}>
+                    <Picker
+                    selectedValue={jenis_komoditas}
+                    onValueChange={(itemValue, itemIndex) => {
+                        if(jenis_komoditas == 'Sapi'){ 
+                            setShouldShowKambing(!shouldShowKambing);
+                            setShouldShowSapi(shouldShowSapi);
+
+                        }if(jenis_komoditas == null){
+                            setShouldShowSapi(!shouldShowSapi);
+                        }
+                        else
+                        { 
+                            setShouldShowKambing(!shouldShowKambing);
+                            setShouldShowSapi(!shouldShowSapi);
+
+                    }
+                        setJenisKomoditas(itemValue);
+                    }}
+                    
+                    mode="dialog"
+                    style={style.picker}
+                    >
+                        <Picker.Item enabled={false} label="- Pilih Jenis Komoditas -" value="Pilih_JK" color="#565656" />
+                        <Picker.Item label="Sapi" value="Sapi" color="#DDDDD"/>
+                        <Picker.Item label="Domba/Kambing" value="Domba/Kambing" color="#DDDDD"/>
+                    </Picker>
+                </View>
+                {shouldShowKambing ? (
+                    <View>
+                        <Text style={style.judul}>Rumpun Hewan</Text>
+                        <View style={style.form}>
+                            <Picker
+                            selectedValue={rumpun}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setRumpun(itemValue);
+                                setShouldShowSimpan1(!shouldShowSimpan1);
+                            }}
+                            mode="dialog"
+                            style={style.picker}>
+                                <Picker.Item enabled={false} label="- Pilih Rumpun -" value="Pilih_R" color="#565656" />
+                                <Picker.Item label="Marica" value="Marica" color="#DDDDD"/>
+                                <Picker.Item label="Peranakan Etawah (PE)" value="PE" color="#DDDDD"/>
+                                <Picker.Item label="Kacang" value="Kacang" color="#DDDDD"/>
+                                <Picker.Item label="Saanen" value="Saanen" color="#DDDDD"/>
+                                <Picker.Item label="Alpina" value="Alpina" color="#DDDDD"/>
+                                <Picker.Item label="Boer" value="Boer" color="#DDDDD"/>
+                                <Picker.Item label="Garut" value="Garut" color="#DDDDD"/>
+                                <Picker.Item label="Palu" value="Palu" color="#DDDDD"/>
+                            </Picker>
+                        </View>
+                    </View>
+
+                ) : null }
+                {shouldShowSapi ? (
+                    <View>
+                        <Text style={style.judul}>Rumpun Hewan</Text>
+                        <View style={style.form}>
+                            <Picker
+                            selectedValue={rumpun}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setRumpun(itemValue);
+                                setRumpun(itemValue);
+                                setShouldShowSimpan2(!shouldShowSimpan2);
+                            }}
+                            mode="dialog"
+                            style={style.picker}>
+                                <Picker.Item enabled={false} label="- Pilih Rumpun -" value="Pilih_R" color="#565656" />
+                                <Picker.Item label="Brahman" value="Brahman" color="#DDDDD"/>
+                                <Picker.Item label="Simmental" value="Simmental" color="#DDDDD"/>
+                                <Picker.Item label="Limousin" value="Limousin" color="#DDDDD"/>
+                                <Picker.Item label="Black Limousin" value="Black Limousin" color="#DDDDD"/>
+                                <Picker.Item label="Wagyu" value="Wagyu" color="#DDDDD"/>
+                                <Picker.Item label="Belgian Blue" value="Belgian Blue" color="#DDDDD"/>
+                                <Picker.Item label="Madura" value="Madura" color="#DDDDD"/>
+                                <Picker.Item label="Aceh" value="Aceh" color="#DDDDD"/>
+                                <Picker.Item label="Bali" value="Bali" color="#DDDDD"/>
+                                <Picker.Item label="Pasundan" value="Pasundan" color="#DDDDD"/>
+                            </Picker>
+                        </View>
+                    </View>
+
+                ) : null } 
+                <Text style={style.judul}>Klasifikasi</Text>
+                <View style={style.form}>
+                    <Picker
+                    selectedValue={klasifikasi}
+                    onValueChange={(itemValue, itemIndex) => {
+                        setKlasifikasi(itemValue);
+                        setShouldShowSimpan3(!shouldShowSimpan3);
+                    }}
+                    mode="dialog"
+                    style={style.picker}>
+                        <Picker.Item enabled={false} label="- Pilih Klasifikasi -" value="Pilih_K" color="#565656" />
+                        <Picker.Item label="Penggemukan" value="Penggemukan" color="#DDDDD"/>
+                        <Picker.Item label="Potong" value="Potong" color="#DDDDD"/>
+                        <Picker.Item label="Perah" value="Perah" color="#DDDDD"/>
+                    </Picker>
+                </View>
+                <Text style={style.judul}>Nama Hewan</Text>
+                <View style={[form.input, NHonfocus && form.inputOnFocus]}
+                    >
+                    <TextInput
+                        
+                        style={form.textinput}
+                        underlineColorAndroid = "transparent"
+                        placeholderTextColor="grey"
+                        placeholder = "Nama Hewan..."
+                        multiline={false}
+                        value={namahewan}
+                        onChangeText={(itemValue, itemIndex) => setNamaHewan(itemValue)}
+                        maxLength={20}
+                        autoCapitalize = "words"
+                        onFocus={() => {setNHOnFocus (true)}}
+                        onBlur={() => {setNHOnFocus (false)}}
+
+                    />
+                </View>
+                <Text style={style.judul}>Kode Hewan/Nomor Eartag </Text>
+                <View  style={[form.input, KHonfocus && form.inputOnFocus]}>
+                    <TextInput
+                        style={form.textinput}
+                        keyboardType='numeric'
+                        underlineColorAndroid = "transparent"
+                        placeholderTextColor="grey"
+                        placeholder = "1"
+                        onChangeText={(itemValue, itemIndex) => setKodeHewan(itemValue)}
+                        value={kodehewan}
+                        maxLength={6}
+                        onFocus={() => {setKHOnFocus (true)}}
+                        onBlur={() => {setKHOnFocus (false)}}
+                    />
+                </View>
+                <Text style={style.judul}>Luas Lahan Digunakan (m2) </Text>
+                <View style={[form.input, lahandigunakanonfocus && form.inputOnFocus]}>
+                    <TextInput
+                        style={form.textinput}
+                        keyboardType='numeric'
+                        underlineColorAndroid = "transparent"
+                        placeholderTextColor="grey"
+                        placeholder = "1"
+                        onChangeText={(itemValue, itemIndex) => setLuasLahanDigunakan(itemValue)}
+                        value={luaslahandigunakan}
+                        onFocus={() => {setLahanDigunakanOnFocus (true)}}
+                        onBlur={() => {setLahanDigunakanOnFocus (false)}}
+                    />
+                </View>
+                {shouldShowSapi && shouldShowSimpan1 && shouldShowSimpan3 ? (
                     <View style={style.buttonbackground}>
-                        <TouchableOpacity
-                        style={style.button}
-                        onPress={() => {navigation.navigate('HalamanKomoditas')}}
-                        >
-                            <Text style={style.buttontext}>SIMPAN</Text>
+                        <TouchableOpacity style={style.button} onPress={() => AddData()}>
+                            <Text style={style.buttontext} >semuanya</Text>
                         </TouchableOpacity>
                     </View>
+                )
+                : null}
+                {((shouldShowSapi || shouldShowKambing) && shouldShowSimpan1 && shouldShowSimpan3) || shouldShowSimpan3 ? (
+                    <View style={style.buttonbackground}>
+                        <TouchableOpacity style={style.button} onPress={() => AddData()}>
+                            <Text style={style.buttontext} >Tambah Komoditas</Text>
+                        </TouchableOpacity>
+                    </View>
+                )
+                : null}
+                { ((!shouldShowSapi || !shouldShowKambing) && !shouldShowSimpan1 && !shouldShowSimpan3) || !shouldShowSimpan3 ? (
+                    <View style={style.buttonbackground}>
+                        <View style={style.buttondisable}>
+                            <Text style={style.buttontext} >Tambah Komoditas</Text>
+                        </View>
+                    </View>
+                )
+                : null}
+                {/* <TouchableOpacity
+                onPress={() => AddData()}
+                >
+                    <Text>Input data</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => setData()}
+                >
+                    <Text>Edit Data</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => removeData()}
+                >
+                    <Text>delete Data</Text>
+            </TouchableOpacity> */}
             </ScrollView>
         </View>
     )
 }
+
+const form = StyleSheet.create({
+  input: {
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#565656',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    backgroundColor:'#fff',
+    margin: 16
+      },
+  inputOnFocus: {
+    borderWidth: 1,
+    borderColor: '#57B860',
+    backgroundColor:'#fff'
+  },
+  textinput:{
+    paddingHorizontal: 16,
+    fontFamily:'Mulish-Medium',
+    color:'#565656',
+    fontSize: 14,
+    width: '100%'
+  },
+  texttitle:{
+    marginTop: 16,
+    fontSize: 16,
+    marginBottom:"4%",
+    fontFamily: 'Mulish-Bold',
+    color:'#565656'
+  },
+})
 
 const style = StyleSheet.create({
     container:{
@@ -68,37 +363,75 @@ const style = StyleSheet.create({
         height:64,
         flexDirection: 'row',
         alignItems:'center',
-        justifyContent:'space-between',
-        backgroundColor:'#57B860'
+        backgroundColor:'#57B860',
+        
     },
     header:{
         marginTop:16,
         fontSize: 20,
-        fontWeight: "600",
+        fontFamily:'Mulish-Bold',
         color:'white',
-        marginBottom:16
+        marginBottom:16,
+        flex: 1,
+        textAlign:'center',
+        marginRight: 72
     },
     buttonbackground:{
-        marginTop: "16%",
-        bottom:'4%',
+        marginTop: "12%",
         flexDirection:"row",
         alignItems: 'flex-end',
         justifyContent:'space-between',
         marginHorizontal:16,
-        backgroundColor:'pink'
+        marginBottom: 24,
+    },
+    form:{
+        margin: 16,
+        borderRadius: 8,
+        borderColor: 'grey',
+        borderWidth: 1,
+        backgroundColor:'white',
+
+    },
+    picker:{
+        fontFamily:'Mulish-Regular',
+    },
+    textinput:{
+        fontFamily:'Mulish-Regular',
+        fontSize: 14,
+        paddingHorizontal: 16,
+    },
+    judul:{
+        fontSize:16,
+        paddingHorizontal: 16,
+        fontFamily:'Mulish-Bold',
+        color:'#565656',
+        marginTop: 16
     },
     button:{
         justifyContent: 'space-around',
         width: "100%",
         height: 48,
         backgroundColor:'#57B860',
+        borderRadius: 8
+    },
+    buttondisable:{
+        justifyContent: 'space-around',
+        width: "100%",
+        height: 48,
+        backgroundColor:'#C4C4C4',
+        borderRadius: 8
     },
     buttontext:{
         color:'white',
         textAlign:'center',
         fontSize: 16,
-        fontWeight:'800'
+        fontFamily:'Mulish-Bold'
     },
+    align:{
+    flexDirection:'row',
+    alignItems:'center'
+    }
+
 })
 
 export default TambahPendataan;

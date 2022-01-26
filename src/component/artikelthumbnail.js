@@ -14,27 +14,27 @@ const ArtikelThumbnail = (props) =>{
     const {navigation} = props;
 
     return(
-    <View style={{flex: 1, paddingLeft: 8}}>
-        <View style={{height: 240, justifyContent:'center'}}>
+        <View style={styles.margin}>
             <View style={styles.card}>
                 <View style={styles.justify}>
                 </View>
             </View>
         </View>
-    </View>
     )
 }
 
 const styles = StyleSheet.create({
+    margin:{
+        margin: 8,
+        backgroundColor:'blue'
+    },
     card:{
-        flex: 1, 
-        backgroundColor:'#EDEDED', 
-        height:200,
-        maxHeight: 200, 
-        width:360, 
+        backgroundColor:'pink', 
+        height:180,
+        width:180, 
         borderRadius: 8, 
-        marginEnd: 12,
-        elevation: 8
+        marginHorizontal: 4,
+        elevation: 8,
     },
     imagethumbnail:{
         flex:0.5, backgroundColor:'#C4C4C4', borderTopLeftRadius:8, borderTopRightRadius: 8, paddingBottom:4

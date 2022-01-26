@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -22,12 +22,10 @@ import CloseIcon from '../../component/assets/icons/CloseIcon';
 
 
 
-const TambahKomoditas = (props) =>{
+const EditKomoditas = (props) =>{
     
     const { user } = useContext(LoginContext);
     const {navigation} = props;
-    const [jenis_komoditas, setJenisKomoditas] = React.useState();
-    const [rumpun, setRumpun] = React.useState();
     const [klasifikasi, setKlasifikasi] = React.useState();
     const [alamat, setAlamat] = React.useState('');
     const [luaslahan, setLuasLahan] = React.useState('');
@@ -38,91 +36,30 @@ const TambahKomoditas = (props) =>{
     const [shouldShowSimpan1, setShouldShowSimpan1] = React.useState(false);
     const [shouldShowSimpan2, setShouldShowSimpan2] = React.useState(false);
     const [shouldShowSimpan3, setShouldShowSimpan3] = React.useState(false);
-    const [alamatonfocus, setAlamatOnFocus] = useState(false);
-    const [luaslahanonfocus, setLuasLahanOnFocus] = useState(false);
-    const [lahandigunakanonfocus, setLahanDigunakanOnFocus] = useState(false);
+    const [alamatonfocus, setAlamatOnFocus] = React.useState(false);
+    const [luaslahanonfocus, setLuasLahanOnFocus] = React.useState(false);
+    const [lahandigunakanonfocus, setLahanDigunakanOnFocus] = React.useState(false);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [gobackModal, setGoBackModal] = React.useState(false);
-    const [showcontainer, setShowContainer] = React.useState('');
 
 
-
-
-
-
-
-
-
-    const AddData = () =>{
-        if(!luaslahandigunakan || !luaslahan || !alamat || !rumpun || !klasifikasi){
-            ToastAndroid.show("Data belum terisi semua", 3000);
-            return;
-        }
-        if(!alamat){
-            ToastAndroid.show("Alamat tidak boleh kosong", 3000);
-            return;
-        }
-        if(!rumpun){
-            ToastAndroid.show("Rumpun tidak boleh kosong", 3000);
-            return;
-        }
-        if(!klasifikasi){
-            ToastAndroid.show("Klasifikasi tidak boleh kosong", 3000);
-            return;
-        }
-        if(!luaslahan){
-            ToastAndroid.show("Luas Lahan belum terisi", 3000);
-            return;
-        }if(!luaslahandigunakan){
-            ToastAndroid.show("Luas Lahan Digunakan belum terisi", 3000);
-            return;
-        }
-        else{
+    const setData = () =>{
             firestore()
             .collection('Komoditas')
-            .add({
-                jenis_komoditas: jenis_komoditas,
-                rumpun_komoditas: rumpun,
+            .doc('PbYkOs7WRHkuLehIWWgI')
+            .set({
                 klasifikasi: klasifikasi,
                 alamat: alamat,
                 luaslahan: luaslahan,
                 luaslahandigunakan: luaslahandigunakan,
                 userID: user.uid,
             })
-            console.log('Komoditas berhasil ditambahkan!');
-            setShowContainer(jenis_komoditas);
-            setModalVisible(!modalVisible);
-
+            .then(() => {
+                console.log('Komoditas Berhasil di edit');
+                setModalVisible(!modalVisible)
+            });
         }
-    }
 
-    const setData = () =>{
-        firestore()
-        .collection('Komoditas')
-        .doc('ExbqfwJlzvcwRdwnA1qZ') 
-        .set({
-            jenis_komoditas: 'Sapi',
-            rumpun_komoditas: 'Belgian Blue 2',
-            klasifikasi: 'Penggemukan 2',
-        })
-        .then(() => {
-            console.log('Komoditas Berhasil di edit');
-            alert('Edit', 'Komoditas berhasil diedit', 'tutup');
-            navigation.navigate('HalamanKomoditas');
-        });
-    }
-
-    const removeData = () =>{
-        firestore()
-        .collection('Komoditas')
-        .doc('ExbqfwJlzvcwRdwnA1qZ')
-        .delete()
-        .then(() => {
-            console.log('Komoditas berhasil dihapus!');
-            alert('Komoditas berhasil dihapus');
-            navigation.navigate('HalamanKomoditas');
-        });
-    }
 
     return(
         <View  style={{flex:1, backgroundColor:'#F9F9F9'}}>
@@ -134,8 +71,8 @@ const TambahKomoditas = (props) =>{
             >
                 <View style={[[modal.centeredView, modalVisible ? {backgroundColor: 'rgba(0,0,0,0.5)'} : '']]}>
                     <View style={modal.modalview}>
-                        <Text style={modal.title}>Komoditas ditambahkan</Text>
-                        <Text style={modal.information}>Berhasil menambahkan komoditas!</Text>
+                        <Text style={modal.title}>Komoditas diedit</Text>
+                        <Text style={modal.information}>Berhasil mengedit komoditas!</Text>
                         <TouchableOpacity 
                         style={modal.primarybutton}
                         onPress={() => {
@@ -194,94 +131,10 @@ const TambahKomoditas = (props) =>{
                 style={{padding:24}}>
                     <ArrowBackWhite/>
                 </TouchableOpacity>
-                <Text style={style.header}>Tambah Komoditas</Text>
+                <Text style={style.header}>Edit Komoditas</Text>
             </View>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={{marginTop: 24}}></View>
-                <Text style={style.judul}>Jenis Komoditas</Text>
-                <View style={style.form}>
-                    <Picker
-                    selectedValue={jenis_komoditas}
-                    onValueChange={(itemValue, itemIndex) => {
-                        if(jenis_komoditas == 'Sapi'){ 
-                            setShouldShowKambing(!shouldShowKambing);
-                            setShouldShowSapi(shouldShowSapi);
-
-                        }if(jenis_komoditas == null){
-                            setShouldShowSapi(!shouldShowSapi);
-                        }
-                        else
-                        { 
-                            setShouldShowKambing(!shouldShowKambing);
-                            setShouldShowSapi(!shouldShowSapi);
-
-                    }
-                        setJenisKomoditas(itemValue);
-                    }}
-                    
-                    mode="dialog"
-                    style={style.picker}
-                    >
-                        <Picker.Item enabled={false} label="- Pilih Jenis Komoditas -" value="Pilih_JK" color="#565656" />
-                        <Picker.Item label="Sapi" value="Sapi" color="#DDDDD"/>
-                        <Picker.Item label="Domba/Kambing" value="Domba/Kambing" color="#DDDDD"/>
-                    </Picker>
-                </View>
-                {shouldShowKambing ? (
-                    <View>
-                        <Text style={style.judul}>Rumpun Hewan</Text>
-                        <View style={style.form}>
-                            <Picker
-                            selectedValue={rumpun}
-                            onValueChange={(itemValue, itemIndex) => {
-                                setRumpun(itemValue);
-                                setShouldShowSimpan1(!shouldShowSimpan1);
-                            }}
-                            mode="dialog"
-                            style={style.picker}>
-                                <Picker.Item enabled={false} label="- Pilih Rumpun -" value="Pilih_R" color="#565656" />
-                                <Picker.Item label="Marica" value="Marica" color="#DDDDD"/>
-                                <Picker.Item label="Peranakan Etawah (PE)" value="PE" color="#DDDDD"/>
-                                <Picker.Item label="Kacang" value="Kacang" color="#DDDDD"/>
-                                <Picker.Item label="Saanen" value="Saanen" color="#DDDDD"/>
-                                <Picker.Item label="Alpina" value="Alpina" color="#DDDDD"/>
-                                <Picker.Item label="Boer" value="Boer" color="#DDDDD"/>
-                                <Picker.Item label="Garut" value="Garut" color="#DDDDD"/>
-                                <Picker.Item label="Palu" value="Palu" color="#DDDDD"/>
-                            </Picker>
-                        </View>
-                    </View>
-
-                ) : null }
-                {shouldShowSapi ? (
-                    <View>
-                        <Text style={style.judul}>Rumpun Hewan</Text>
-                        <View style={style.form}>
-                            <Picker
-                            selectedValue={rumpun}
-                            onValueChange={(itemValue, itemIndex) => {
-                                setRumpun(itemValue);
-                                setRumpun(itemValue);
-                                setShouldShowSimpan2(!shouldShowSimpan2);
-                            }}
-                            mode="dialog"
-                            style={style.picker}>
-                                <Picker.Item enabled={false} label="- Pilih Rumpun -" value="Pilih_R" color="#565656" />
-                                <Picker.Item label="Brahman" value="Brahman" color="#DDDDD"/>
-                                <Picker.Item label="Simmental" value="Simmental" color="#DDDDD"/>
-                                <Picker.Item label="Limousin" value="Limousin" color="#DDDDD"/>
-                                <Picker.Item label="Black Limousin" value="Black Limousin" color="#DDDDD"/>
-                                <Picker.Item label="Wagyu" value="Wagyu" color="#DDDDD"/>
-                                <Picker.Item label="Belgian Blue" value="Belgian Blue" color="#DDDDD"/>
-                                <Picker.Item label="Madura" value="Madura" color="#DDDDD"/>
-                                <Picker.Item label="Aceh" value="Aceh" color="#DDDDD"/>
-                                <Picker.Item label="Bali" value="Bali" color="#DDDDD"/>
-                                <Picker.Item label="Pasundan" value="Pasundan" color="#DDDDD"/>
-                            </Picker>
-                        </View>
-                    </View>
-
-                ) : null } 
                 <Text style={style.judul}>Klasifikasi</Text>
                 <View style={style.form}>
                     <Picker
@@ -326,7 +179,7 @@ const TambahKomoditas = (props) =>{
                         placeholderTextColor="grey"
                         placeholder = "1"
                         onChangeText={(itemValue, itemIndex) => setLuasLahan(itemValue)}
-                        value={luaslahan} 
+                        value={luaslahan}
                         onFocus={() => {setLuasLahanOnFocus (true)}}
                         onBlur={() => {setLuasLahanOnFocus (false)}}
                     />
@@ -347,7 +200,7 @@ const TambahKomoditas = (props) =>{
                 </View>
                 {((shouldShowSapi || shouldShowKambing) && shouldShowSimpan1 && shouldShowSimpan3) || shouldShowSimpan3 ? (
                     <View style={style.buttonbackground}>
-                        <TouchableOpacity style={style.button} onPress={() => AddData()}>
+                        <TouchableOpacity style={style.button} onPress={() => setData()}>
                             <Text style={style.buttontext} >Simpan</Text>
                         </TouchableOpacity>
                     </View>
@@ -365,6 +218,8 @@ const TambahKomoditas = (props) =>{
         </View>
     )
 }
+
+
 
 const form = StyleSheet.create({
   input: {
@@ -565,4 +420,4 @@ const style = StyleSheet.create({
 
 })
 
-export default TambahKomoditas;
+export default EditKomoditas;

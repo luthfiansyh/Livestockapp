@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import {View,Text, ScrollView, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import IconEditGrey from '../../component/assets/icons/IconEditGrey';
 import ArrowBackWhite from '../../component/assets/icons/ArrowBackWhite';
 
@@ -27,7 +27,9 @@ const HalamanProfil = (props) =>{
                         <IconEditGrey/>
                     </TouchableOpacity>
                     <View style={styles.wrap}>
-                        <View style={styles.photo}></View>
+                        <View style={styles.photo}>
+                            <Image style={styles.photo} source={require('../../component/assets/images/profile.jpg')} />
+                        </View>
                         <Text style={styles.name}>Muhammad Luthfiansyah</Text>
                     </View>
                 </View>
@@ -38,7 +40,7 @@ const HalamanProfil = (props) =>{
                     </View>
                     <View style={styles.wrap2}>
                         <Text style={styles.title}>Password</Text>
-                        <Text style={styles.subtitle}>Luthfi@gmail.com</Text>
+                        <Text style={styles.subtitle}>********</Text>
                     </View>
                     <View style={styles.wrap2}>
                         <Text style={styles.title}>Tanggal Lahir</Text>
@@ -58,7 +60,15 @@ const HalamanProfil = (props) =>{
     )
 }
 
+
 const styles = StyleSheet.create({
+    photo:{
+        height: 200,
+        width: 320,
+        margin:16,
+        backgroundColor:'#57B860',
+        borderRadius:8
+    },
     header:{
         backgroundColor:'white',
         height:240,
@@ -101,24 +111,24 @@ const styles = StyleSheet.create({
     name:{
         fontSize: 18,
         marginVertical: 24,
-        fontWeight: '700',
-        color:'#626262'
+        fontFamily:'Mulish-Bold',
+        color:'#000'
     },
     wrap2:{
         marginHorizontal: 16,
         paddingVertical: 8,
     },
     title:{
-        fontSize: 14,
-        fontWeight: '700',
-        color:'#626262',
+        fontSize: 16,
+        color:'#000',
         paddingVertical: 8,
+        fontFamily:'Mulish-Bold'
     },
     subtitle:{
         fontSize: 14,
-        color:'#626262',
-        fontWeight: '600',
+        color:'#656565',
         paddingVertical: 8,
+        fontFamily:'Mulish-Medium'
     },
     container:{
         width:'100%',

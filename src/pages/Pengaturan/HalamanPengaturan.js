@@ -10,7 +10,7 @@ import { firebase } from '@react-native-firebase/auth';
 
 const HalamanPengaturan = (props) =>{
     const {navigation} = props;
-    
+    const [userid, setUserId] = React.useState('');
     const { user } = useContext(LoginContext);
     const signOut = () => {
         FirebaseUtil.signOut().catch((e) =>{
@@ -34,7 +34,7 @@ const HalamanPengaturan = (props) =>{
                 onPress={() => {navigation.navigate("HalamanProfil")}}
                 >
                     <View style={styles.card}>
-                        <Text style={styles.text}>Profil</Text>
+                        <Text style={styles.text}> Halaman Profil</Text>
                         <RightChevron/>
 
                     </View>
@@ -50,33 +50,19 @@ const HalamanPengaturan = (props) =>{
                         <RightChevron/>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight
-                onPress={() => {alert("Kontak")}}
-                >
-                    <View style={styles.card}>
-                        <Text style={styles.text}>Tips dan Trik</Text>
-                        <RightChevron/>
-                    </View>
-                </TouchableHighlight>
-                <TouchableHighlight
-                onPress={() => {alert("Bantuan")}}
-                >
-                    <View style={styles.card}>
-                        <Text style={styles.text}>FAQ</Text>
-                        <RightChevron/>
-                    </View>
-                </TouchableHighlight>
                 <View style={styles.judul}>
                     <Text style={styles.isijudul}>LOGOUT</Text>
                 </View>
                 <TouchableHighlight
-                onPress={() => signOut()}
+                onPress={() => {
+                    setUserId(user.uid);
+                    signOut();
+                }}
                 >
                     <View style={styles.card}>
                         <Text style={styles.text}>Logout Akun</Text>
                     </View>
                 </TouchableHighlight>
-                {/* <Text>Email {user?.email}</Text> */}
             </ScrollView>
         </View>
     )
@@ -139,9 +125,9 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:14,
-        fontWeight:"600",
         paddingVertical: 20,
-        color:'#626262',
+        color:'#3c3c3c',
+        fontFamily: 'Mulish-SemiBold'
     },
     buttonbackground:{
         marginTop: "24%",
@@ -172,14 +158,14 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     judul:{
-        backgroundColor: '#F6F6F6'
+        backgroundColor: '#F6F6F6',
     },
     isijudul:{
         paddingVertical : 8,
         paddingLeft: 24, 
-        color: '#818181',
+        color: '#565656',
         fontSize: 12, 
-        fontWeight: '600'
+        fontFamily: 'Mulish-Bold'
     },
     container:{
         height: 64,
@@ -199,8 +185,8 @@ const styles = StyleSheet.create({
     Text:{
         marginTop:16,
         fontSize: 20,
-        fontWeight: "600",
-        color:'white'
+        color:'white',
+        fontFamily: 'Mulish-Bold'
     },
     inside:{
         height: 24,

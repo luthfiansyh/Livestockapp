@@ -17,7 +17,7 @@ import ThumbnailArtikel from '../../component/ThumbnailArtikel.js';
 import Kalkulator from '../../component/assets/icons/Kalkulator';
 import Keswan from '../../component/assets/icons/Keswan';
 import Katalog from '../../component/assets/icons/Katalog';
-import KalenderPeternakan from '../../component/assets/icons/KalenderPeternakan';
+import ToDo from '../../component/assets/icons/ToDo';
 
 const HomeScreen = (props) =>{
 
@@ -26,57 +26,24 @@ const HomeScreen = (props) =>{
     return(
       <View style={{flex:1, backgroundColor:'white'}}>
         <ScrollView style={{height:1}} showsVerticalScrollIndicator={false}>
-          <Head/>
-            <View style={{flex:1}}>
-              {/* <View style={styles.container}>
-                <View style={styles.row}>
-                  <TouchableOpacity onPress={() => {alert("Kalkulator Hewan")}} style={styles.cardleft}>
-                    <View style={styles.justify}>
-                      <Kalkulator/>
-                    </View>
-                    <Text style={styles.text}>Kalkulator Hewan</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {alert("Kontak Keswan")}} style={styles.cardright}>
-                    <View style={styles.justify}>
-                      <Keswan/>
-                    </View>
-                    <Text style={styles.text}>Kontak Veteriner</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.row}>
-                  <TouchableOpacity onPress={() => {alert("Katalog Pejantan")}} style={styles.cardleft}>
-                    <View style={styles.justify}>
-                      <Katalog/>
-                    </View>
-                    <Text style={styles.text}>Katalog Pejantan</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {alert("Kalender Peternakan")}} style={styles.cardright}>
-                    <View style={styles.justify}>
-                      <KalenderPeternakan/>
-                    </View>
-                    <Text style={styles.text}>Kalender Hewan</Text>
-                  </TouchableOpacity>
-                  <View style={{width: 156, height: 72, marginRight: 12, marginTop: 24}}></View>
-                </View>
-              </View> */}
-            </View>
+            <View style={carousel.card}></View>
             <View style={styles.container}>
               <View style={styles.row}>
-                <View style={{alignItems:'center'}}>
-                  <TouchableOpacity
-                  onPress={() => alert('Kalkulator')}
-                  >
-                  <Kalkulator/>
-                </TouchableOpacity>
-                <Text style={styles.buttontext}>Kalkulator Hewan</Text>
-                </View>
                 <View style={{alignItems:'center'}}>
                   <TouchableOpacity
                   onPress={() => {navigation.navigate('KontakKeswan')}}
                   >
                   <Keswan/>
                 </TouchableOpacity>
-                <Text style={styles.buttontext}>Kontak Veteriner</Text>
+                <Text style={styles.buttontext}>Veteriner</Text>
+                </View>
+                <View style={{alignItems:'center'}}>
+                  <TouchableOpacity
+                  onPress={() => alert('Kalkulator')}
+                  >
+                  <Kalkulator/>
+                </TouchableOpacity>
+                <Text style={styles.buttontext}>Kalkulator</Text>
                 </View>
                 <View style={{alignItems:'center'}}>
                   <TouchableOpacity
@@ -84,48 +51,69 @@ const HomeScreen = (props) =>{
                   >
                   <Katalog/>
                 </TouchableOpacity>
-                <Text style={styles.buttontext}>Katalog Pejantan</Text>
+                <Text style={styles.buttontext}>Pejantan</Text>
                 </View>
                 <View style={{alignItems:'center'}}>
                   <TouchableOpacity
                   onPress={() => {alert("Kalender Peternakan")}}
                   >
-                  <KalenderPeternakan/>
+                  <ToDo/>
                 </TouchableOpacity>
-                <Text style={styles.buttontext}>Kalender Hewan</Text>
+                <Text style={styles.buttontext}>ToDo</Text>
                 </View>
               </View>
-            </View>
-            <View>
 
             </View>
-          <ThumbnailArtikel/>
-          <View style={{marginBottom: 24}}></View>
-          <ThumbnailArtikel/>
-          <View style={{marginBottom: 72}}></View>
-
+          <View style={{marginBottom: 64}}></View>
         </ScrollView>
       </View>
     )
 }
 
+const card = StyleSheet.create({
+  row:{
+    flexDirection:'row',
+    justifyContent: 'center'
+  },
+  container:{
+    height : 200,
+    width: 180,
+    backgroundColor:'cyan',
+    margin: 8,
+    marginVertical: 16,
+    borderRadius: 16,
+    elevation: 5
+  },
+  title:{
+    fontFamily:'Mulish-Bold',
+    fontSize: 16,
+    paddingHorizontal: 18,
+    color:'#656565'
+  }
+})
+
 const styles = StyleSheet.create({
   container:{
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    marginVertical: 36
+    paddingVertical: '10%'
   },
   row:{
     flexDirection: 'row',
     justifyContent: 'space-around' 
   },
   buttontext:{
-    fontFamily:'Mulish-SemiBold',
-    fontSize: 10,
+    fontFamily:'Mulish-Bold',
+    fontSize: 12,
     textAlign:'center',
-    width: 56,
-    marginTop: 4,
-    color:'#565656'
+    width: 80,
+    marginTop: 8,
+    color:'#565656',
+  }
+})
+
+const carousel = StyleSheet.create({
+  card:{
+    height: 200, margin: 16, borderRadius: 16, backgroundColor:'pink'
   }
 })
 
